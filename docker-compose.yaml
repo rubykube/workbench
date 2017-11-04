@@ -1,0 +1,36 @@
+version: '3'
+
+services:
+  peatio:
+    build:
+      context: peatio
+      dockerfile: Dockerfile
+    depends_on:
+      - db
+    ports:
+      - "8000:80"
+    restart: always
+    environment:
+      RAILS_ENV: development
+
+  db:
+    image: mysql:5.7
+    volumes:
+      - db_data:/var/lib/mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: changeme
+      MYSQL_DATABASE: peatio-development
+      MYSQL_USER: peatio
+      MYSQL_PASSWORD: peatiopass
+
+  redis:
+    image: redis:alpine
+    restart: always
+
+  rabbitmq:
+    image: rabbitmq:alpine
+    restart: always
+
+volumes:
+  db_data:
