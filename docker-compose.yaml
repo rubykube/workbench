@@ -5,13 +5,18 @@ services:
     build:
       context: peatio
       dockerfile: Dockerfile
+    restart: always
     depends_on:
       - db
+      - redis
+      - rabbitmq
     ports:
-      - "8000:80"
-    restart: always
+      - "80:8080"
     environment:
-      RAILS_ENV: development
+      - RAILS_ENV=development
+      - DATABASE_HOST=db
+      - DATABASE_USER=root
+      - DATABASE_PASS=changeme
 
   db:
     image: mysql:5.7
@@ -20,9 +25,9 @@ services:
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: changeme
-      MYSQL_DATABASE: peatio-development
+      MYSQL_DATABASE: peatio_development
       MYSQL_USER: peatio
-      MYSQL_PASSWORD: peatiopass
+      MYSQL_PASSWORD: changeme
 
   redis:
     image: redis:alpine
