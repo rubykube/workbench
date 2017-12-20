@@ -16,3 +16,7 @@ run: prepare
 test: prepare
 	@docker-compose run peatio_specs rake db:create db:migrate RAILS_ENV=test
 	@docker-compose run peatio_specs
+
+delete:
+	@docker-compose stop db redis rabbitmq selenium peatio
+	@docker-compose rm db redis rabbitmq selenium peatio
