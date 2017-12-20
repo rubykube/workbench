@@ -11,6 +11,21 @@ Peatio workbench is an easy way to start Peatio development environment.
 
 Clone the workbench and then clone rubykube/peatio `../peatio` if you haven't already
 
+### Build
+
+First you will need to build peatio containers
+```
+make build
+```
+
+### Start services
+
+```
+make prepare
+```
+
+### Run Peatio or specs
+
 To start Peatio run `make run`
 
 To run the tests, use `make test`
