@@ -18,5 +18,4 @@ test: prepare
 	@docker-compose run peatio_specs
 
 delete:
-	@docker-compose stop db redis rabbitmq selenium peatio
-	@docker-compose rm db redis rabbitmq selenium peatio
+	@docker-compose down db redis rabbitmq selenium peatio
