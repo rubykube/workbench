@@ -13,11 +13,12 @@ services:
     ports:
       - "8080:8080"
     environment:
-      - RAILS_ENV=test
-      - AMQP_HOST=rabbitmq
+      - PORT=8080
+      - RAILS_ENV=development
       - DATABASE_HOST=db
       - DATABASE_USER=root
       - DATABASE_PASS=changeme
+      - RABBITMQ_HOST=rabbitmq
     volumes:
       - ./peatio:/home/app
 
@@ -31,12 +32,13 @@ services:
       - redis
       - rabbitmq
     environment:
+      - PORT=8080
       - RAILS_ENV=test
-      - AMQP_HOST=rabbitmq
       - DATABASE_HOST=db
       - DATABASE_USER=root
       - DATABASE_PASS=changeme
-      - TEST_APP_HOST=peatio
+      - RABBITMQ_HOST=rabbitmq
+      - TEST_APP_HOST=peatio_specs
       - TEST_APP_PORT=8080
       - SELENIUM_HOST=selenium
       - SELENIUM_PORT=4444
@@ -68,6 +70,9 @@ services:
   selenium:
     image: selenium/standalone-chrome
     restart: always
+    environment:
+      SCREEN_WIDTH: 800
+      SCREEN_HEIGHT: 600
 
 volumes:
   db_data:

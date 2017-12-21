@@ -10,12 +10,12 @@ prepare:
 	@docker-compose up -d db redis rabbitmq selenium
 
 run: prepare
-	@docker-compose run peatio rake db:migrate
-	@docker-compose run -p 8080:8080 peatio rails server
+	@docker-compose run --rm peatio rake db:create db:migrate db:seed
+	@docker-compose run --rm peatio
 
 test: prepare
-	@docker-compose run peatio_specs rake db:create db:migrate RAILS_ENV=test
-	@docker-compose run peatio_specs
+	@docker-compose run --rm peatio_specs rake db:create db:migrate RAILS_ENV=test
+	@docker-compose run --rm peatio_specs
 
 delete:
 	@docker-compose down
