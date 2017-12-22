@@ -11,16 +11,37 @@ services:
       - redis
       - rabbitmq
     ports:
-      - "8080:8080"
+      - "80:8000"
     environment:
-      - PORT=8080
+      - PORT=8000
       - RAILS_ENV=development
+      - REDIS_URL=redis://redis:6379
       - DATABASE_HOST=db
       - DATABASE_USER=root
       - DATABASE_PASS=changeme
       - RABBITMQ_HOST=rabbitmq
     volumes:
       - ./peatio:/home/app
+
+  peatio_daemons:
+    build:
+      context: peatio
+      dockerfile: Dockerfile
+    restart: always
+    depends_on:
+      - db
+      - redis
+      - rabbitmq
+    ports:
+      - "8080:8080"
+    environment:
+      - RAILS_ENV=development
+      - REDIS_URL=redis://redis:6379
+      - DATABASE_HOST=db
+      - DATABASE_USER=root
+      - DATABASE_PASS=changeme
+      - RABBITMQ_HOST=rabbitmq
+    command: bundle exec god -c lib/daemons/daemons.god -D start
 
   peatio_specs:
     build:
@@ -32,19 +53,17 @@ services:
       - redis
       - rabbitmq
     environment:
-      - PORT=8080
+      - PORT=8000
       - RAILS_ENV=test
       - DATABASE_HOST=db
       - DATABASE_USER=root
       - DATABASE_PASS=changeme
       - RABBITMQ_HOST=rabbitmq
-      - TEST_APP_HOST=peatio_specs
-      - TEST_APP_PORT=8080
       - SELENIUM_HOST=selenium
       - SELENIUM_PORT=4444
     volumes:
       - ./peatio:/home/app
-    command: bundle exec rspec
+    command: bundle exec rspec --exclude-pattern=spec/features/**/*_spec.rb
 
   db:
     image: mysql:5.7

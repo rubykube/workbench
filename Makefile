@@ -4,10 +4,11 @@ default: run
 
 build:
 	@docker-compose build peatio
+	@docker-compose build peatio_daemons
 	@docker-compose build peatio_specs
 
 prepare:
-	@docker-compose up -d db redis rabbitmq selenium
+	@docker-compose up -d db redis rabbitmq selenium peatio_daemons
 
 run: prepare
 	@docker-compose run --rm peatio rake db:create db:migrate db:seed
