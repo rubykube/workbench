@@ -9,14 +9,17 @@ build:
 
 prepare:
 	@docker-compose up -d db redis rabbitmq selenium peatio_daemons
+	@docker-compose run --rm peatio rake db:create db:migrate
+	@docker-compose run --rm peatio_specs rake db:migrate RAILS_ENV=test
 
 run: prepare
-	@docker-compose run --rm peatio rake db:create db:migrate db:seed
-	@docker-compose run --rm peatio
+	@docker-compose up peatio
 
 test: prepare
-	@docker-compose run --rm peatio_specs rake db:create db:migrate RAILS_ENV=test
 	@docker-compose run --rm peatio_specs
 
-delete:
+seed:
+	@docker-compose run --rm peatio rake db:seed
+
+down:
 	@docker-compose down

@@ -41,7 +41,7 @@ services:
       - DATABASE_USER=root
       - DATABASE_PASS=changeme
       - RABBITMQ_HOST=rabbitmq
-    command: bundle exec god -c lib/daemons/daemons.god -D start
+    command: god -c lib/daemons/daemons.god -D start
 
   peatio_specs:
     build:
