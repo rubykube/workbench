@@ -11,7 +11,7 @@ services:
       - redis
       - rabbitmq
     ports:
-      - "80:8000"
+      - "8000:8000"
     environment:
       - PORT=8000
       - RAILS_ENV=development
