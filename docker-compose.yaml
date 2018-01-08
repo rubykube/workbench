@@ -5,7 +5,6 @@ services:
     build:
       context: peatio
       dockerfile: Dockerfile
-    restart: always
     depends_on:
       - db
       - redis
@@ -22,6 +21,14 @@ services:
       - RABBITMQ_HOST=rabbitmq
     volumes:
       - ./peatio:/home/app
+    entrypoint:
+      - /bin/sh
+      - -xc
+    command:
+      - |
+        ./bin/init_config
+        bundle exec rake db:create db:migrate db:seed
+        bundle exec puma --config config/puma.rb
 
   peatio_daemons:
     build:
