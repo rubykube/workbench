@@ -47,7 +47,6 @@ services:
     build:
       context: peatio
       dockerfile: Dockerfile
-    restart: always
     depends_on:
       - db
       - redis
@@ -63,7 +62,13 @@ services:
       - SELENIUM_PORT=4444
     volumes:
       - ./peatio:/home/app
-    command: bundle exec rspec --exclude-pattern=spec/features/**/*_spec.rb
+    entrypoint:
+      - /bin/sh
+      - -exc
+    command:
+      - |
+        bundle exec rake db:drop db:create db:migrate db:seed
+        bundle exec rspec --exclude-pattern=spec/features/**/*_spec.rb
 
   db:
     image: mysql:5.7
@@ -79,8 +84,6 @@ services:
   redis:
     image: redis:alpine
     restart: always
-    ports:
-      - "6379:6379"
 
   rabbitmq:
     image: rabbitmq:alpine
