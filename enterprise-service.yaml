@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  ngx-cryptobase:
+    image: node:9
+    ports:
+      - "4200:4200"
+    volumes:
+      - ./ngx-cryptobase:/app
+    environment:
+      - NODE_ENV=development
+    entrypoint:
+      - /bin/sh
+      - -exc
+    command:
+      - |
+        cd app
+        npm rebuild node-sass --force
+        npm install
+        npm run build
+        npm link
+        cd playground
+        npm link ngx-cryptobase
+        npm install
+        npm run dev
+
