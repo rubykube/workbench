@@ -16,11 +16,8 @@ services:
       - |
         cd app
         npm rebuild node-sass --force
-        npm install
-        npm run build
-        npm link
-        cd playground
-        npm link ngx-cryptobase
-        npm install
+        npm install && npm run build
+        cd dist && npm link && cd ../playground
+        npm link @helios/ngx-cryptobase
         npm run dev
 
