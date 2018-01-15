@@ -27,7 +27,6 @@ services:
     command:
       - |
         ./bin/init_config
-        bundle exec rake db:create db:migrate db:seed
         bundle exec puma --config config/puma.rb
 
   peatio_daemons:
@@ -67,6 +66,8 @@ services:
       - RABBITMQ_HOST=rabbitmq
       - SELENIUM_HOST=selenium
       - SELENIUM_PORT=4444
+      - TEST_APP_HOST=peatio
+      - TEST_APP_PORT=8080
     volumes:
       - ./peatio:/home/app
     entrypoint:
@@ -74,31 +75,14 @@ services:
       - -exc
     command:
       - |
-        bundle exec rake db:drop db:create db:migrate db:seed
         bundle exec rspec --exclude-pattern=spec/features/**/*_spec.rb
 
   ngx-cryptobase:
-    image: node:9
+    build:
+      context: ngx-cryptobase
+      dockerfile: Dockerfile
     ports:
       - "4200:4200"
-    volumes:
-      - ./ngx-cryptobase:/app
-    environment:
-      - NODE_ENV=development
-    entrypoint:
-      - /bin/sh
-      - -exc
-    command:
-      - |
-        cd app
-        npm rebuild node-sass --force
-        npm install
-        npm run build
-        npm link
-        cd playground
-        npm link ngx-cryptobase
-        npm install
-        npm run dev
 
   db:
     image: mysql:5.7
