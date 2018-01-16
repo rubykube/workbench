@@ -19,6 +19,13 @@ services:
       - DATABASE_USER=root
       - DATABASE_PASS=changeme
       - RABBITMQ_HOST=rabbitmq
+      - SMTP_PORT=25
+      - SMTP_DOMAIN=helioscloud.com
+      - SMTP_ADDRESS=smtp-relay
+      - SMTP_USE_SSL=false
+      - SMTP_USE_TLS=false
+      - SMTP_ENABLE_STARTTLS=false
+      - SMTP_ENABLE_STARTTLS_AUTO=false
     volumes:
       - ./peatio:/home/app
     entrypoint:
@@ -76,6 +83,11 @@ services:
     command:
       - |
         bundle exec rspec --exclude-pattern=spec/features/**/*_spec.rb
+
+  smtp-relay:
+    image: kaigara/postfix:latest
+    volumes:
+      - ./smtp-relay.yaml:/etc/kaigara/metadata/relay.yml
 
   ngx-cryptobase:
     build:
