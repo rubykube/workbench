@@ -27,6 +27,7 @@ make prepare
 ### Run Peatio or specs
 
 To start Peatio run `make run`
+(To test Peatio with an SMTP relay, set `RAILS_ENV` to production and fill out `smtp-relay.yaml` with correct values)
 
 To run the tests, use `make test`
 
