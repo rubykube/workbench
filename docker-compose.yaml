@@ -89,13 +89,6 @@ services:
     volumes:
       - ./smtp-relay.yaml:/etc/kaigara/metadata/relay.yml
 
-  ngx-cryptobase:
-    build:
-      context: ngx-cryptobase
-      dockerfile: Dockerfile
-    ports:
-      - "4200:4200"
-
   db:
     image: mysql:5.7
     volumes:
