@@ -1,0 +1,9 @@
+version: '3'
+
+services:
+  ngx-cryptobase:
+    build:
+      context: ngx-cryptobase
+      dockerfile: Dockerfile
+    ports:
+      - "4200:4200"
