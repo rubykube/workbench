@@ -5,9 +5,10 @@ default: run
 build:
 	docker-compose build peatio
 	docker-compose build ngx-cryptobase
+	docker-compose build bitgod
 
 prepare:
-	docker-compose up -d db redis rabbitmq smtp-relay selenium peatio_daemons
+	docker-compose up -d db redis rabbitmq smtp-relay selenium peatio_daemons bitgod
 	docker-compose run --rm peatio "rake db:create db:migrate"
 	docker-compose run --rm -e RAILS_ENV=test peatio_specs "rake db:create db:migrate"
 
