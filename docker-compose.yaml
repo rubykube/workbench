@@ -11,9 +11,9 @@ services:
       - rabbitmq
       - bitgod
     ports:
-      - "8000:8000"
+      - "3000:3000"
     environment:
-      - PORT=8000
+      - PORT=3000
       - RAILS_ENV=development
       - REDIS_URL=redis://redis:6379
       - DATABASE_HOST=db
@@ -29,13 +29,11 @@ services:
       - SMTP_ENABLE_STARTTLS_AUTO=false
     volumes:
       - ./peatio:/home/app
-      - ./currencies.yml:/home/app/config/currencies.yml
     entrypoint:
       - /bin/sh
       - -xc
     command:
       - |
-        ./bin/init_config
         bundle exec puma --config config/puma.rb
 
   peatio_daemons:
@@ -57,6 +55,8 @@ services:
       - DATABASE_USER=root
       - DATABASE_PASS=changeme
       - RABBITMQ_HOST=rabbitmq
+    volumes:
+      - ./peatio:/home/app
     command: god -c lib/daemons/daemons.god -D start
 
   peatio_specs:
@@ -93,8 +93,6 @@ services:
       context: bitgod
       dockerfile: Dockerfile
     restart: always
-    volumes:
-      - ./bitcoin.conf:/root/.bitcoin/bitcoin.conf
     ports:
       - "19332:19332"
 
