@@ -9,10 +9,11 @@ services:
       - db
       - redis
       - rabbitmq
+      - bitgod
     ports:
-      - "8000:8000"
+      - "3000:3000"
     environment:
-      - PORT=8000
+      - PORT=3000
       - RAILS_ENV=development
       - REDIS_URL=redis://redis:6379
       - DATABASE_HOST=db
@@ -33,7 +34,6 @@ services:
       - -xc
     command:
       - |
-        ./bin/init_config
         bundle exec puma --config config/puma.rb
 
   peatio_daemons:
@@ -45,6 +45,7 @@ services:
       - db
       - redis
       - rabbitmq
+      - bitgod
     ports:
       - "8080:8080"
     environment:
@@ -54,6 +55,8 @@ services:
       - DATABASE_USER=root
       - DATABASE_PASS=changeme
       - RABBITMQ_HOST=rabbitmq
+    volumes:
+      - ./peatio:/home/app
     command: god -c lib/daemons/daemons.god -D start
 
   peatio_specs:
@@ -64,6 +67,7 @@ services:
       - db
       - redis
       - rabbitmq
+      - bitgod
     environment:
       - PORT=8000
       - RAILS_ENV=test
@@ -83,6 +87,14 @@ services:
     command:
       - |
         bundle exec rspec --exclude-pattern=spec/features/**/*_spec.rb
+
+  bitgod:
+    build:
+      context: bitgod
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - "19332:19332"
 
   smtp-relay:
     image: kaigara/postfix:latest
