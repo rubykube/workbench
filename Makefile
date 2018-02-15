@@ -1,18 +1,19 @@
-.PHONY: build prepare run test seed down
+.PHONY: build prepare run test seed down setup-apps
 
 default: run
 
 build:
-	docker-compose build peatio
-	docker-compose build ngx-cryptobase
+	docker-compose build peatio barong
 
 prepare:
-	docker-compose up -d db redis rabbitmq smtp-relay selenium peatio_daemons
-	docker-compose run --rm peatio "rake db:create db:migrate"
-	docker-compose run --rm -e RAILS_ENV=test peatio_specs "rake db:create db:migrate"
+	docker-compose up -d db redis rabbitmq smtp-relay coinhub peatio_daemons
+
+setup-apps:
+	docker-compose run --rm peatio "./bin/setup"
+	docker-compose run --rm barong "./bin/setup"
 
 run: prepare
-	docker-compose up peatio ngx-cryptobase
+	docker-compose up peatio barong
 
 test: prepare
 	@docker-compose run --rm peatio_specs

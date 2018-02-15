@@ -9,26 +9,46 @@ Peatio workbench is an easy way to start Peatio development environment.
 
 ## Usage
 
-Clone the workbench and then clone rubykube/peatio `../peatio` if you haven't already
+### Prepare the workbench
 
-### Build
-
-First you will need to build peatio containers
-```
-make build
-```
-
-### Start services
+1. Clone [peatio](https://github.com/rubykube/peatio) and [barong](https://github.com/rubykube/barong)
+2. Create links to workbench root (e.g. `ln -s ../../path/to/peatio`)
+3. Build the images: `make build`. Make sure mysql server is running before the next step (check `docker logs workbench_db_1`)
+4. Start all services need for peatio: `make prepare`
+5. Prepare the database and configs: `make setup-apps`
+5. To have barong login working with peatio you will need to add this to your `/etc/hosts`:
 
 ```
-make prepare
+0.0.0.0 peatio
+0.0.0.0 barong
 ```
 
-### Run Peatio or specs
+### Run Barong and Peatio
 
-To start Peatio run `make run`
-(To test Peatio with an SMTP relay, set `RAILS_ENV` to production and fill out `smtp-relay.yaml` with correct values)
+#### Barong
 
-To run the tests, use `make test`
+1. Start barong: `docker-compose up -d barong`
+2. Create admin user for barong: `docker-compose run --rm barong bin/rake db:seed`
+   It will output password for **admin@barong.io**
+3. Sign in at [barong:8001](http://barong:8001), then go to [/admin](http://barong:8001/admin)
+   and navigate to [Applications](http://barong:8001/oauth/applications)
+4. Create new application with the following callback url `http://peatio:8000/auth/barong/callback`
 
-To tear down the environment, run `docker-compose down`
+#### Peatio
+
+1. In `docker-compose.yaml`, set the newly created application credentials:
+
+```yaml
+- BARONG_CLIENT_ID=xxxxx
+- BARONG_CLIENT_SECRET=xxxxx
+```
+
+2. Start peatio server: `docker-compose up -d peatio`
+
+#### Frontend
+
+Simply start your local server. Now you're able to log in with your local Barong and Peatio.
+
+## Running Tests
+
+>**TODO**
