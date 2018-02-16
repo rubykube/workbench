@@ -5,7 +5,6 @@ services:
     build:
       context: peatio
       dockerfile: Dockerfile
-    restart: always
     depends_on:
       - db
       - redis
@@ -42,7 +41,6 @@ services:
     build:
       context: peatio
       dockerfile: Dockerfile
-    restart: always
     depends_on:
       - db
       - redis
@@ -108,7 +106,6 @@ services:
 
   coinhub:
     image: rubykube/coinhub
-    restart: always
 
   smtp-relay:
     image: kaigara/postfix:latest
@@ -119,7 +116,6 @@ services:
     image: mysql:5.7
     volumes:
       - db_data:/var/lib/mysql
-    restart: always
     environment:
       MYSQL_ROOT_PASSWORD: changeme
       MYSQL_DATABASE: peatio_development
@@ -128,15 +124,12 @@ services:
 
   redis:
     image: redis:alpine
-    restart: always
 
   rabbitmq:
     image: rabbitmq:alpine
-    restart: always
 
   selenium:
     image: selenium/standalone-chrome
-    restart: always
     environment:
       SCREEN_WIDTH: 800
       SCREEN_HEIGHT: 600
