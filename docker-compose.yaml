@@ -9,6 +9,7 @@ services:
       - db
       - redis
       - rabbitmq
+      - smtp_relay
       - peatio_daemons
       - barong
     ports:
@@ -24,16 +25,16 @@ services:
       - RABBITMQ_HOST=rabbitmq
       - SMTP_PORT=25
       - SMTP_DOMAIN=helioscloud.com
-      - SMTP_ADDRESS=smtp-relay
+      - SMTP_ADDRESS=smtp_relay
       - SMTP_USE_SSL=false
       - SMTP_USE_TLS=false
       - SMTP_ENABLE_STARTTLS=false
       - SMTP_ENABLE_STARTTLS_AUTO=false
       - OAUTH2_SIGN_IN_PROVIDER=barong
-      - BARONG_DOMAIN=http://barong:8001
+      - BARONG_DOMAIN=http://localhost:8001
       - BARONG_OAUTH2_REDIRECT_URL=http://localhost:4200/callback
-      - BARONG_CLIENT_ID=
-      - BARONG_CLIENT_SECRET=
+      - BARONG_CLIENT_ID=a68be319fca51caca60eed5711226e568bd1c1d13ff452b945515f1a6ffbaca4
+      - BARONG_CLIENT_SECRET=ab80e2c843861c4d23e63f5472cd1c9ee6f55e388863e21f22b03a9093977f29
     volumes:
       - ./peatio:/home/app
 
@@ -55,6 +56,7 @@ services:
       - DATABASE_USER=root
       - DATABASE_PASS=changeme
       - RABBITMQ_HOST=rabbitmq
+      - WORKBENCH=true
     volumes:
       - ./peatio:/home/app
     command: god -c lib/daemons/daemons.god -D start
@@ -107,7 +109,7 @@ services:
   coinhub:
     image: rubykube/coinhub
 
-  smtp-relay:
+  smtp_relay:
     image: kaigara/postfix:latest
     volumes:
       - ./smtp-relay.yaml:/etc/kaigara/metadata/relay.yml
