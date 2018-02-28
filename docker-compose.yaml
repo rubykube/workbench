@@ -32,8 +32,8 @@ services:
       - OAUTH2_SIGN_IN_PROVIDER=barong
       - BARONG_DOMAIN=http://barong:8001
       - BARONG_OAUTH2_REDIRECT_URL=http://localhost:4200/callback
-      - BARONG_CLIENT_ID=
-      - BARONG_CLIENT_SECRET=
+      - BARONG_CLIENT_ID=087c8803986a809a60b267c268a1ffc90d3c4b0cb2b83728f5b78c208710bdbd
+      - BARONG_CLIENT_SECRET=70f57eacc91fe639466888ed0c4948ce1d5000e0c6ea68691a943b47389276a2
     volumes:
       - ./peatio:/home/app
 

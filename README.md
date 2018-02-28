@@ -16,7 +16,7 @@ Peatio workbench is an easy way to start Peatio development environment.
 3. Build the images: `make build`
 4. Start all services need for peatio: `make prepare`. Make sure mysql server
    is running before the next step (check `docker logs workbench_db_1`)
-5. Prepare the database and configs: `make setup-apps`
+5. Prepare the database and configs: `make setup-apps`. Get the baron admin password on the screen after the setup finishes.
 5. To have barong login working with peatio you will need to add this to your `/etc/hosts`:
 
 ```
