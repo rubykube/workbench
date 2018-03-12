@@ -6,7 +6,8 @@ build:
 	docker-compose build peatio barong
 
 prepare:
-	docker-compose up -d db redis rabbitmq smtp_relay coinhub peatio_daemons
+	docker-compose up -d vault db redis rabbitmq smtp_relay coinhub peatio_daemons
+	docker-compose run --rm vault secrets enable totp
 
 setup-apps: build
 	docker-compose run --rm peatio "./bin/setup"
