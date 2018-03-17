@@ -95,6 +95,7 @@ services:
       dockerfile: Dockerfile
     depends_on:
       - db
+      - vault
     ports:
       - "8001:8001"
     environment:
@@ -103,6 +104,8 @@ services:
       - DATABASE_HOST=db
       - DATABASE_USER=root
       - DATABASE_PASSWORD=changeme
+      - VAULT_ADDR=http://vault:8200
+      - VAULT_TOKEN=77921eb3-b57a-cf9a-c3ce-ab42c1720602
     volumes:
       - ./barong:/home/app
 
@@ -135,6 +138,13 @@ services:
     environment:
       SCREEN_WIDTH: 800
       SCREEN_HEIGHT: 600
+
+  vault:
+    image: vault
+    ports:
+      - "8200:8200"
+    environment:
+      - VAULT_DEV_ROOT_TOKEN_ID=77921eb3-b57a-cf9a-c3ce-ab42c1720602
 
 volumes:
   db_data:
