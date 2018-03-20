@@ -1,0 +1,16 @@
+- id: 200
+  currency: usd
+  sort_order: 1
+
+- id: 400
+  currency: btc
+  sort_order: 2
+  min_confirm: 1
+  max_confirm: 3
+
+- id: 600
+  currency: bch
+  sort_order: 3
+  min_confirm: 1
+  max_confirm: 3
+
