@@ -1,0 +1,24 @@
+- id: btcusd
+  code: 101
+  base_unit: btc
+  quote_unit: usd
+  sort_order: 1
+  bid: { fee: 0.0015, currency: usd, fixed: 2 }
+  ask: { fee: 0.0015, currency: btc, fixed: 4 }
+
+- id: bchusd
+  code: 102
+  base_unit: bch
+  quote_unit: usd
+  sort_order: 1
+  bid: { fee: 0.0015, currency: usd, fixed: 2 }
+  ask: { fee: 0.0015, currency: bch, fixed: 4 }
+
+- id: btcbch
+  code: 103
+  base_unit: btc
+  quote_unit: bch
+  sort_order: 1
+  bid: { fee: 0.0015, currency: bch, fixed: 3 }
+  ask: { fee: 0.0015, currency: btc, fixed: 4 }
+

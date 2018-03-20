@@ -4,7 +4,6 @@ services:
   peatio:
     build:
       context: peatio
-      dockerfile: Dockerfile
     depends_on:
       - db
       - redis
@@ -35,13 +34,17 @@ services:
       - BARONG_OAUTH2_REDIRECT_URL=http://localhost:4200/callback
       - BARONG_CLIENT_ID=a68be319fca51caca60eed5711226e568bd1c1d13ff452b945515f1a6ffbaca4
       - BARONG_CLIENT_SECRET=ab80e2c843861c4d23e63f5472cd1c9ee6f55e388863e21f22b03a9093977f29
+      - DEPOSIT_CHANNELS_CONFIG=/opt/peatio/config/deposit_channels.yml
+      - WITHDRAW_CHANNELS_CONFIG=/opt/peatio/config/withdraw_channels.yml
+      - MARKETS_CONFIG=/opt/peatio/config/markets.yml
+      - CURRENCIES_CONFIG=/opt/peatio/config/currencies.yml
     volumes:
       - ./peatio:/home/app
+      - ./config/peatio:/opt/peatio/config:ro
 
   peatio_daemons:
     build:
       context: peatio
-      dockerfile: Dockerfile
     depends_on:
       - db
       - redis
@@ -57,14 +60,18 @@ services:
       - DATABASE_PASS=changeme
       - RABBITMQ_HOST=rabbitmq
       - WORKBENCH=true
+      - DEPOSIT_CHANNELS_CONFIG=/opt/peatio/config/deposit_channels.yml
+      - WITHDRAW_CHANNELS_CONFIG=/opt/peatio/config/withdraw_channels.yml
+      - MARKETS_CONFIG=/opt/peatio/config/markets.yml
+      - CURRENCIES_CONFIG=/opt/peatio/config/currencies.yml
     volumes:
       - ./peatio:/home/app
+      - ./config/peatio:/opt/peatio/config:ro
     command: god -c lib/daemons/daemons.god -D start
 
   peatio_specs:
     build:
       context: peatio
-      dockerfile: Dockerfile
     depends_on:
       - db
       - redis
@@ -82,17 +89,11 @@ services:
       - TEST_APP_PORT=8080
     volumes:
       - ./peatio:/home/app
-    entrypoint:
-      - /bin/sh
-      - -exc
-    command:
-      - |
-        bundle exec rspec --exclude-pattern=spec/features/**/*_spec.rb
+    command: rspec --exclude-pattern=spec/features/**/*_spec.rb
 
   barong:
     build:
       context: barong
-      dockerfile: Dockerfile
     depends_on:
       - db
     ports:
@@ -112,7 +113,7 @@ services:
   smtp_relay:
     image: kaigara/postfix:latest
     volumes:
-      - ./smtp-relay.yaml:/etc/kaigara/metadata/relay.yml
+      - ./config/smtp-relay.yaml:/etc/kaigara/metadata/relay.yml
 
   db:
     image: mysql:5.7
@@ -120,9 +121,6 @@ services:
       - db_data:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: changeme
-      MYSQL_DATABASE: peatio_development
-      MYSQL_USER: peatio
-      MYSQL_PASSWORD: changeme
 
   redis:
     image: redis:alpine
