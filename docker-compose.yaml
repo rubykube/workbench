@@ -4,7 +4,6 @@ services:
   peatio:
     build:
       context: peatio
-      dockerfile: Dockerfile
     depends_on:
       - db
       - redis
@@ -41,7 +40,6 @@ services:
   peatio_daemons:
     build:
       context: peatio
-      dockerfile: Dockerfile
     depends_on:
       - db
       - redis
@@ -64,7 +62,6 @@ services:
   peatio_specs:
     build:
       context: peatio
-      dockerfile: Dockerfile
     depends_on:
       - db
       - redis
@@ -82,17 +79,11 @@ services:
       - TEST_APP_PORT=8080
     volumes:
       - ./peatio:/home/app
-    entrypoint:
-      - /bin/sh
-      - -exc
-    command:
-      - |
-        bundle exec rspec --exclude-pattern=spec/features/**/*_spec.rb
+    command: rspec --exclude-pattern=spec/features/**/*_spec.rb
 
   barong:
     build:
       context: barong
-      dockerfile: Dockerfile
     depends_on:
       - db
     ports:
@@ -120,9 +111,6 @@ services:
       - db_data:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: changeme
-      MYSQL_DATABASE: peatio_development
-      MYSQL_USER: peatio
-      MYSQL_PASSWORD: changeme
 
   redis:
     image: redis:alpine
