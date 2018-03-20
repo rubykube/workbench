@@ -107,6 +107,7 @@ services:
       DATABASE_PASSWORD: changeme
       VAULT_TOKEN: changeme
       VAULT_ADDR: http://vault:8200
+      JWT_LIFETIME: 14400
     volumes:
       - ./barong:/home/app
 
