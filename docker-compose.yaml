@@ -109,6 +109,7 @@ services:
       context: barong
     depends_on:
       - db
+      - vault
     ports:
       - "8001:8001"
     environment:
@@ -117,6 +118,8 @@ services:
       DATABASE_HOST: db
       DATABASE_USER: root
       DATABASE_PASSWORD: changeme
+      VAULT_TOKEN: changeme
+      VAULT_ADDR: http://vault:8200
     volumes:
       - ./barong:/home/app
 
@@ -153,6 +156,14 @@ services:
       - ./config/nginx.conf:/etc/nginx/nginx.conf
     ports:
       - "8000:8000"
+
+  vault:
+    image: vault:latest
+    environment:
+      SKIP_SETCAP: 1
+      VAULT_TOKEN: changeme
+      VAULT_DEV_ROOT_TOKEN_ID: changeme
+      VAULT_ADDR: http://vault:8200
 
 volumes:
   db_data:
