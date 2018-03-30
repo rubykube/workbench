@@ -11,12 +11,11 @@ services:
       - smtp_relay
       - peatio_daemons
       - barong
-      - nginx
     ports:
       - "3000:3000"
     environment:
       PORT: 3000
-      URL_HOST: peatio.local:8000
+      URL_HOST: peatio:8000
       RAILS_ENV: development
       REDIS_URL: redis://redis:6379
       DATABASE_HOST: db
@@ -32,7 +31,7 @@ services:
       SMTP_ENABLE_STARTTLS_AUTO: "false"
       OAUTH2_SIGN_IN_PROVIDER: barong
       BARONG_DOMAIN: http://barong:8001
-      BARONG_OAUTH2_REDIRECT_URL: http://peatio.local:8000/auth/barong/callback
+      BARONG_OAUTH2_REDIRECT_URL: http://peatio:8000/auth/barong/callback
       BARONG_CLIENT_ID: a68be319fca51caca60eed5711226e568bd1c1d13ff452b945515f1a6ffbaca4
       BARONG_CLIENT_SECRET: ab80e2c843861c4d23e63f5472cd1c9ee6f55e388863e21f22b03a9093977f29
       DEPOSIT_CHANNELS_CONFIG: /opt/peatio/config/deposit_channels.yml
@@ -156,6 +155,9 @@ services:
       - ./config/nginx.conf:/etc/nginx/nginx.conf
     ports:
       - "8000:8000"
+    depends_on:
+      - peatio
+      - peatio_trading_ui
 
   vault:
     image: vault:latest

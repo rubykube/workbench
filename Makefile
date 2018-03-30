@@ -14,11 +14,10 @@ setup-apps: build
 	docker-compose run --rm barong "./bin/setup"
 	docker-compose run --rm peatio_trading_ui "./bin/setup"
 
-run: prepare setup-apps
-	docker-compose up peatio barong peatio_trading_ui
-
 up:
-	docker-compose up peatio barong peatio_trading_ui
+	docker-compose up nginx peatio barong peatio_trading_ui
+
+run: prepare setup-apps up
 
 test: prepare
 	@docker-compose run --rm peatio_specs
