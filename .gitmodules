@@ -1,0 +1,6 @@
+[submodule "barong"]
+	path = barong
+	url = git@github.com:bernardpeh/barong.git
+[submodule "peatio"]
+	path = peatio
+	url = git@github.com:bernardpeh/peatio.git
