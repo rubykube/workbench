@@ -1,0 +1,6 @@
+[submodule "peatio"]
+	path = peatio
+	url = https://github.com/rubykube/peatio.git
+[submodule "barong"]
+	path = barong
+	url = https://github.com/rubykube/barong.git
