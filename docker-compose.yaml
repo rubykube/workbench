@@ -39,7 +39,6 @@ services:
       MARKETS_CONFIG: /opt/peatio/config/markets.yml
       CURRENCIES_CONFIG: /opt/peatio/config/currencies.yml
     volumes:
-      - ./peatio:/home/app
       - ./config/peatio:/opt/peatio/config:ro
 
   peatio_daemons:
@@ -65,7 +64,6 @@ services:
       MARKETS_CONFIG: /opt/peatio/config/markets.yml
       CURRENCIES_CONFIG: /opt/peatio/config/currencies.yml
     volumes:
-      - ./peatio:/home/app
       - ./config/peatio:/opt/peatio/config:ro
     command: god -c lib/daemons/daemons.god -D start
 
@@ -87,8 +85,6 @@ services:
       SELENIUM_PORT: 4444
       TEST_APP_HOST: peatio
       TEST_APP_PORT: 8080
-    volumes:
-      - ./peatio:/home/app
     command: rspec --exclude-pattern=spec/features/**/*_spec.rb
 
   barong:
@@ -107,8 +103,6 @@ services:
       DATABASE_PASSWORD: changeme
       VAULT_TOKEN: changeme
       VAULT_ADDR: http://vault:8200
-    volumes:
-      - ./barong:/home/app
 
   coinhub:
     image: rubykube/coinhub
