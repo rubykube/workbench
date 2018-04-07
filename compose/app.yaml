@@ -3,7 +3,7 @@ version: '3'
 services:
   peatio:
     build:
-      context: peatio
+      context: ../app/peatio
     depends_on:
       - db
       - redis
@@ -43,7 +43,7 @@ services:
 
   peatio_daemons:
     build:
-      context: peatio
+      context: ../app/peatio
     depends_on:
       - db
       - redis
@@ -67,29 +67,9 @@ services:
       - ./config/peatio:/opt/peatio/config:ro
     command: god -c lib/daemons/daemons.god -D start
 
-  peatio_specs:
-    build:
-      context: peatio
-    depends_on:
-      - db
-      - redis
-      - rabbitmq
-    environment:
-      PORT: 8000
-      RAILS_ENV: test
-      DATABASE_HOST: db
-      DATABASE_USER: root
-      DATABASE_PASS: changeme
-      RABBITMQ_HOST: rabbitmq
-      SELENIUM_HOST: selenium
-      SELENIUM_PORT: 4444
-      TEST_APP_HOST: peatio
-      TEST_APP_PORT: 8080
-    command: rspec --exclude-pattern=spec/features/**/*_spec.rb
-
   barong:
     build:
-      context: barong
+      context: ../app/barong
     depends_on:
       - db
       - vault
@@ -103,41 +83,3 @@ services:
       DATABASE_PASSWORD: changeme
       VAULT_TOKEN: changeme
       VAULT_ADDR: http://vault:8200
-
-  coinhub:
-    image: rubykube/coinhub
-
-  smtp_relay:
-    image: kaigara/postfix:latest
-    volumes:
-      - ./config/smtp-relay.yaml:/etc/kaigara/metadata/relay.yml
-
-  db:
-    image: mysql:5.7
-    volumes:
-      - db_data:/var/lib/mysql
-    environment:
-      MYSQL_ROOT_PASSWORD: changeme
-
-  redis:
-    image: redis:alpine
-
-  rabbitmq:
-    image: rabbitmq:alpine
-
-  selenium:
-    image: selenium/standalone-chrome
-    environment:
-      SCREEN_WIDTH: 800
-      SCREEN_HEIGHT: 600
-
-  vault:
-    image: vault:latest
-    environment:
-      SKIP_SETCAP: 1
-      VAULT_TOKEN: changeme
-      VAULT_DEV_ROOT_TOKEN_ID: changeme
-      VAULT_ADDR: http://vault:8200
-
-volumes:
-  db_data:

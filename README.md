@@ -9,6 +9,12 @@ Peatio workbench is an easy way to start Peatio development environment.
 
 ## Usage
 
+### Run the workbench using Vagrant
+
+```
+vagrant up
+```
+
 ### Prepare the workbench
 
 1. Recursive clone : git clone --recursive https://github.com/rubykube/workbench.git
