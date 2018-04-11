@@ -83,3 +83,59 @@ services:
       DATABASE_PASSWORD: changeme
       VAULT_TOKEN: changeme
       VAULT_ADDR: http://vault:8200
+<<<<<<< HEAD:compose/app.yaml
+=======
+    volumes:
+      - ./barong:/home/app
+
+  coinhub:
+    image: rubykube/coinhub
+
+  smtp_relay:
+    image: kaigara/postfix:latest
+    volumes:
+      - ./config/smtp-relay.yaml:/etc/kaigara/metadata/relay.yml
+
+  db:
+    image: mysql:5.7
+    volumes:
+      - db_data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: changeme
+
+  redis:
+    image: redis:alpine
+
+  rabbitmq:
+    image: rabbitmq:alpine
+
+  selenium:
+    image: selenium/standalone-chrome
+    environment:
+      SCREEN_WIDTH: 800
+      SCREEN_HEIGHT: 600
+
+  vault:
+    image: vault:latest
+    environment:
+      SKIP_SETCAP: 1
+      VAULT_TOKEN: changeme
+      VAULT_DEV_ROOT_TOKEN_ID: changeme
+      VAULT_ADDR: http://vault:8200
+
+  jasmine:
+    build:
+      context: tests
+    depends_on:
+      - peatio
+      - barong
+
+    environment:
+      PEATIO_DOMAIN: http://peatio:8000
+      BARONG_DOMAIN: http://barong:8001
+      JWT_TEST_PRIVATE_KEY: "LS0tLS1CRUdJTiBSU0EgUFJJVkFURSBLRVktLS0tLQpNSUlFcFFJQkFBS0NBUUVBdU4wbkhOaFUycm5lNXhNUkxCbVh2bDRBcWtBcU1LT0JBVGk4NDRpeU1HdU5uT0EyCmRQRHRmcTJYeENYY0FvQW4yc0dhdFRuWnhnSlpkd1Y3Q050VzdKRzg4bVExWGFBTFdlVEd6VGkwTVZsMHNHUVYKT1MycWY3a21mWlFKaDhDRU1ZNS9oQ1JKQzBxZzZMN09LcmpuT2FaZ3BGWXVoNUdxQ05ONkI1V2Nmd3g5TksrWApWK3h5eHJEb2l4eG15ZEhBMkViT1MrWXh2S1JlVXJXS3k1TElSVWlpQzA0TVB2WXRrcW5CY3dyek5mY21UTU1MCnB0MjhiWVl5elQ0S09jcDFvVTFnUnNqa0kwWmJNYUdFRlNjWk1EU2l5NGsrSnZ6dmJubXphcExDSTFPcHJWMmYKZW1TRzYydi9DaWVaOU5Hbm82YUh3bGNXR0lVTmN6TXgvVUp5dlFJREFRQUJBb0lCQVFDMDlRYU1YZGJ5SkcvbAprZXlGVnFnTFdNa2QzcUZ0Nng4a3F2MTdYUnZQK2ZndFQreittN2hmQUY1SFN5Z0o2cGtZc2R0VytzSUo2ZExaCmh5dmdoNVNYRGpIK3M4anBWUGpIamdKc2NNMHlZWGF3RThnU3FIajFmYkFIelJsbklUUkZyazkwY25CdDlTZDkKclFqekdQeCttamFQcHl6MDE4bXh5aER4eTZuZFVoaTRNMVNVRUVmWGdRMitoWHM4WS82RzVoZzZwMnFJWnhCUgp4d2oxeEIvMHZnUENQVmRMdUIzZ0poR1ZoellDVUV0QkdNTEViZDhnQU0xWGNDSnRvaUpHdldGY2xBT056L3pqCjYvYStHQmxNZVNOdEJVMHNtVHVLL1NvTFMxSVhpc2h3cjVJMmpta1BiaSt3M0ttSVVNZW1QMEQxS0w0QVc5ZHUKSDVvWmpCTUJBb0dCQU80cU9IZHhycVlsaGVZRE9CNkNKVUlnbDZIYTZ2d01PbU5vREdUL1JMUnBBeFRlcWJxUwo2VnJHdHNGSU9WWTZLTzBpMm9SczNNdW9OZ0o4SGVWQ1dhNS9zbVhYeE0rQTZRR1A1ZEhuM3YrV25vVDU2RVRPCkh3a2I1d2FhbHpaMS8wUm9GbGR5a2QwN0hweGdxVjJTRER1SUUycGhaeGxJTlQveklSOFJjYWlwQW9HQkFNYTEKSGFkcmdXWXZpOWpPd0NNYzNkYVBzbDZYV3dhQmd0QjBRYXVqRWhHMzBvYlNDV0tHR0RiSU92TnFSK2o5TDJEWApCR0h6U2dBeTJHdDRzSS9ialhJMW40c0NyUDJzYUJrSWx1aWhuak95R0MwTjFieGxjNGNibU1DaXNWVVRScXNUCk1IblcrZmFKN3JPb1U1TmIvbmlQNFBzamFhdC9tWnkraEtZZWRHSDFBb0dBY0pnSFAvaS9yNDZYd2NrTjArYUYKUk1EeHpyUVhXWGRTZDBKdWNhVDR6eTNDSmpDcUh5bHJKdDVBOGhsNStkamZGbFRlNTdJcnBDQnZBRGU3VG5KUwp3WnRmTktTUVIrVlN3c2xMeGpPUGlsZWpzNHdPRWRFOGZPcnpDbjAxTmFzTk5rTGJKUlpsL1NnQTdiOEk4dEtqCjg5VCtFTkhoa3VNL1FXOW8zaTQ2QkprQ2dZRUF4UmRvTG1Obm1kK1hLcGtINHN3RERZckNOU2lUVk1TbzUvSW8KSVFKQ0xlalNuSDlBWjhUeHg0U2JWRTBhdm5KQ3lCNzliZHBPa0J2ZXBkcXo1anl5ODVGVWlpRkJUT3Z3NU1PcwpTMW5pL1F1dEJ5TXQyUXdYcHU4c2VBWG5OcWREOVBPM3BXSWgxUFBERzlmZDdjL1ZlK2ZhRTc5d1ZIYmYrcVRPCkZhY25jUEVDZ1lFQTNLTjNxZ3E5Y3ZqM3E5cTJUekt6MFpLYVVkbm1yY0txbVBzdU1VeXpoUlpHa0RyYmlnZG0KMU1jSU90VVlOZy81aWVUYWc4bEpXcW9yL1RCRjhaNmRTV0VDd3hURy9LakU5Vk1BcS94QVU3YUZ0TUFOT1h0TApaVFVkNUl3Z2N1STcweCtYQVRGZ1JldGFrcDVHSCtRYmhoYTNOUnl2UEJGcUd2NS8yNnlHV1VZPQotLS0tLUVORCBSU0EgUFJJVkFURSBLRVktLS0tLQo="
+
+
+volumes:
+  db_data:
+>>>>>>> f0639a0... Initial Jasmine test suite. WIP:docker-compose.yaml
