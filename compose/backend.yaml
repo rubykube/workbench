@@ -1,0 +1,35 @@
+version: '3'
+
+services:
+
+  coinhub:
+    image: rubykube/coinhub
+
+  smtp_relay:
+    image: kaigara/postfix:latest
+    volumes:
+      - ./config/smtp-relay.yaml:/etc/kaigara/metadata/relay.yml
+
+  db:
+    image: mysql:5.7
+    volumes:
+      - db_data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: changeme
+
+  redis:
+    image: redis:4.0.9-alpine
+
+  rabbitmq:
+    image: rabbitmq:3.7.4-alpine
+
+  vault:
+    image: vault:0.9.6
+    environment:
+      SKIP_SETCAP: 1
+      VAULT_TOKEN: changeme
+      VAULT_DEV_ROOT_TOKEN_ID: changeme
+      VAULT_ADDR: http://vault:8200
+
+volumes:
+  db_data:
