@@ -9,4 +9,4 @@
 	url = https://github.com/rubykube/peatio-trading-ui.git
 [submodule "app/nginx"]
 	path = app/nginx
-	url = git@github.com:msylvestre/nginx.git
+	url = https://github.com/msylvestre/nginx.git
