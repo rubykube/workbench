@@ -51,7 +51,7 @@ sudo chmod +x /usr/local/bin/docker-compose
 
 ### Prepare the workbench
 
-1. Create a code folder and close the repo
+1. Create a code folder and clone the repo
 
 ```shell
 mkdir code
@@ -59,7 +59,37 @@ cd code
 git clone --recursive https://github.com/rubykube/workbench.git
 ```
 
-2. Build the images: 
+
+2. Adjust the configuration
+
+- Edit compose/app.yaml
+
+```
+- services -> peatio -> environment -> URL_HOST: ec2-xx-xxx-xxx-xxx.compute-1.amazonaws.com  # No need for a port as nginx do the tricks of port forwarding
+- services -> peatio -> environment -> BARONG_OAUTH2_REDIRECT_URL: http://ec2-xx-xxx-xxx-xxx.compute-1.amazonaws.com:8000/auth/barong/callback
+- services -> barong -> environment -> TWILIO_ACCOUNT_SID: <sid>
+- services -> barong -> environment -> TWILIO_AUTH_TOKEN: <token>
+- services -> barong -> environment -> TWILIO_PHONE_NUBER: <+1604xxxyyyy>
+```
+
+- Edit `app/peatio-trading-ui/config/templates/application.yml.erb` and set your app DNS.
+
+```shell
+PLATFORM_ROOT_URL: http://ec2-xx-xx-xxx-xxx.compute-1.amazonaws.com
+```
+
+
+- Edit `app/nginx/default.conf` and add your server_name
+
+
+```
+server {
+  server_name http://ec2-xx-xxx-xxx-xxx.compute-1.amazonaws.com;
+...
+```
+
+
+3. Build the images: 
 
 ```
 make build
@@ -74,21 +104,16 @@ Application ID: a68be319fca51caca60eed5711226e568bd1c1d13ff452b945515f1a6ffbaca4
 Secret: ab80e2c843861c4d23e63f5472cd1c9ee6f55e388863e21f22b03a9093977f29
 ```
 
-3. run the application: `make run`
+4. run the application: `make run`
 
-4. Configure the HOST
+5. Configure the HOST
 
 - If you run peatio locally, to have barong login working with peatio you will need to add this to your `/etc/hosts`. 
+- Make sure all your "server name / host name" represent the choosen host name
 
 ```
 0.0.0.0 peatio
 0.0.0.0 barong
-```
-
-- If you run from a server, just make sure to update the URL_HOST in `/compose/app.yaml` 
-
-```
-URL_HOST: ec2-xx-xxx-xxx-xxx.compute-1.amazonaws.com:8000
 ```
 
 
@@ -97,32 +122,25 @@ URL_HOST: ec2-xx-xxx-xxx-xxx.compute-1.amazonaws.com:8000
 
 #### Barong
 
-1. In `docker-compose.yaml`, set the newly created application credentials:
-
-```yaml
-TWILIO_ACCOUNT_SID: <sid>
-TWILIO_AUTH_TOKEN: <token>
-TWILIO_PHONE_NUBER: +15555889459
-```
-
-2. Start barong: 
+1. Start barong: 
 
 ```shell
 docker-compose up -d barong
 ```
 
-3. Get the creds you got from the `make run`
-4. Sign in at [barong:8001](http://barong:8001), then go to [/admin](http://barong:8001/admin)
+2. Get the creds you got from the `make run`
+3. Sign in at [barong:8001](http://barong:8001), then go to [/admin](http://barong:8001/admin)
    and navigate to [Applications](http://barong:8001/oauth/applications)
-5. Create new application with the following callback url `http://peatio:8000/auth/barong/callback`
-6. Make sure you then sign-in using admin@peatio.io and validate your phone number.
+4. Create new application with the following callback url `http://peatio:8000/auth/barong/callback`
+5. Make sure you then sign-in using admin@peatio.io and validate your phone number.
 
-7. (temporary) Fix the authentication issue
+6. (temporary) Fix the authentication issue
   - Login to the Barong container `docker exec -i -t workbench_barong_1 /bin/bash`
   - Run the rails command line: `rails console`
   - Run `Account.update_all(state: "active")`
   - Then exit the rails console and exit the container.
   - Stop and restart it.
+
 
 #### Peatio
 
@@ -133,85 +151,31 @@ docker-compose up -d barong
 - BARONG_CLIENT_SECRET=xxxxx
 ```
 
-2. And set your callback URL
-
-```yaml
-BARONG_OAUTH2_REDIRECT_URL: http://ec2-xx-xxx-xxx-xxx.compute-1.amazonaws.com:8000/auth/barong/callback
-```
-
-3. Start peatio server
+2. Start peatio server
 
 ```shell
 docker-compose up -d peatio
 ```
+
 
 #### Running on a server
 
 - Make sure your port 8000 (peatio) and 8001 (barong) are open for testing.  (They can be closed after you install nginx)
 
 
-
 ### Run Peatio Trading UI
 
-Clone the repo and setup the Trading UI
-
-```shell
-cd ~/code
-git clone https://github.com/rubykube/peatio-trading-ui.git
-cd peatio-trading-ui
-bundle install
-bin/init_config
-```
-
-Edit the `/config/application.yml` and set your app DNS.  Ex: 
-
-```shell
-PLATFORM_ROOT_URL: http://ec2-xx-xx-xxx-xxx.compute-1.amazonaws.com
-```
+Automatically started in a docker container.
 
 Refer to the release note here : https://github.com/rubykube/peatio/blob/master/docs/releases/1.5.0.md
 
 
 
 
-
 ### Install nginx to setup a reverse proxy
 
-```shell
-sudo apt-get update
-sudo apt-get install nginx
-sudo ufw allow 'Nginx HTTP'
-systemctl status nginx
 
-```
-At this point you should see nginx running
-
-But you need to edit the default config to setup the reverse proxy.
-Open `/etc/nginx/sites-available/default` in your favorite editor
-
-Replace the content of the file by the following
-
-```
-server {
-  server_name http://peatio.local;
-  listen      80 default_server;
-
-  location ~ ^/(?:trading|trading-ui-assets)\/ {
-    proxy_pass http://127.0.0.1:4000;
-  }
-
-  location / {
-    proxy_pass http://127.0.0.1:3000;
-  }
-}
-```
-
-Make sure to replace `http://peatio.local` with your actual server DNS
-
-Verify that the syntax of the config file is valid : `$ sudo nginx -t`
-
-Restart nginx by running `sudo systemctl restart nginx`
-
+Automatically started in a docker container.
 
 
 ## Running Tests

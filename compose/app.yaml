@@ -83,3 +83,23 @@ services:
       DATABASE_PASSWORD: changeme
       VAULT_TOKEN: changeme
       VAULT_ADDR: http://vault:8200
+      TWILIO_ACCOUNT_SID: AC29362bd3c537d5fae4addf672ff85f6c
+      TWILIO_AUTH_TOKEN: 9009ca5ad41c9499b55e7be3366d4f0e
+      TWILIO_PHONE_NUBER: +16043962399
+      
+  peatio-trading-ui:
+    build:
+      context: ../app/trading-ui
+    ports: 
+      - "3000:3000"
+    environment:
+      PORT: 3000
+      RAILS_ENV: development
+
+  nginx-server:
+    build:
+      context: ../app/nginx
+    ports: 
+      - "80:80"
+    environment:
+      PORT: 80
