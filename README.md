@@ -47,16 +47,25 @@ sudo curl -L https://github.com/docker/compose/releases/download/1.20.1/docker-c
 sudo chmod +x /usr/local/bin/docker-compose
 ```
 
-## Usage
+## Peatio Installation
 
 ### Prepare the workbench
 
-1. Recursive clone : git clone --recursive https://github.com/rubykube/workbench.git
-2. Build the images: `make build`
+1. Create a code folder and close the repo
+
+```shell
+mkdir code
+cd code
+git clone --recursive https://github.com/rubykube/workbench.git
+```
+
+2. Build the images: 
+
+```
+make build
 
 NOTE : Make sure you grab the follwing info generate by "make build"
 
-```
 == Seeding database ==
 email : admin@barong.io
 Admin credentials: dbfb0775ec32d7d2db51daa1da51d9aa2deaeba9
@@ -67,21 +76,20 @@ Secret: ab80e2c843861c4d23e63f5472cd1c9ee6f55e388863e21f22b03a9093977f29
 
 3. run the application: `make run`
 
-4. Add peatio and barong into your /etc/hosts
+4. Configure the HOST
 
-If you run peatio locally, to have barong login working with peatio you will need to add this to your `/etc/hosts`. 
+- If you run peatio locally, to have barong login working with peatio you will need to add this to your `/etc/hosts`. 
 
 ```
 0.0.0.0 peatio
 0.0.0.0 barong
 ```
 
-If you run from a server, just make sure to update the URL_HOST in `docker-compose.ymal` 
+- If you run from a server, just make sure to update the URL_HOST in `/compose/app.yaml` 
+
 ```
 URL_HOST: ec2-xx-xxx-xxx-xxx.compute-1.amazonaws.com:8000
 ```
-
-
 
 
 
@@ -91,26 +99,25 @@ URL_HOST: ec2-xx-xxx-xxx-xxx.compute-1.amazonaws.com:8000
 
 1. In `docker-compose.yaml`, set the newly created application credentials:
 
-      TWILIO_ACCOUNT_SID: AC29362bd3c537d5fae4addf672ff85f6c
-      TWILIO_AUTH_TOKEN: 9009ca5ad41c9499b55e7be3366d4f0e
+```yaml
+TWILIO_ACCOUNT_SID: <sid>
+TWILIO_AUTH_TOKEN: <token>
+TWILIO_PHONE_NUBER :+15555889459
+```
 
-2. Start barong: `docker-compose up -d barong`
+2. Start barong: 
 
-3. In the Barong docker image, you need to change the secret.yml and add your twilio phone number 
-- Log to the container : `docker exec -i -t workbench_barong_1 /bin/bash`
-- Edit `/config/secret.yml` and change `twilio_phone_number: '+1604xxxxxxx'` to reflect your phone number in the developement section/config (or any other config you are using)
-- Do `docker ps` to get the list of running container and their id
-- Commit your change via `docker commit <container_id> workbench_barong:v2` ("v2" could be any tag you want)
-- Stop the container : `docker container stop <container_id>` then 
-- Then restart it: `docker-compose up -d barong`
+```shell
+docker-compose up -d barong
+```
 
-
-4. Get the creds you got from the `make run`
-3. Sign in at [barong:8001](http://barong:8001), then go to [/admin](http://barong:8001/admin)
+3. Get the creds you got from the `make run`
+4. Sign in at [barong:8001](http://barong:8001), then go to [/admin](http://barong:8001/admin)
    and navigate to [Applications](http://barong:8001/oauth/applications)
-4. Create new application with the following callback url `http://peatio:8000/auth/barong/callback`
-5. Make sure you then sign-in using admin@peatio.io and validate your phone number.
-6. (temporary) Fix the authentication issue
+5. Create new application with the following callback url `http://peatio:8000/auth/barong/callback`
+6. Make sure you then sign-in using admin@peatio.io and validate your phone number.
+
+7. (temporary) Fix the authentication issue
   - Login to the Barong container `docker exec -i -t workbench_barong_1 /bin/bash`
   - Run the rails command line: `rails console`
   - Run `Account.update_all(state: "active")`
