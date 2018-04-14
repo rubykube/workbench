@@ -83,10 +83,10 @@ services:
       DATABASE_PASSWORD: changeme
       VAULT_TOKEN: changeme
       VAULT_ADDR: http://vault:8200
-      TWILIO_ACCOUNT_SID: AC29362bd3c537d5fae4addf672ff85f6c
-      TWILIO_AUTH_TOKEN: 9009ca5ad41c9499b55e7be3366d4f0e
-      TWILIO_PHONE_NUBER: +16043962399
-      
+      TWILIO_ACCOUNT_SID: ACxxx36xxd3c537d5fxxxxxx672ff85f6c
+      TWILIO_AUTH_TOKEN: 9009caxxxx1c9xxx55e7bxxxxxxf0e
+      TWILIO_PHONE_NUBER: +16041110000
+
   peatio-trading-ui:
     build:
       context: ../app/trading-ui
