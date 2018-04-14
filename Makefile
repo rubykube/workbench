@@ -1,11 +1,11 @@
 .PHONY: build prepare run test seed down setup-apps
 
-COMPOSE = docker-compose -f compose/app.yaml -f compose/backend.yaml
+COMPOSE = sudo docker-compose -f compose/app.yaml -f compose/backend.yaml
 
 default: run
 
 build:
-	$(COMPOSE) build peatio barong
+	$(COMPOSE) build peatio barong peatio-trading-ui nginx-server
 
 prepare:
 	$(COMPOSE) up -d vault db redis rabbitmq smtp_relay coinhub peatio_daemons

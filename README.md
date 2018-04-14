@@ -75,7 +75,7 @@ git clone --recursive https://github.com/rubykube/workbench.git
 - Edit `app/peatio-trading-ui/config/templates/application.yml.erb` and set your app DNS.
 
 ```shell
-PLATFORM_ROOT_URL: http://ec2-xx-xx-xxx-xxx.compute-1.amazonaws.com
+PLATFORM_ROOT_URL: http://ec2-xx-xx-xxx-xxx.compute-1.amazonaws.com  # No need for a port as nginx do the tricks of port forwarding
 ```
 
 

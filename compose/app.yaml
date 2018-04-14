@@ -89,7 +89,7 @@ services:
 
   peatio-trading-ui:
     build:
-      context: ../app/trading-ui
+      context: ../app/peatio-trading-ui
     ports: 
       - "3000:3000"
     environment:
