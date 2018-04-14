@@ -102,7 +102,7 @@ URL_HOST: ec2-xx-xxx-xxx-xxx.compute-1.amazonaws.com:8000
 ```yaml
 TWILIO_ACCOUNT_SID: <sid>
 TWILIO_AUTH_TOKEN: <token>
-TWILIO_PHONE_NUBER :+15555889459
+TWILIO_PHONE_NUBER: +15555889459
 ```
 
 2. Start barong: 
@@ -126,7 +126,7 @@ docker-compose up -d barong
 
 #### Peatio
 
-1. In `docker-compose.yaml`, set the newly created application credentials:
+1. In `compose/app.yaml`, set the newly created application credentials:
 
 ```yaml
 - BARONG_CLIENT_ID=xxxxx
@@ -139,8 +139,11 @@ docker-compose up -d barong
 BARONG_OAUTH2_REDIRECT_URL: http://ec2-xx-xxx-xxx-xxx.compute-1.amazonaws.com:8000/auth/barong/callback
 ```
 
-3. Start peatio server: `docker-compose up -d peatio`
+3. Start peatio server
 
+```shell
+docker-compose up -d peatio
+```
 
 #### Running on a server
 
