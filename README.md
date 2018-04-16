@@ -65,7 +65,7 @@ git clone --recursive https://github.com/rubykube/workbench.git
 - Edit compose/app.yaml
 
 ```
-- services -> peatio -> environment -> URL_HOST: ec2-xx-xxx-xxx-xxx.compute-1.amazonaws.com  # No need for a port as nginx do the tricks of port forwarding
+- services -> peatio -> environment -> URL_HOST: ec2-xx-xxx-xxx-xxx.compute-1.amazonaws.com  # No need for a port as nginx do the tricks of port forwarding (NOT SURE!!!)
 - services -> peatio -> environment -> BARONG_OAUTH2_REDIRECT_URL: http://ec2-xx-xxx-xxx-xxx.compute-1.amazonaws.com:8000/auth/barong/callback
 - services -> peatio -> environment -> BARONG_DOMAIN: http://ec2-xx-xx-xx-xxx.compute-1.amazonaws.com:8001
 - services -> barong -> environment -> TWILIO_ACCOUNT_SID: <sid>
@@ -130,17 +130,16 @@ docker-compose up -d barong
 ```
 
 2. Get the creds you got from the `make run`
-3. Sign in at [barong:8001](http://barong:8001), then go to [/admin](http://barong:8001/admin)
-   and navigate to [Applications](http://barong:8001/oauth/applications)
-4. Create new application with the following callback url `http://peatio:8000/auth/barong/callback`
-5. Make sure you then sign-in using admin@peatio.io and validate your phone number.
-
-6. (temporary) Fix the authentication issue
-  - Login to the Barong container `docker exec -i -t workbench_barong_1 /bin/bash`
+3. Sign in at [barong:8001](http://barong:8001), you'll get a redirect error, don't freak out ;-)
+4. Go to [/admin](http://barong:8001/admin) and navigate to [Applications](http://barong:8001/oauth/applications)
+5. Edit Local Peatio application and change the callback url to `http://ec2-xx-xx-xx-xxx.compute-1.amazonaws.com/auth/barong/callback`
+6. Click on the "Authorize" button to register the callback URL
+6. Make sure you then sign-in using admin@peatio.io and validate your phone number.
+7. Activate the admin account
+  - Login to the Barong container `sudo docker exec -it compose_barong_1 bash`
   - Run the rails command line: `rails console`
   - Run `Account.update_all(state: "active")`
-  - Then exit the rails console and exit the container.
-  - Stop and restart it.
+  - Exit the rails console and exit the container.
 
 
 #### Peatio
