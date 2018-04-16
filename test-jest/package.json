@@ -10,5 +10,10 @@
     "babel-jest": "^22.4.3",
     "babel-preset-es2015": "^6.24.1",
     "jest": "^22.4.3"
+  },
+  "dependencies": {
+    "base-64": "^0.1.0",
+    "jsrsasign": "^8.0.10",
+    "jsrsasign-util": "^1.0.0"
   }
 }
