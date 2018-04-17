@@ -39,7 +39,8 @@ services:
       MARKETS_CONFIG: /opt/peatio/config/markets.yml
       CURRENCIES_CONFIG: /opt/peatio/config/currencies.yml
     volumes:
-      - ./config/peatio:/opt/peatio/config:ro
+      - ../config/peatio:/opt/peatio/config:ro
+      - ../app/peatio:/home/app
 
   peatio_daemons:
     build:
@@ -64,7 +65,8 @@ services:
       MARKETS_CONFIG: /opt/peatio/config/markets.yml
       CURRENCIES_CONFIG: /opt/peatio/config/currencies.yml
     volumes:
-      - ./config/peatio:/opt/peatio/config:ro
+      - ../config/peatio:/opt/peatio/config:ro
+      - ../app/peatio:/home/app
     command: god -c lib/daemons/daemons.god -D start
 
   barong:
@@ -83,3 +85,5 @@ services:
       DATABASE_PASSWORD: changeme
       VAULT_TOKEN: changeme
       VAULT_ADDR: http://vault:8200
+    volumes:
+      - ../app/barong:/home/app
