@@ -85,7 +85,7 @@ services:
       VAULT_ADDR: http://vault:8200
       TWILIO_ACCOUNT_SID: ACxxx36xxd3c537d5fxxxxxx672ff85f6c
       TWILIO_AUTH_TOKEN: 9009caxxxx1c9xxx55e7bxxxxxxf0e
-      TWILIO_PHONE_NUBER: +16041110000
+      TWILIO_PHONE_NUMBER: 16041110000
 
   peatio_trading_ui:
     build:

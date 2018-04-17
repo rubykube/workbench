@@ -70,10 +70,9 @@ git clone --recursive https://github.com/rubykube/workbench.git
 - services -> peatio -> environment -> BARONG_DOMAIN: http://ec2-xx-xx-xx-xxx.compute-1.amazonaws.com:8001
 - services -> barong -> environment -> TWILIO_ACCOUNT_SID: <sid>
 - services -> barong -> environment -> TWILIO_AUTH_TOKEN: <token>
-- services -> barong -> environment -> TWILIO_PHONE_NUBER: <+1604xxxyyyy>
+- services -> barong -> environment -> TWILIO_PHONE_NUBER: <1604xxxyyyy>
 ```
 
-- Edit `app/peatio-trading-ui/config/templates/application.yml.erb` and set your app DNS.
 
 ```shell
 PLATFORM_ROOT_URL: http://ec2-xx-xx-xxx-xxx.compute-1.amazonaws.com  # No need for a port as nginx do the tricks of port forwarding
