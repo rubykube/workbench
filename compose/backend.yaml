@@ -8,7 +8,7 @@ services:
   smtp_relay:
     image: kaigara/postfix:latest
     volumes:
-      - ./config/smtp-relay.yaml:/etc/kaigara/metadata/relay.yml
+      - ../config/smtp-relay.yaml:/etc/kaigara/metadata/relay.yml
 
   db:
     image: mysql:5.7
