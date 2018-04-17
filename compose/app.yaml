@@ -38,6 +38,7 @@ services:
       WITHDRAW_CHANNELS_CONFIG: /opt/peatio/config/withdraw_channels.yml
       MARKETS_CONFIG: /opt/peatio/config/markets.yml
       CURRENCIES_CONFIG: /opt/peatio/config/currencies.yml
+      MANAGEMENT_API_V1_CONFIG: /opt/peatio/config/management_api_v1.yml
     volumes:
       - ../config/peatio:/opt/peatio/config:ro
 
@@ -63,6 +64,7 @@ services:
       WITHDRAW_CHANNELS_CONFIG: /opt/peatio/config/withdraw_channels.yml
       MARKETS_CONFIG: /opt/peatio/config/markets.yml
       CURRENCIES_CONFIG: /opt/peatio/config/currencies.yml
+      MANAGEMENT_API_V1_CONFIG: /opt/peatio/config/management_api_v1.yml
     volumes:
       - ../config/peatio:/opt/peatio/config:ro
     command: god -c lib/daemons/daemons.god -D start
