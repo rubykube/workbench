@@ -5,8 +5,6 @@ services:
   peatio:
     build:
       context: ../app/peatio
-      cache_from:
-        - rubykube/peatio:latest
     container_name: peatio
     depends_on:
       - db
@@ -28,8 +26,6 @@ services:
   peatio_daemons:
     build:
       context: ../app/peatio
-      cache_from:
-        - rubykube/peatio:latest
     container_name: peatio-daemons
     depends_on:
       - db
@@ -48,8 +44,6 @@ services:
   barong:
     build:
       context: ../app/barong
-      cache_from:
-        - rubykube/peatio:latest
     container_name: barong
     depends_on:
       - db
