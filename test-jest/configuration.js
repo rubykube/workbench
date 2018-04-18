@@ -1,6 +1,9 @@
 
 
 const config = {
+  PEATIO_URL: process.env["PEATIO_URL"],
+  BARONG_URL: process.env["BARONG_URL"],
+  
   MULTISIGN_PRIVATE_KEY : process.env["MULTISIGN_PRIVATE_KEY"],
   JWT_BARONG_PRIVATE_KEY: process.env["JWT_TEST_BARONG_KEY"],
 
