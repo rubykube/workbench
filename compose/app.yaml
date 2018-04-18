@@ -97,8 +97,9 @@ services:
       RAILS_ENV: development
 
   nginx_server:
-    build:
-      context: ../app/nginx
+    image: nginx
+    volumes:
+      - ../config/nginx:/etc/nginx/conf.d
     ports: 
       - "80:80"
     environment:

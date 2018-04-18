@@ -11,7 +11,7 @@ Peatio workbench is an easy way to start Peatio development environment.
 ### Install Dependencies
 
 ```shell
-sudo apt-get install \
+sudo apt-get install -y \
   apt-transport-https \
   ca-certificates \
   curl \
@@ -35,7 +35,7 @@ sudo add-apt-repository \
 
 sudo apt-get update
 
-sudo apt-get install docker-ce
+sudo apt-get install -y docker-ce
 ```
 
 
