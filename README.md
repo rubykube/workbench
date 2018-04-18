@@ -62,7 +62,7 @@ git clone --recursive https://github.com/rubykube/workbench.git
 
 2. Adjust the configuration
 
-- Edit compose/app.yaml
+- Edit `compose/app.yaml`
 
 ```
 - services -> peatio -> environment -> URL_HOST: ec2-xx-xxx-xxx-xxx.compute-1.amazonaws.com  # No need for a port as nginx do the tricks of port forwarding (NOT SURE!!!)
@@ -74,13 +74,14 @@ git clone --recursive https://github.com/rubykube/workbench.git
 ```
 
 
+- Edit `app/peatio_trading_ui/config/template/secret.yml.erb`
+
 ```shell
-PLATFORM_ROOT_URL: http://ec2-xx-xx-xxx-xxx.compute-1.amazonaws.com  # No need for a port as nginx do the tricks of port forwarding
+PLATFORM_ROOT_URL: http://ec2-xx-xx-xxx-xxx.compute-1.amazonaws.com
 ```
 
 
 - Edit `app/nginx/default.conf` and add your server_name
-
 
 ```
 server {
@@ -89,24 +90,48 @@ server {
 ```
 
 
-3. Build the images: 
+- Edit the Barong config
+
+```shell
+1. Open app/barong/bin/setup
+
+# Change the follwing line:
+system! 'bin/rails log:clear tmp:clear'
+
+# By this one: 
+system! 'bin/rails log:clear tmp:clear db:drop'
+ 
+
+2. Open app/barong/config/secrets.yml
+
+# Change the follwing line:
+twilio_phone_number: '+15005550006'
+
+# By this one:
+twilio_phone_number: <%= ENV['TWILIO_PHONE_NUMBER'] %>
+```
+
+
+- Edit the Peatio config file
 
 ```
-make build
+1. Open app/peatio/bin/setup
 
-NOTE : Make sure you grab the follwing info generate by "make build"
+# Comment the folling line
 
-== Seeding database ==
-email : admin@barong.io
-Admin credentials: dbfb0775ec32d7d2db51daa1da51d9aa2deaeba9
-Name: Local Peatio
-Application ID: a68be319fca51caca60eed5711226e568bd1c1d13ff452b945515f1a6ffbaca4
-Secret: ab80e2c843861c4d23e63f5472cd1c9ee6f55e388863e21f22b03a9093977f29
+puts "\n=== Copying config files ==="
+system 'bin/init_config'
+ 
+
+puts "\n=== Install yarn packages ==="
+system 'bin/rake yarn:install'
+system 'bin/rake tmp:create yarn:install assets:precompile'
 ```
 
-4. run the application: `make run`
 
-5. Configure the HOST
+
+
+3. (optional) Configure the HOST
 
 - If you run peatio locally, to have barong login working with peatio you will need to add this to your `/etc/hosts`. 
 - Make sure all your "server name / host name" represent the choosen host name
@@ -117,24 +142,34 @@ Secret: ab80e2c843861c4d23e63f5472cd1c9ee6f55e388863e21f22b03a9093977f29
 ```
 
 
+4. Build the images and lunch the containers: 
+
+```
+$ make
+
+NOTE : Make sure you grab the follwing info generate during the setup of the barong container
+
+== Seeding database ==
+email : admin@barong.io
+Admin credentials: dbfb0775ec32d7d2db51daa1da51d9aa2deaeba9
+Name: Local Peatio
+Application ID: a68be319fca51caca60eed5711226e568bd1c1d13ff452b945515f1a6ffbaca4
+Secret: ab80e2c843861c4d23e63f5472cd1c9ee6f55e388863e21f22b03a9093977f29
+```
+
+
+
 
 ### Run Barong and Peatio
 
 #### Barong
 
-1. Start barong: 
-
-```shell
-docker-compose up -d barong
-```
-
-2. Get the creds you got from the `make run`
-3. Sign in at [barong:8001](http://barong:8001), you'll get a redirect error, don't freak out ;-)
-4. Go to [/admin](http://barong:8001/admin) and navigate to [Applications](http://barong:8001/oauth/applications)
-5. Edit Local Peatio application and change the callback url to `http://ec2-xx-xx-xx-xxx.compute-1.amazonaws.com/auth/barong/callback`
-6. Click on the "Authorize" button to register the callback URL
-6. Make sure you then sign-in using admin@peatio.io and validate your phone number.
-7. Activate the admin account
+1. Get the creds you got from executing `make`
+2. Sign in at [barong:8001](http://barong:8001), you'll get a redirect error, don't freak out ;-)
+3. Go to [/admin](http://barong:8001/admin) and navigate to [Applications](http://barong:8001/oauth/applications)
+4. Edit Local Peatio application and change the server name in the callback url: `http://ec2-xx-xx-xx-xxx.compute-1.amazonaws.com/auth/barong/callback`
+5. Click on the "Authorize" button to register the callback URL
+6. Activate the admin account
   - Login to the Barong container `sudo docker exec -it compose_barong_1 bash`
   - Run the rails command line: `rails console`
   - Run `Account.update_all(state: "active")`
@@ -143,16 +178,16 @@ docker-compose up -d barong
 
 #### Peatio
 
-1. In `compose/app.yaml`, set the newly created application credentials:
+1. (Optional) If you created a new app in Barong, in `compose/app.yaml`, set the newly created application credentials:
 
-```yaml
+```
 - BARONG_CLIENT_ID=xxxxx
 - BARONG_CLIENT_SECRET=xxxxx
-```
 
-2. Start peatio server
 
-```shell
+# Recreate the Peatio container
+
+docker-compose down peatio
 docker-compose up -d peatio
 ```
 
