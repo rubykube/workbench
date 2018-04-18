@@ -66,8 +66,8 @@ git clone --recursive https://github.com/rubykube/workbench.git
 
 ```
 - services -> peatio -> environment -> URL_HOST: ec2-xx-xxx-xxx-xxx.compute-1.amazonaws.com  # No need for a port as nginx do the tricks of port forwarding (NOT SURE!!!)
-- services -> peatio -> environment -> BARONG_OAUTH2_REDIRECT_URL: http://ec2-xx-xxx-xxx-xxx.compute-1.amazonaws.com:8000/auth/barong/callback
 - services -> peatio -> environment -> BARONG_DOMAIN: http://ec2-xx-xx-xx-xxx.compute-1.amazonaws.com:8001
+- services -> peatio -> environment -> BARONG_OAUTH2_REDIRECT_URL: http://ec2-xx-xxx-xxx-xxx.compute-1.amazonaws.com/auth/barong/callback
 - services -> barong -> environment -> TWILIO_ACCOUNT_SID: <sid>
 - services -> barong -> environment -> TWILIO_AUTH_TOKEN: <token>
 - services -> barong -> environment -> TWILIO_PHONE_NUBER: <1604xxxyyyy>
