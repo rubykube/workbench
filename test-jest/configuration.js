@@ -1,7 +1,9 @@
 
 
 const config = {
-  JWT_TEST_PRIVATE_KEY: process.env["JWT_TEST_PRIVATE_KEY"],
+  MULTISIGN_PRIVATE_KEY : process.env["MULTISIGN_PRIVATE_KEY"],
+  JWT_BARONG_PRIVATE_KEY: process.env["JWT_TEST_BARONG_KEY"],
+
   JWT_TEST_USER: {
     "email": "admin@barong.io",
     "iat": Math.round(new Date().getTime()/1000),
