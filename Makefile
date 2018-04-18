@@ -18,6 +18,10 @@ setup-apps: build
 run: prepare setup-apps
 	$(COMPOSE) up peatio barong
 
+jest: 
+	$(COMPOSE) up --build jest
+
+
 test: prepare
 	@$(COMPOSE) run --rm peatio_specs
 
