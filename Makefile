@@ -9,7 +9,7 @@ build:
 
 prepare:
 	$(COMPOSE) up -d vault db redis rabbitmq smtp_relay coinhub peatio_daemons
-	$(COMPOSE) run --rm vault secrets enable totp
+	$(COMPOSE) run --rm vault secrets enable totp || true
 
 setup-apps: build
 	$(COMPOSE) run --rm peatio "./bin/setup"
