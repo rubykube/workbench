@@ -1,9 +1,11 @@
-const request = require('./get');
+const requestStatus = require('./getStatus');
 const urljoin = require('urljoin');
-const parseUrl = require("parse-url")
+const parseUrl = require("parse-url");
 
 const getFromAPI = function(domain, api_url, endpoint, jwt = "") {
+    // join api_url and endpoint 
     api_url = urljoin(api_url, endpoint);
+    // parse domain for options in http.get
     var url = parseUrl(domain);
     var options = {
         protocol: url.protocol+":",
@@ -15,7 +17,7 @@ const getFromAPI = function(domain, api_url, endpoint, jwt = "") {
     if (jwt !== "") {
         options.headers = {'Authorization': "Bearer " + jwt};
     }
-    return request(options).then((data) => {console.log("RESPONSE----->");data});
+    return requestStatus(options).then((status) => status);
 }
 
 module.exports = getFromAPI;
