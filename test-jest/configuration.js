@@ -11,9 +11,11 @@ const config = {
 
   JWT_TEST_USER: {
     "email": "admin@barong.io",
-    "iat": Math.round(new Date().getTime()/1000),
+    "iat": Math.round(new Date().getTime()/1000) - 1,
     "exp": Math.round(new Date().getTime()/1000) + 4*3600,
     "sub": "session",
+    "iss": "barong",
+    "jti": "123kdslfvmevfnw3n4gf3",
     "aud": ["peatio"],
     "level": 3,
     "uid": "ID123123",
