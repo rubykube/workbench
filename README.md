@@ -60,12 +60,12 @@ git clone --recursive https://github.com/rubykube/workbench.git
 ```
 
 
-2. Adjust the configuration
+2. Adjust the docker-compose configuration
 
 - Edit `compose/app.yaml`
 
 ```
-- services -> peatio -> environment -> URL_HOST: ec2-xx-xxx-xxx-xxx.compute-1.amazonaws.com  # No need for a port as nginx do the tricks of port forwarding (NOT SURE!!!)
+- services -> peatio -> environment -> URL_HOST: ec2-xx-xxx-xxx-xxx.compute-1.amazonaws.com  # No need for a port as nginx do the tricks of port forwarding
 - services -> peatio -> environment -> BARONG_DOMAIN: http://ec2-xx-xx-xx-xxx.compute-1.amazonaws.com:8001
 - services -> peatio -> environment -> BARONG_OAUTH2_REDIRECT_URL: http://ec2-xx-xxx-xxx-xxx.compute-1.amazonaws.com/auth/barong/callback
 - services -> barong -> environment -> TWILIO_ACCOUNT_SID: <sid>
@@ -74,49 +74,12 @@ git clone --recursive https://github.com/rubykube/workbench.git
 ```
 
 
-- Edit `app/peatio_trading_ui/config/template/secret.yml.erb`
+
+3. Adjust the Patio Configuration
+
+- Edit the Peatio setup file: `app/peatio/bin/setup`
 
 ```shell
-PLATFORM_ROOT_URL: http://ec2-xx-xx-xxx-xxx.compute-1.amazonaws.com
-```
-
-
-- Edit `app/nginx/default.conf` and add your server_name
-
-```
-server {
-  server_name http://ec2-xx-xxx-xxx-xxx.compute-1.amazonaws.com;
-...
-```
-
-
-- Edit the Barong config
-
-```shell
-1. Open app/barong/bin/setup
-
-# Change the follwing line:
-system! 'bin/rails log:clear tmp:clear'
-
-# By this one: 
-system! 'bin/rails log:clear tmp:clear db:drop'
- 
-
-2. Open app/barong/config/secrets.yml
-
-# Change the follwing line:
-twilio_phone_number: '+15005550006'
-
-# By this one:
-twilio_phone_number: <%= ENV['TWILIO_PHONE_NUMBER'] %>
-```
-
-
-- Edit the Peatio config file
-
-```
-1. Open app/peatio/bin/setup
-
 # Comment the folling line
 
 puts "\n=== Copying config files ==="
@@ -125,13 +88,77 @@ system 'bin/init_config'
 
 puts "\n=== Install yarn packages ==="
 system 'bin/rake yarn:install'
-system 'bin/rake tmp:create yarn:install assets:precompile'
 ```
 
 
 
+4. Adjust the Barong configuration
 
-3. (optional) Configure the HOST
+- Edit the Barong setup: `app/barong/bin/setup`
+
+```shell
+# Change the follwing line:
+system! 'bin/rails log:clear tmp:clear'
+
+# By this one: 
+system! 'bin/rails log:clear tmp:clear db:drop'
+``` 
+
+
+- Edit the barong secret config `app/barong/config/secrets.yml`
+
+```shell
+# Change the follwing line:
+twilio_phone_number: '+15005550006'
+
+# By this one:
+twilio_phone_number: <%= ENV['TWILIO_PHONE_NUMBER'] %>
+```
+
+
+
+5. Edit the SMTP Relay configuration
+
+- Edit the file `config/smtp_relay/relay.yml`
+
+```shell
+# Add your own sendgrid configuration
+
+---
+hostname: "relay"
+fqdn: "mydomain.com"
+defaultUser: "root"
+relayHost: "[smtp.sendgrid.net]:25"
+sendgrid:
+  username: "apikey"
+  password: "<SG.my_api_key>"
+```
+
+
+
+6. Edit the Peatio Trading UI configuration
+
+
+- Edit `app/peatio_trading_ui/config/template/application.yml.erb`
+
+```shell
+PLATFORM_ROOT_URL: http://ec2-xx-xx-xxx-xxx.compute-1.amazonaws.com  # No need for a port since nginx does the forwarding
+```
+
+
+7. Edit the Nginx server config
+
+- Edit `config/nginx/default.conf` and add your server_name
+
+```
+server {
+  server_name http://ec2-xx-xxx-xxx-xxx.compute-1.amazonaws.com;  # HTTP:// IS needed !
+...
+```
+
+
+
+8. (optional) Configure the HOST
 
 - If you run peatio locally, to have barong login working with peatio you will need to add this to your `/etc/hosts`. 
 - Make sure all your "server name / host name" represent the choosen host name
@@ -142,7 +169,7 @@ system 'bin/rake tmp:create yarn:install assets:precompile'
 ```
 
 
-4. Build the images and lunch the containers: 
+9. Build the images and lunch the containers: 
 
 ```
 $ make
@@ -158,6 +185,12 @@ Secret: ab80e2c843861c4d23e63f5472cd1c9ee6f55e388863e21f22b03a9093977f29
 ```
 
 
+10. Launch the web server
+
+```
+$ make serve
+```
+
 
 
 ### Run Barong and Peatio
@@ -165,7 +198,7 @@ Secret: ab80e2c843861c4d23e63f5472cd1c9ee6f55e388863e21f22b03a9093977f29
 #### Barong
 
 1. Get the creds you got from executing `make`
-2. Sign in at [barong:8001](http://barong:8001), you'll get a redirect error, don't freak out ;-)
+2. Sign in at [<your-server-name>:8001](http://barong:8001), then you'll get a redirect error, don't freak out ;-)
 3. Go to [/admin](http://barong:8001/admin) and navigate to [Applications](http://barong:8001/oauth/applications)
 4. Edit Local Peatio application and change the server name in the callback url: `http://ec2-xx-xx-xx-xxx.compute-1.amazonaws.com/auth/barong/callback`
 5. Click on the "Authorize" button to register the callback URL
