@@ -6,7 +6,7 @@ default: run
 
 prepare:
 	$(COMPOSE) up -d vault db redis rabbitmq smtp_relay coinhub peatio_daemons
-	$(COMPOSE) run --rm vault secrets enable totp
+	$(COMPOSE) run --rm vault secrets enable totp || true
 
 build:
 	$(COMPOSE) build peatio barong peatio_trading_ui nginx_server

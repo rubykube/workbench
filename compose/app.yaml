@@ -39,7 +39,7 @@ services:
       MARKETS_CONFIG: /opt/peatio/config/markets.yml
       CURRENCIES_CONFIG: /opt/peatio/config/currencies.yml
     volumes:
-      - ./config/peatio:/opt/peatio/config:ro
+      - ../config/peatio:/opt/peatio/config:ro
 
   peatio_daemons:
     build:
@@ -64,7 +64,7 @@ services:
       MARKETS_CONFIG: /opt/peatio/config/markets.yml
       CURRENCIES_CONFIG: /opt/peatio/config/currencies.yml
     volumes:
-      - ./config/peatio:/opt/peatio/config:ro
+      - ../config/peatio:/opt/peatio/config:ro
     command: god -c lib/daemons/daemons.god -D start
 
   barong:
