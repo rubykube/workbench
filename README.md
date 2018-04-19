@@ -185,13 +185,6 @@ Secret: ab80e2c843861c4d23e63f5472cd1c9ee6f55e388863e21f22b03a9093977f29
 ```
 
 
-10. Launch the web server
-
-```
-$ make serve
-```
-
-
 
 ### Run Barong and Peatio
 
