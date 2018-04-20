@@ -139,7 +139,7 @@ sendgrid:
 6. Edit the Peatio Trading UI configuration
 
 
-- Edit `app/peatio_trading_ui/config/template/application.yml.erb`
+- Edit `app/peatio-trading-ui/config/templates/application.yml.erb`
 
 ```shell
 PLATFORM_ROOT_URL: http://ec2-xx-xx-xxx-xxx.compute-1.amazonaws.com  # No need for a port since nginx does the forwarding
