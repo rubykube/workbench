@@ -44,3 +44,21 @@ services:
       - "8001:8001"
     env_file:
       - ../config/barong.env
+
+  peatio_trading_ui:
+    build:
+      context: ../app/peatio-trading-ui
+    ports: 
+      - "3000:3000"
+    environment:
+      PORT: 3000
+      RAILS_ENV: development
+
+  nginx_server:
+    image: nginx
+    volumes:
+      - ../config/nginx:/etc/nginx/conf.d
+    ports: 
+      - "80:80"
+    environment:
+      PORT: 80

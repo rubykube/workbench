@@ -1,0 +1,8 @@
+---
+hostname: "relay"
+fqdn: "helios.com"
+defaultUser: "helios"
+relayHost: "[smtp.sendgrid.net]:25"
+sendgrid:
+  username: "apikey"
+  password: "SG.my_api_secret"

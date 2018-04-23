@@ -5,4 +5,9 @@
 [submodule "barong"]
 	path = app/barong
 	url = https://github.com/rubykube/barong.git
-	branch = master
+[submodule "app/peatio-trading-ui"]
+	path = app/peatio-trading-ui
+	url = https://github.com/rubykube/peatio-trading-ui.git
+[submodule "app/nginx"]
+	path = app/nginx
+	url = https://github.com/msylvestre/nginx.git
