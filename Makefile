@@ -1,6 +1,7 @@
 .PHONY: build prepare run test seed down setup-apps
 
-COMPOSE = docker-compose -f compose/app.yaml -f compose/backend.yaml
+WB_ENV = development
+COMPOSE = docker-compose -f compose/app.$(WB_ENV).yaml -f compose/backend.yaml
 
 default: run
 

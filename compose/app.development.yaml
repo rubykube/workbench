@@ -1,0 +1,98 @@
+version: '3'
+
+services:
+  peatio:
+    build:
+      context: ../app/peatio
+      args:
+        GID: ${WB_GID:-1000}
+        UID: ${WB_UID:-1000}
+    depends_on:
+      - db
+      - redis
+      - rabbitmq
+      - smtp_relay
+      - peatio_daemons
+      - barong
+    ports:
+      - "8000:8000"
+    environment:
+      PORT: 8000
+      URL_HOST: peatio:8000
+      RAILS_ENV: development
+      REDIS_URL: redis://redis:6379
+      DATABASE_HOST: db
+      DATABASE_USER: root
+      DATABASE_PASS: changeme
+      RABBITMQ_HOST: rabbitmq
+      SMTP_PORT: 25
+      SMTP_DOMAIN: helioscloud.com
+      SMTP_ADDRESS: smtp_relay
+      SMTP_USE_SSL: "false"
+      SMTP_USE_TLS: "false"
+      SMTP_ENABLE_STARTTLS: "false"
+      SMTP_ENABLE_STARTTLS_AUTO: "false"
+      OAUTH2_SIGN_IN_PROVIDER: barong
+      BARONG_DOMAIN: http://barong:8001
+      BARONG_OAUTH2_REDIRECT_URL: http://localhost:4200/callback
+      BARONG_CLIENT_ID: a68be319fca51caca60eed5711226e568bd1c1d13ff452b945515f1a6ffbaca4
+      BARONG_CLIENT_SECRET: ab80e2c843861c4d23e63f5472cd1c9ee6f55e388863e21f22b03a9093977f29
+      DEPOSIT_CHANNELS_CONFIG: /opt/peatio/config/deposit_channels.yml
+      WITHDRAW_CHANNELS_CONFIG: /opt/peatio/config/withdraw_channels.yml
+      MARKETS_CONFIG: /opt/peatio/config/markets.yml
+      CURRENCIES_CONFIG: /opt/peatio/config/currencies.yml
+    volumes:
+      - ../config/peatio:/opt/peatio/config:ro
+      - ../app/peatio:/home/app
+
+  peatio_daemons:
+    build:
+      context: ../app/peatio
+      args:
+        GID: ${WB_GID:-1000}
+        UID: ${WB_UID:-1000}
+    depends_on:
+      - db
+      - redis
+      - rabbitmq
+      - coinhub
+    ports:
+      - "8080:8080"
+    environment:
+      RAILS_ENV: development
+      REDIS_URL: redis://redis:6379
+      DATABASE_HOST: db
+      DATABASE_USER: root
+      DATABASE_PASS: changeme
+      RABBITMQ_HOST: rabbitmq
+      WORKBENCH: "true"
+      DEPOSIT_CHANNELS_CONFIG: /opt/peatio/config/deposit_channels.yml
+      WITHDRAW_CHANNELS_CONFIG: /opt/peatio/config/withdraw_channels.yml
+      MARKETS_CONFIG: /opt/peatio/config/markets.yml
+      CURRENCIES_CONFIG: /opt/peatio/config/currencies.yml
+    volumes:
+      - ../config/peatio:/opt/peatio/config:ro
+      - ../app/peatio:/home/app
+    command: god -c lib/daemons/daemons.god -D start
+
+  barong:
+    build:
+      context: ../app/barong
+      args:
+        GID: ${WB_GID:-1000}
+        UID: ${WB_UID:-1000}
+    depends_on:
+      - db
+      - vault
+    ports:
+      - "8001:8001"
+    environment:
+      PORT: 8001
+      RAILS_ENV: development
+      DATABASE_HOST: db
+      DATABASE_USER: root
+      DATABASE_PASSWORD: changeme
+      VAULT_TOKEN: changeme
+      VAULT_ADDR: http://vault:8200
+    volumes:
+      - ../app/barong:/home/app
