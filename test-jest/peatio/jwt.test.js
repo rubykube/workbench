@@ -19,7 +19,11 @@ test('Read config', ()=> {
 test('Generate JSONWebToken', ()=> {
   // generate token
   const token = jwtGenerator(config.JWT_TEST_USER, config.JWT_BARONG_PRIVATE_KEY);
+  console.log("Generated JWT:");
+  console.log(token)
   expect(token).toBeDefined();
+
+  
 
 });
 
