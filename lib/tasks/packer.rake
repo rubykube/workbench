@@ -3,7 +3,7 @@ IMAGE_LIST  = %w(vagrant workbench)
 
 def build(app)
   puts "Building #{app} Packer image"
-  sh "packer build -only=virtualbox-iso images/#{app}.json"
+  sh "packer build images/#{app}.json"
 end
 
 namespace :packer do
