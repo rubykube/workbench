@@ -5,8 +5,8 @@ const parseUrl = require("parse-url");
 
 var config = require('../configuration')
 
-const requestAPI = function(method, endpoint, jwt, postData) {
-    api_url = urljoin(config.PEATIO_API_PATH, endpoint);
+const requestAPI = function(method, base_url, endpoint, jwt, postData) {
+    api_url = urljoin(base_url, endpoint);
     var url = parseUrl(config.PEATIO_URL);
     var options = {
         protocol: `${url.protocol}:`,
@@ -18,6 +18,7 @@ const requestAPI = function(method, endpoint, jwt, postData) {
     if (jwt) {
         options.headers = {'Authorization': "Bearer " + jwt};
     }
+    console.log("OPTIONS", options);
     if (method == "GET") {
         return getRequest(options).then((data) => data);
     } else if (method == "POST") {
