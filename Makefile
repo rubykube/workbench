@@ -19,7 +19,7 @@ run: prepare setup-apps
 	$(COMPOSE) up peatio barong
 
 jest: 
-	$(COMPOSE) up --build jest
+	$(COMPOSE) -f compose/tests.yaml up --build jest
 
 
 test: prepare

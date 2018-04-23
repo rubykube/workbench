@@ -1,6 +1,6 @@
-var config = require('./configuration')
-var jwtGenerator = require('./support/jwtGenerator');
-var getFromAPI = require('./support/getFromAPI');
+var config = require('../configuration')
+var jwtGenerator = require('../support/jwtGenerator');
+var getFromAPI = require('../support/getFromAPI');
 
 //jest.setTimeout(10000);
 
