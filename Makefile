@@ -25,8 +25,11 @@ run: prepare build setup-apps up
 test: prepare
 	@$(COMPOSE) run --rm peatio_specs
 
-seed:
-	@$(COMPOSE) run --rm peatio "rake db:seed"
+start: prepare setup-apps
+	$(COMPOSE) up -d peatio barong
+
+update:
+	git submodule update --init --remote
 
 down:
 	@$(COMPOSE) down
