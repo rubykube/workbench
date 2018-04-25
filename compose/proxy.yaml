@@ -1,0 +1,9 @@
+version: '3'
+
+services:
+  proxy:
+    image: nginx
+    ports:
+      - "80:80"
+    volumes:
+      - ../config/proxy.conf:/etc/nginx/conf.d/proxy.conf:ro
