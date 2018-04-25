@@ -18,6 +18,7 @@ services:
     env_file:
       - ../config/peatio/application.env
     environment:
+      PORT: 8000
       DATABASE_USER: root
       DATABASE_PASS: changeme
     volumes:
