@@ -1,0 +1,26 @@
+{
+  "name": "jest-tests",
+  "version": "1.0.0",
+  "description": "Jest tests on RKCP workbench",
+  "license": "MIT",
+  "scripts": {
+    "test": "jest"
+  },
+  "jest": {
+    "verbose": true,
+    "testEnvironment": "node"
+  },
+  "devDependencies": {
+    "babel-jest": "^22.4.3",
+    "babel-preset-es2015": "^6.24.1",
+    "jest": "^22.4.3"
+  },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "base-64": "^0.1.0",
+    "http": "0.0.0",
+    "jsonwebtoken": "^8.2.1",
+    "jsrsasign": "^8.0.10",
+    "jsrsasign-util": "^1.0.0"
+  }
+}
