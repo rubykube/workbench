@@ -27,6 +27,6 @@ describe('Generating JWT', () => {
     
     expect(response.status).toEqual(200)
     expect(response.data.email).toEqual(config.JWT_TEST_USER.email)
-    expect(response.data.accounts).toHaveLength(7)
+    expect(response.data.accounts).toHaveLength(6)
   })
 })
