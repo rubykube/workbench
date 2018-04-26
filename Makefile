@@ -1,4 +1,4 @@
-.PHONY: build prepare run test seed down setup-apps
+.PHONY: build prepare run all test clean seed down setup-apps
 
 COMPOSE = docker-compose -f compose/app.yaml -f compose/backend.yaml  -f compose/proxy.yaml
 
@@ -17,6 +17,9 @@ setup-apps: build
 
 run: prepare setup-apps
 	$(COMPOSE) up peatio barong proxy
+
+jest: 
+	$(COMPOSE) -f compose/tests.yaml up --build jest
 
 test: prepare
 	@$(COMPOSE) run --rm peatio_specs
