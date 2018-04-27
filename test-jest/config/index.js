@@ -1,4 +1,5 @@
-fs = require('fs')
+const fs = require('fs')
+const base64 = require('base-64')
 
 module.exports = {
   PEATIO_URL: process.env["PEATIO_API_URL"] || 'https://platform.qa.etorox.io/api/v2/',
@@ -37,7 +38,7 @@ module.exports = {
     "application_id":"4bf6a778754b0b2dd8b10a94c66511d140cd9a13cec9815ed590092bdab6e0b6"
   },
   
-  BARONG_JWT_PRIVATE_KEY: process.env["BARONG_JWT_PRIVATE_KEY"] || fs.readFileSync('./config/rsa.key'),
-  BARONG_JWT_PUBLIC_KEY: process.env["BARONG_JWT_PUBLIC_KEY"] || fs.readFileSync('./config/rsa.key.pub'),
+  BARONG_JWT_PRIVATE_KEY: base64.decode(process.env["JWT_SHARED_SECRET_KEY"]) || fs.readFileSync('./config/rsa.key'),
+  BARONG_JWT_PUBLIC_KEY: base64.decode(process.env["JWT_PUBLIC_KEY"]) || fs.readFileSync('./config/rsa.key.pub'),
 }
 
