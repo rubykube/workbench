@@ -9,12 +9,10 @@ useradd --create-home -g users -G docker --shell /bin/bash app
 cd /home/app
 git clone --recursive https://www.github.com/rubykube/workbench.git
 
-cd workbench
-git checkout -b 1-5-stable origin/1-5-stable
-
 chown -R app:users /home/app
 
-make build
-make prepare
-make down
+cd workbench
+sudo -u app make build
+sudo -u app make prepare
+sudo -u app make down
 docker volume prune -f

@@ -40,7 +40,6 @@ upgrade_system() {
 }
 
 install_compose() {
-  pip install --upgrade pip
   pip install docker-compose
 }
 

@@ -20,7 +20,7 @@
       "account_file":   "{{user `account_file`}}",
       "project_id":     "{{user `project_id`}}",
       "source_image":   "centos-7-v20180401",
-      "ssh_username":   "vagrant",
+      "ssh_username":   "kite",
       "zone":           "{{user `zone`}}",
       "image_name":     "workbench-{{timestamp}}",
       "instance_name":  "workbench-{{uuid}}",
