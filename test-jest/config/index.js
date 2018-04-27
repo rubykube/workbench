@@ -1,7 +1,6 @@
 const fs = require('fs')
 const base64 = require('base-64')
 
-
 module.exports = {
   PEATIO_URL: process.env["PEATIO_API_URL"] || 'https://platform.qa.etorox.io/api/v2/',
   PEATIO_MANAGEMENT_URL: process.env["PEATIO_MANAGEMENT_API_URL"] || 'https://platform.qa.etorox.io/management_api/v1',
