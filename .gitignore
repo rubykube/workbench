@@ -1,3 +1,4 @@
 /.env
 /config/rsa.key
 /config/rsa.key.pub
+*/node_modules
