@@ -58,3 +58,14 @@ Simply start your local server. Now you're able to log in with your local Barong
 ## Running Tests
 
 >**TODO**
+
+## Q&A
+
+### How to use a new keypair for JWT?
+
+* Automatically:
+  Run `rake jwt` in the workbench root
+* Manually:
+    1. Generate a new RSA keypair.
+    2. Add base64-encoded PEM keys to apps configuration
+
