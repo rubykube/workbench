@@ -1,6 +1,6 @@
 .PHONY: build prepare run test seed down setup-apps
 
-COMPOSE = docker-compose -f compose/app.yaml -f compose/backend.yaml
+COMPOSE = docker-compose -f compose/app.yaml -f compose/backend.yaml  -f compose/proxy.yaml
 
 default: run
 
@@ -16,7 +16,7 @@ setup-apps: build
 	$(COMPOSE) run --rm barong "./bin/setup"
 
 run: prepare setup-apps
-	$(COMPOSE) up peatio barong
+	$(COMPOSE) up peatio barong proxy
 
 test: prepare
 	@$(COMPOSE) run --rm peatio_specs
