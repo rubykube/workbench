@@ -11,10 +11,11 @@ describe('Generating JWS', () => {
     })
     
     test('Try to get withdraws', done => {
+        console.log("config.JWT_TEST_USER.uid", config.JWT_TEST_USER.uid);
+
         const signedDoc = jwsSign({
             exp: Math.round(new Date().getTime() / 1000) + 4 * 3600,
-            sub: 'session',
-            iss: 'firstSign',
+            sub: 'multisign',
             aud: [
             'peatio',
             'barong'
@@ -31,7 +32,7 @@ describe('Generating JWS', () => {
             expect(response.status).toEqual(201)
             done()
         }).catch(error=> {
-            console.log("ERROR", error )
+            console.log("ERROR", error.response.status, error.response.data)
         })
     })
 })
