@@ -21,6 +21,9 @@ run: prepare setup-apps
 jest: 
 	$(COMPOSE) -f compose/tests.yaml up --build  jest
 
+jest: 
+	$(COMPOSE) -f compose/tests.yaml up --build  jest
+
 test: prepare
 	@$(COMPOSE) run --rm peatio_specs
 
