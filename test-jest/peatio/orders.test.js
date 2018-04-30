@@ -50,7 +50,6 @@ describe('Trading', () => {
           a.locked = Number(a.locked)
           return a
         })
-        console.log("ACCOUNTS", this.accounts)
         this.btcAccount = this.accounts.find(a => a.currency === 'btc')
         expect(
           this.btcAccount.balance
