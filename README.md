@@ -57,10 +57,13 @@ Simply start your local server. Now you're able to log in with your local Barong
 
 ## Running Tests
 
->**TODO**
-
 ## Q&A
-1. Create new keypair for JWT (see below)
+1. Create new keypair for JWT
+* Automatically:
+  Run `rake jwt` in the workbench root
+* Manually:
+    1. Generate a new RSA keypair.
+    2. Add base64-encoded PEM keys to apps configuration
 2. Create images and start docker containers
 ```
 make build
@@ -77,11 +80,4 @@ make jest
 ```
 
 
-### How to use a new keypair for JWT?
-
-* Automatically:
-  Run `rake jwt` in the workbench root
-* Manually:
-    1. Generate a new RSA keypair.
-    2. Add base64-encoded PEM keys to apps configuration
 
