@@ -17,6 +17,7 @@ describe('deposit tests', () => {
     })
 
     test('Read config', done => {
+        // control existing data in config
         expect(config).toHaveProperty('MANAGEMENT_API_SIGNS')
         expect(config).toHaveProperty('JWT_TEST_USER')
         expect(config.JWT_TEST_USER).toHaveProperty('uid')
@@ -24,7 +25,7 @@ describe('deposit tests', () => {
     })
     
     test('Try to get fiat deposits', done => {
-        // sign
+        // create request users deposits and sign it
         const signedDoc = jwsSign({
             uid: config.JWT_TEST_USER.uid
         }, 'firstSign');
@@ -39,6 +40,7 @@ describe('deposit tests', () => {
     })
 
     test('Fiat deposit', done => {
+        // create request for add deposit and sign it
         let signedDoc = jwsSign({
             uid: config.JWT_TEST_USER.uid,
             currency: 'usd',
@@ -52,6 +54,7 @@ describe('deposit tests', () => {
             let requestData = jwsSign({
                 uid: config.JWT_TEST_USER.uid
             }, 'firstSign')
+            // get deposits list and check added deposit
             management_api.post('/deposits',requestData).then(response => {
                 this.deposits.result = response.data
                 expect(this.deposits.result.length - this.deposits.start.length).toEqual(this.deposits.added.length)
@@ -65,12 +68,14 @@ describe('deposit tests', () => {
     })
 
     test("Withdraws test", done => {
+        // create request users withdraws and sign it
         let requestData = jwsSign({
             uid: config.JWT_TEST_USER.uid
         }, 'firstSign')
         management_api.post('/withdraws',requestData).then(response => {
             this.withdraws.start = response.data
             expect(response.status).toEqual(200)
+            // create request for add withdraw and sign it
             let withdrawSign = jwsSign({
                 uid: config.JWT_TEST_USER.uid,
                 rid: config.JWT_TEST_USER.uid,
@@ -83,6 +88,7 @@ describe('deposit tests', () => {
                 this.withdraws.added.push(response.data)
                 expect(response.status).toEqual(201)
                 expect(response.data.state).toEqual('submitted')
+                // get withdraws list and check added withdraw
                 management_api.post('/withdraws',requestData).then(response => {
                     this.withdraws.result = response.data
                     expect(this.withdraws.result.length - this.withdraws.start.length).toEqual(this.withdraws.added.length)
