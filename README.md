@@ -60,6 +60,21 @@ Simply start your local server. Now you're able to log in with your local Barong
 >**TODO**
 
 ## Q&A
+1. Create new keypair for JWT (see below)
+2. Create images and start docker containers
+```
+make build
+make run
+```
+3.Copy symlink for yml file in peatio container
+docker exec compose_peatio_1 cp /opt/peatio/config/management_api_v1.yml /home/app/config
+docker restart compose_peatio_1
+```
+4. Start test
+```
+make jest
+```
+
 
 ### How to use a new keypair for JWT?
 

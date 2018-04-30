@@ -17,7 +17,7 @@ describe('deposit tests', () => {
     })
 
     test('Read config', done => {
-        // control existing data in config
+        // control existing important data in config file
         expect(config).toHaveProperty('MANAGEMENT_API_SIGNS')
         expect(config).toHaveProperty('JWT_TEST_USER')
         expect(config.JWT_TEST_USER).toHaveProperty('uid')
@@ -25,7 +25,7 @@ describe('deposit tests', () => {
     })
     
     test('Try to get fiat deposits', done => {
-        // create request users deposits and sign it
+        // create signed doc for get existing user deposits
         const signedDoc = jwsSign({
             uid: config.JWT_TEST_USER.uid
         }, 'firstSign');
@@ -40,13 +40,14 @@ describe('deposit tests', () => {
     })
 
     test('Fiat deposit', done => {
-        // create request for add deposit and sign it
+        // create new deposit accepted request and sign it
         let signedDoc = jwsSign({
             uid: config.JWT_TEST_USER.uid,
             currency: 'usd',
             amount: 100,
             state: "accepted"
         }, 'firstSign')
+        // send request to api
         management_api.post('/deposits/new',signedDoc).then(response => {
             this.deposits.added.push(response.data)
             expect(response.status).toEqual(201)
@@ -54,10 +55,10 @@ describe('deposit tests', () => {
             let requestData = jwsSign({
                 uid: config.JWT_TEST_USER.uid
             }, 'firstSign')
-            // get deposits list and check added deposit
+            // check appearing new deposit in deposits list
             management_api.post('/deposits',requestData).then(response => {
                 this.deposits.result = response.data
-                expect(this.deposits.result.length - this.deposits.start.length).toEqual(this.deposits.added.length)
+                expect(this.deposits.result[0].tid).toEqual(this.deposits.added[0].tid)
                 done()
             }).catch(error=> {
                 console.log("ERROR", error)
@@ -68,14 +69,14 @@ describe('deposit tests', () => {
     })
 
     test("Withdraws test", done => {
-        // create request users withdraws and sign it
+        // create signed doc for get existing user withdraw
         let requestData = jwsSign({
             uid: config.JWT_TEST_USER.uid
         }, 'firstSign')
         management_api.post('/withdraws',requestData).then(response => {
             this.withdraws.start = response.data
             expect(response.status).toEqual(200)
-            // create request for add withdraw and sign it
+            // create new withdraw submitted request and sign it
             let withdrawSign = jwsSign({
                 uid: config.JWT_TEST_USER.uid,
                 rid: config.JWT_TEST_USER.uid,
@@ -83,15 +84,16 @@ describe('deposit tests', () => {
                 amount: 1,
                 state: "submitted"
             }, 'firstSign')
+            // send request to api
             management_api.post('/withdraws/new',withdrawSign).then(response => {
                 console.log("RESULT", response.data)
                 this.withdraws.added.push(response.data)
                 expect(response.status).toEqual(201)
                 expect(response.data.state).toEqual('submitted')
-                // get withdraws list and check added withdraw
+                // check appearing new withdraw in withdraws list
                 management_api.post('/withdraws',requestData).then(response => {
                     this.withdraws.result = response.data
-                    expect(this.withdraws.result.length - this.withdraws.start.length).toEqual(this.withdraws.added.length)
+                    expect(this.withdraws.result[0].tid).toEqual(this.withdraws.added[0].tid)
                     done()
                 }).catch(error=> {
                     console.log("ERROR", error)

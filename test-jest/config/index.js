@@ -5,6 +5,14 @@ module.exports = {
   PEATIO_URL: process.env["PEATIO_API_URL"] || 'https://platform.qa.etorox.io/api/v2/',
   PEATIO_MANAGEMENT_URL: process.env["PEATIO_MANAGEMENT_API_URL"] || 'https://platform.qa.etorox.io/management_api/v1',
   
+  MANAGEMENT_API_SIGNS: {
+    "firstSign": {
+      algorithm: "RS256",
+      private_key: base64.decode(process.env["JWT_SHARED_SECRET_KEY"])
+    }
+  },
+
+
   JWT_TEST_USER: {
     iat: Math.round(new Date().getTime() / 1000) - 1,
     exp: Math.round(new Date().getTime() / 1000) + 4 * 3600,
@@ -21,6 +29,7 @@ module.exports = {
     level: 3,
     state: 'active'
   },
+  
   
   BARONG_URL: process.env["BARONG_API_URL"] || 'https://account.qa.etorox.io/api/v1',
   BARONG_TEST_USER: {
