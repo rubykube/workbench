@@ -57,4 +57,31 @@ Simply start your local server. Now you're able to log in with your local Barong
 
 ## Running Tests
 
->**TODO**
+## Q&A
+1. Create new keypair for JWT
+* Automatically:
+  Run `rake jwt` in the workbench root
+* Manually:
+    1. Generate a new RSA keypair.
+    2. Add base64-encoded PEM keys in workbench root file .env. Example:
+```
+JWT_SHARED_SECRET_KEY=LS0tLS1C...tCg==
+JWT_PUBLIC_KEY=LS0tL..S0tCg==
+```
+2. Create images and start docker containers
+```
+make build
+make run
+```
+3.Copy symlink for yml file in peatio container
+```
+docker exec compose_peatio_1 cp /opt/peatio/config/management_api_v1.yml /home/app/config
+docker restart compose_peatio_1
+```
+4. Start test
+```
+make jest
+```
+
+
+
