@@ -1,0 +1,12 @@
+- id: 1
+  currency: 'btc'
+  amount:   100
+  state:    "accepted"
+- id: 2
+  currency: 'xrp'
+  amount:   100
+  state:    "accepted"
+- id: 3
+  currency: 'usd'
+  amount:   10
+  state:    "accepted"
