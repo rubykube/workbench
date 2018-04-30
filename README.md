@@ -67,6 +67,7 @@ make build
 make run
 ```
 3.Copy symlink for yml file in peatio container
+```
 docker exec compose_peatio_1 cp /opt/peatio/config/management_api_v1.yml /home/app/config
 docker restart compose_peatio_1
 ```
