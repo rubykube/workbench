@@ -1,12 +1,15 @@
 - id: 1
-  currency: 'btc'
+  uid: ID53B3505544
+  currency: btc
   amount:   100
-  state:    "accepted"
+  state:    accepted
 - id: 2
-  currency: 'xrp'
+  uid: ID53B3505544
+  currency: xrp
   amount:   100
-  state:    "accepted"
+  state:    accepted
 - id: 3
-  currency: 'usd'
+  uid: ID53B3505544
+  currency: usd
   amount:   10
-  state:    "accepted"
+  state:    accepted

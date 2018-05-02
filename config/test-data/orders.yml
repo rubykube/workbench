@@ -1,40 +1,40 @@
 - id:     1
-  side:   'sell'
+  side:   sell
   volume: 0.002
   price:  20
-  market: 'btcxrp'
+  market: btcxrp
 - id:     2
-  side:   'sell'
+  side:   sell
   volume: 0.001
   price:  20.5
-  market: 'btcxrp'
+  market: btcxrp
 - id:     3
-  side:   'sell'
+  side:   sell
   volume: 0.001
   price:  19
-  market: 'btcxrp'
+  market: btcxrp
 - id:     4
-  side:   'buy'
+  side:   buy
   volume: 0.001
   price:  18.3
-  market: 'btcxrp'
+  market: btcxrp
 - id:     5
-  side:   'buy'
+  side:   buy
   volume: 0.001
   price:  18.4
-  market: 'btcxrp'
+  market: btcxrp
 - id:     6
-  side:   'buy'
+  side:   buy
   volume: 0.001
   price:  18.35
-  market: 'btcxrp'
+  market: btcxrp
 - id:     7
-  side:   'buy'
+  side:   buy
   volume: 0.002
   price:  20.5
-  market: 'btcxrp'
+  market: btcxrp
 - id:     8
-  side:   'sell'
+  side:   sell
   volume: 0.002
   price:  18.34
-  market: 'btcxrp'
+  market: btcxrp

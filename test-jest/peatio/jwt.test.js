@@ -18,15 +18,21 @@ describe('Generating JWT', () => {
   })
 
   test('Try to get profile without jwt (HTTP status must be equal 401)', async () => {
-    expect(() => api.get('/members/me', '123.abc.d_5'))
+    api.get('/members/me', '123.abc.d_5').then(response=>{
+      expect(response.status).toEqual(401)
+    }).catch(err=>{
+      expect(err.response.status).toEqual(401)
+    })
   })
 
   test('Get profile with jwt (HTTP status must be equal 200)', async () => {
     const token = jwtGenerator(config.JWT_TEST_USER)
-    const response = await api.get('/members/me', token)
+    api.get('/members/me', token).then(response => {
+      expect(response.status).toEqual(200)
+      expect(response.data.email).toEqual(config.JWT_TEST_USER.email)
+    }).catch(err=>{
+      console.log("REQUEST ERROR", err)
+    })
     
-    expect(response.status).toEqual(200)
-    expect(response.data.email).toEqual(config.JWT_TEST_USER.email)
-    //expect(response.data.accounts).toHaveLength(7)
   })
 })
