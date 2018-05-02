@@ -25,10 +25,12 @@
       volume: 0.001
       price:  18.35
 - id:     buy
-  side:   buy
-  volume: 0.002
-  price:  20.5
+  order: 
+    side:   buy
+    volume: 0.002
+    price:  20.5
 - id:     sell
-  side:   sell
-  volume: 0.002
-  price:  18.34
+  order:
+    side:   sell
+    volume: 0.002
+    price:  18.34

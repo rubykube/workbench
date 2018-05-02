@@ -9,10 +9,10 @@ jest.setTimeout(20000)
 describe('Trading', () => {
   beforeAll(() => {
     this.accounts = []
-    this.marketName = 'BTC/XRP'
+    this.marketName = 'USD/EUR'
     this.marketId = ""
-    this.btcAccount = {}
-    this.xrpAccount = {}
+    this.usdAccount = {}
+    this.eurAccount = {}
     this.ordersForClose = {
       sell: {side: 'sell', volume: 0, price: 0},
       buy: {side: 'buy', volume: 0, price: 0}
@@ -68,15 +68,15 @@ describe('Trading', () => {
           return a
         })
         console.log("INITIAL BALANCES", this.accounts)
-        this.btcAccount = this.accounts.find(a => a.currency === 'btc')
-        // expect(
-        //   this.btcAccount.balance
-        // ).toBeGreaterThan(0)
+        this.usdAccount = this.accounts.find(a => a.currency === 'usd')
+        expect(
+          this.usdAccount.balance
+        ).toBeGreaterThan(0)
   
-        this.xrpAccount = this.accounts.find(a => a.currency === 'xrp')
-        // expect(
-        //   this.xrpAccount.balance
-        // ).toBeGreaterThan(0)
+        this.eurAccount = this.accounts.find(a => a.currency === 'eur')
+        expect(
+          this.eurAccount.balance
+        ).toBeGreaterThan(0)
   
         done()
       }).catch(err=>{
@@ -158,18 +158,23 @@ describe('Trading', () => {
   //     market: this.marketId,
   //     orders: this.testData.find(data=>{
   //       return (data.id === 'multi')
-  //     })
+  //     }).orders
   //   }
   //   // set order for buy
-  //   let singleBuy = this.orders.find(data=>{
+  //   let buyOrder = this.testData.find(data=>{
   //     return (data.id === 'buy')
-  //   })
-  //   singleBuy.market = this.marketId
-  //   // set order for sell
-  //   let singleSell = this.testData.find(data=>{
+  //   }).order,
+  //   singleBuy = {
+  //     ...buyOrder,
+  //     market: this.marketId,
+  //   },
+  //   sellOrder = this.testData.find(data=>{
   //     return (data.id === 'sell')
-  //   })
-  //   singleSell.market = this.marketId
+  //   }).order,
+  //   singleSell = {
+  //     ...sellOrder,
+  //     market: this.marketId
+  //   }
   //   const expectedArray = [{
   //     id: expect.any(Number),
   //     side: expect.any(String),
@@ -177,7 +182,7 @@ describe('Trading', () => {
   //     price: expect.any(String),
   //     avg_price: expect.any(String),
   //     state: 'wait',
-  //     market: this.market,
+  //     market: this.marketId,
   //     created_at: expect.any(String),
   //     volume: expect.any(String),
   //     remaining_volume: expect.any(String),
@@ -212,7 +217,7 @@ describe('Trading', () => {
   //     // send orders for depth
   //     api.post('/orders/multi', orders, jwtGenerator(config.JWT_TEST_USER)).then(response => {
   //       expect(response.status).toEqual(201)
-  //       if (this.btcAccount.balance + this.xrpAccount.balance > 0) {
+  //       if (this.usdAccount.balance + this.eurAccount.balance > 0) {
   //         expect(response.data).toEqual(expect.arrayContaining(expectedArray))
   //         setTimeout(()=>{
   //           api.get('/members/me', jwtGenerator(config.JWT_TEST_USER)).then(resp => {
@@ -222,10 +227,10 @@ describe('Trading', () => {
   //               a.locked = Number(a.locked)
   //               return a
   //             })
-  //             this.btcAccount = this.accounts.find(a => a.currency === 'btc')
-  //             this.xrpAccount = this.accounts.find(a => a.currency === 'xrp')
+  //             this.usdAccount = this.accounts.find(a => a.currency === 'usd')
+  //             this.eurAccount = this.accounts.find(a => a.currency === 'eur')
   //             // get depth
-  //             api.get(`/depth?market=${this.market}`, jwtGenerator(config.JWT_TEST_USER)).then(response => {
+  //             api.get(`/depth?market=${this.marketId}`, jwtGenerator(config.JWT_TEST_USER)).then(response => {
   //               this.depth = response.data
   //               // send orders for checking
   //               api.post('/orders', singleSell, jwtGenerator(config.JWT_TEST_USER)).then(response => {
@@ -240,8 +245,8 @@ describe('Trading', () => {
   //                         a.locked = Number(a.locked)
   //                         return a
   //                       })
-  //                       let btcAccount = accounts.find(a => a.currency === 'btc')
-  //                       let xrpAccount = accounts.find(a => a.currency === 'xrp')
+  //                       let usdAccount = accounts.find(a => a.currency === 'usd')
+  //                       let eurAccount = accounts.find(a => a.currency === 'eur')
   //                       let sellOrder = this.orders.find((order)=>{return order.side=="sell"})
   //                       let buyOrder = this.orders.find((order)=>{return order.side=="buy"})
   //                       let asks = this.depth.asks,
@@ -298,19 +303,21 @@ describe('Trading', () => {
   //                           expect(Number(result.avg_price)).toEqual(avg_price)
   //                           done()
   //                         }).catch(err=>{
-  //                           done.fail(new Error("GET sell Order data Error"))
+  //                           done.fail(new Error("GET sell Order result Error"))
   //                         })
-  //                       })
-  //                     })
+  //                       }).catch(err=>{done.fail(new Error('Get order buy result Error'))})
+  //                     }).catch(err=>{done.fail(new Error('Get profile data 1 Error'))})
   //                   }, 2000)
-  //                 })
-  //               })
-  //             })
-  //           })
+  //                 }).catch(err=>{done.fail(new Error('Single buy post Error'))})
+  //               }).catch(err=>{done.fail(new Error('Single sell post Error'))})
+  //             }).catch(err=>{done.fail(new Error('get depth Error'))})
+  //           }).catch(err=>{done.fail(new Error('get profile data Error'))})
   //         }, 2500)
   //       } else {
   //         done()
   //       }
+  //     }).catch(err=>{
+  //         done.fail(new Error("multi orders send Error"))
   //     })
   //   }, 4500)
   // })

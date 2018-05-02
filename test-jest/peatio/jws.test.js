@@ -7,7 +7,7 @@ const jwsSign = require('./helpers/jws/sign')
 
 jest.setTimeout(20000)
 
-describe('deposit tests', () => {
+describe('MANAGEMENT API tests', () => {
     beforeAll(() => {
         // get test data from yml
         this.deposits = yaml.safeLoad(fs.readFileSync(config.TEST_DATA_DIR + 'deposits.yml', 'utf8'));

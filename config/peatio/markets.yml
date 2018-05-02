@@ -417,3 +417,23 @@
   bid_precision: 4
   position:      705
   visible:       true
+
+- id:          usdeur
+  ask_unit:      usd
+  bid_unit:      eur
+  ask_fee:       0.0015
+  bid_fee:       0.0015
+  ask_precision: 4
+  bid_precision: 4
+  position:      706
+  visible:       true
+
+- id:          eurusd
+  ask_unit:      eur
+  bid_unit:      usd
+  ask_fee:       0.0015
+  bid_fee:       0.0015
+  ask_precision: 4
+  bid_precision: 4
+  position:      707
+  visible:       true

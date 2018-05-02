@@ -1,6 +1,5 @@
 - id: 1
   uid: ID53B3505544
   currency: usd
-  amount:   10
+  amount:   100
   state:    accepted
-  
