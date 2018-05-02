@@ -25,6 +25,7 @@ describe('Trading', () => {
     // Clear order book (/api/v2/orders/clear)
     api.post(`/orders/clear`, {}, jwtGenerator(config.JWT_TEST_USER)).then(response => {
       expect(response.status).toEqual(201)
+      console.log("CLEAR", response.data)
       done()
     }).catch(err=>{
       done.fail(new Error("Clear Order book ERROR"))
@@ -152,173 +153,187 @@ describe('Trading', () => {
     }, 2000)
   })
 
-  // test('create trading orders (multi and single) and check trading result', done => {
-  //   const orders = {
-  //     // set orders for create depth
-  //     market: this.marketId,
-  //     orders: this.testData.find(data=>{
-  //       return (data.id === 'multi')
-  //     }).orders
-  //   }
-  //   // set order for buy
-  //   let buyOrder = this.testData.find(data=>{
-  //     return (data.id === 'buy')
-  //   }).order,
-  //   singleBuy = {
-  //     ...buyOrder,
-  //     market: this.marketId,
-  //   },
-  //   sellOrder = this.testData.find(data=>{
-  //     return (data.id === 'sell')
-  //   }).order,
-  //   singleSell = {
-  //     ...sellOrder,
-  //     market: this.marketId
-  //   }
-  //   const expectedArray = [{
-  //     id: expect.any(Number),
-  //     side: expect.any(String),
-  //     ord_type: 'limit',
-  //     price: expect.any(String),
-  //     avg_price: expect.any(String),
-  //     state: 'wait',
-  //     market: this.marketId,
-  //     created_at: expect.any(String),
-  //     volume: expect.any(String),
-  //     remaining_volume: expect.any(String),
-  //     executed_volume: expect.any(String),
-  //     trades_count: expect.any(Number)
-  //   }],
-  //   expectedObject = {
-  //     ...orders.single,
-  //     id: expect.any(Number),
-  //     ord_type: 'limit',
-  //     avg_price: expect.any(String),
-  //     price: expect.any(String),
-  //     volume: expect.any(String),
-  //     state: 'wait',
-  //     created_at: expect.any(String),
-  //     avg_price: expect.any(String),
-  //     executed_volume: expect.any(String),
-  //     trades_count: expect.any(Number)
-  //   },
-  //   expectedMember = {
-  //     sn: expect.any(String),
-  //     email: 'admin@etorox.io',
-  //     accounts: expect.arrayContaining(
-  //       [{
-  //         currency: expect.any(String),
-  //         balance: expect.any(String),
-  //         locked: expect.any(String)
-  //       }]
-  //     )
-  //   }
-  //   setTimeout(()=>{
-  //     // send orders for depth
-  //     api.post('/orders/multi', orders, jwtGenerator(config.JWT_TEST_USER)).then(response => {
-  //       expect(response.status).toEqual(201)
-  //       if (this.usdAccount.balance + this.eurAccount.balance > 0) {
-  //         expect(response.data).toEqual(expect.arrayContaining(expectedArray))
-  //         setTimeout(()=>{
-  //           api.get('/members/me', jwtGenerator(config.JWT_TEST_USER)).then(resp => {
-  //             expect(resp.status).toEqual(200)
-  //             this.accounts = resp.data.accounts.map(a => {
-  //               a.balance = Number(a.balance)
-  //               a.locked = Number(a.locked)
-  //               return a
-  //             })
-  //             this.usdAccount = this.accounts.find(a => a.currency === 'usd')
-  //             this.eurAccount = this.accounts.find(a => a.currency === 'eur')
-  //             // get depth
-  //             api.get(`/depth?market=${this.marketId}`, jwtGenerator(config.JWT_TEST_USER)).then(response => {
-  //               this.depth = response.data
-  //               // send orders for checking
-  //               api.post('/orders', singleSell, jwtGenerator(config.JWT_TEST_USER)).then(response => {
-  //                 this.orders.push(response.data)
-  //                 api.post('/orders', singleBuy, jwtGenerator(config.JWT_TEST_USER)).then(response => {
-  //                   this.orders.push(response.data)
-  //                   // start calculate check data
-  //                   setTimeout(()=>{
-  //                     api.get('/members/me', jwtGenerator(config.JWT_TEST_USER)).then(resp => {
-  //                       let accounts = resp.data.accounts.map(a => {
-  //                         a.balance = Number(a.balance)
-  //                         a.locked = Number(a.locked)
-  //                         return a
-  //                       })
-  //                       let usdAccount = accounts.find(a => a.currency === 'usd')
-  //                       let eurAccount = accounts.find(a => a.currency === 'eur')
-  //                       let sellOrder = this.orders.find((order)=>{return order.side=="sell"})
-  //                       let buyOrder = this.orders.find((order)=>{return order.side=="buy"})
-  //                       let asks = this.depth.asks,
-  //                           bids = this.depth.bids,
-  //                           s_minPrice = 0,
-  //                           s_executed_volume = 0,
-  //                           s_funds = 0,
-  //                           b_maxPrice = 0,
-  //                           b_executed_volume = 0,
-  //                           b_funds = 0
-  //                       // get buy order after matching
-  //                       api.get(`/order?id=${buyOrder.id}`, jwtGenerator(config.JWT_TEST_USER)).then(response => {
-  //                         expect(response.status).toEqual(200)
-  //                         let result = response.data
-  //                         let i = asks.length
-  //                         // calculate average price
-  //                         while (i--) {
-  //                           if (Number(result.volume) != Number(s_executed_volume)) {
-  //                             if ((result.volume - s_executed_volume) <= asks[i][1]) {
-  //                               s_funds += Number(result.volume - s_executed_volume) * Number(asks[i][0])
-  //                               s_executed_volume += Number((result.volume - s_executed_volume))
-  //                               i = 0
-  //                             } else {
-  //                               s_funds += Number(asks[i][1]) * Number(asks[i][0])
-  //                               s_executed_volume += Number(asks[i][1])
-  //                             }
-  //                           }
-  //                         }
-  //                         let avg_price = Math.round(s_funds/s_executed_volume * 1e12) / 1e12
-  //                         // check average price
-  //                         expect(Number(result.avg_price)).toEqual(avg_price)
-  //                         // get sell order after matching
-  //                         api.get(`/order?id=${sellOrder.id}`, jwtGenerator(config.JWT_TEST_USER)).then(response => {
-  //                           expect(response.status).toEqual(200)
-  //                           let result = response.data
-  //                           let i = 0,
-  //                             maxI = bids.length
-  //                           // calculate average price
-  //                           while (i < maxI) {
-  //                             if (Number(result.volume) != Number(b_executed_volume)) {
-  //                               if ((result.volume - b_executed_volume) <= bids[i][1]) {
-  //                                 b_funds += Number(result.volume - b_executed_volume) * Number(bids[i][0])
-  //                                 b_executed_volume += Number((result.volume - b_executed_volume))
-  //                                 i = 0
-  //                               } else {
-  //                                 b_funds += Number(bids[i][1]) * Number(bids[i][0])
-  //                                 b_executed_volume += Number(bids[i][1])
-  //                               }
-  //                             }
-  //                             i++
-  //                           }
-  //                           let avg_price = Math.round(b_funds/b_executed_volume * 1e12) / 1e12
-  //                           // check average price
-  //                           expect(Number(result.avg_price)).toEqual(avg_price)
-  //                           done()
-  //                         }).catch(err=>{
-  //                           done.fail(new Error("GET sell Order result Error"))
-  //                         })
-  //                       }).catch(err=>{done.fail(new Error('Get order buy result Error'))})
-  //                     }).catch(err=>{done.fail(new Error('Get profile data 1 Error'))})
-  //                   }, 2000)
-  //                 }).catch(err=>{done.fail(new Error('Single buy post Error'))})
-  //               }).catch(err=>{done.fail(new Error('Single sell post Error'))})
-  //             }).catch(err=>{done.fail(new Error('get depth Error'))})
-  //           }).catch(err=>{done.fail(new Error('get profile data Error'))})
-  //         }, 2500)
-  //       } else {
-  //         done()
-  //       }
-  //     }).catch(err=>{
-  //         done.fail(new Error("multi orders send Error"))
-  //     })
-  //   }, 4500)
-  // })
+  test('create trading orders (multi and single) and check trading result', done => {
+    const orders = {
+      // set orders for create depth
+      market: this.marketId,
+      orders: this.testData.find(data=>{
+        return (data.id === 'multi')
+      }).orders
+    }
+    // set order for buy
+    let buyOrder = this.testData.find(data=>{
+      return (data.id === 'buy')
+    }).order,
+    singleBuy = {
+      ...buyOrder,
+      market: this.marketId,
+    },
+    sellOrder = this.testData.find(data=>{
+      return (data.id === 'sell')
+    }).order,
+    singleSell = {
+      ...sellOrder,
+      market: this.marketId
+    }
+    const expectedArray = [{
+      id: expect.any(Number),
+      side: expect.any(String),
+      ord_type: 'limit',
+      price: expect.any(String),
+      avg_price: expect.any(String),
+      state: 'wait',
+      market: this.marketId,
+      created_at: expect.any(String),
+      volume: expect.any(String),
+      remaining_volume: expect.any(String),
+      executed_volume: expect.any(String),
+      trades_count: expect.any(Number)
+    }],
+    expectedObject = {
+      ...orders.single,
+      id: expect.any(Number),
+      ord_type: 'limit',
+      avg_price: expect.any(String),
+      price: expect.any(String),
+      volume: expect.any(String),
+      state: 'wait',
+      created_at: expect.any(String),
+      avg_price: expect.any(String),
+      executed_volume: expect.any(String),
+      trades_count: expect.any(Number)
+    },
+    expectedMember = {
+      sn: expect.any(String),
+      email: 'admin@etorox.io',
+      accounts: expect.arrayContaining(
+        [{
+          currency: expect.any(String),
+          balance: expect.any(String),
+          locked: expect.any(String)
+        }]
+      )
+    }
+    setTimeout(()=>{
+      // send orders for depth
+      api.post('/orders/multi', orders, jwtGenerator(config.JWT_TEST_USER)).then(response => {
+        expect(response.status).toEqual(201)
+        if (this.usdAccount.balance + this.eurAccount.balance > 0) {
+          expect(response.data).toEqual(expect.arrayContaining(expectedArray))
+          setTimeout(()=>{
+            api.get('/members/me', jwtGenerator(config.JWT_TEST_USER)).then(resp => {
+              expect(resp.status).toEqual(200)
+              this.accounts = resp.data.accounts.map(a => {
+                a.balance = Number(a.balance)
+                a.locked = Number(a.locked)
+                return a
+              })
+              this.usdAccount = this.accounts.find(a => a.currency === 'usd')
+              this.eurAccount = this.accounts.find(a => a.currency === 'eur')
+              // get depth
+              api.get(`/depth?market=${this.marketId}`, jwtGenerator(config.JWT_TEST_USER)).then(response => {
+                this.depth = response.data
+                // send orders for checking
+                api.post('/orders', singleSell, jwtGenerator(config.JWT_TEST_USER)).then(response => {
+                  this.orders.push(response.data)
+                  api.post('/orders', singleBuy, jwtGenerator(config.JWT_TEST_USER)).then(response => {
+                    this.orders.push(response.data)
+                    // start calculate check data
+                    setTimeout(()=>{
+                      api.get('/members/me', jwtGenerator(config.JWT_TEST_USER)).then(resp => {
+                        let accounts = resp.data.accounts.map(a => {
+                          a.balance = Number(a.balance)
+                          a.locked = Number(a.locked)
+                          return a
+                        })
+                        let usdAccount = accounts.find(a => a.currency === 'usd')
+                        let eurAccount = accounts.find(a => a.currency === 'eur')
+                        let sellOrder = this.orders.find((order)=>{return order.side=="sell"})
+                        let buyOrder = this.orders.find((order)=>{return order.side=="buy"})
+                        let asks = this.depth.asks,
+                            bids = this.depth.bids,
+                            s_minPrice = 0,
+                            s_executed_volume = 0,
+                            s_funds = 0,
+                            b_maxPrice = 0,
+                            b_executed_volume = 0,
+                            b_funds = 0
+                        // get buy order after matching
+                        api.get(`/order?id=${buyOrder.id}`, jwtGenerator(config.JWT_TEST_USER)).then(response => {
+                          expect(response.status).toEqual(200)
+                          let result = response.data
+                          let i = asks.length
+                          // calculate average price
+                          while (i--) {
+                            if (Number(result.volume) != Number(s_executed_volume)) {
+                              if ((result.volume - s_executed_volume) <= asks[i][1]) {
+                                s_funds += Number(result.volume - s_executed_volume) * Number(asks[i][0])
+                                s_executed_volume += Number((result.volume - s_executed_volume))
+                                i = 0
+                              } else {
+                                s_funds += Number(asks[i][1]) * Number(asks[i][0])
+                                s_executed_volume += Number(asks[i][1])
+                              }
+                            }
+                          }
+                          let avg_price = 0
+                          if (s_executed_volume > 0) {
+                            let avg_price = Math.round(s_funds/s_executed_volume * 100) / 100
+                          }
+                          // check average price
+                          if (result.avg_price) {
+                            expect(Number(result.avg_price)).toEqual(avg_price)
+                          } else {
+                            expect(0).toEqual(avg_price)
+                          }
+                          // get sell order after matching
+                          api.get(`/order?id=${sellOrder.id}`, jwtGenerator(config.JWT_TEST_USER)).then(response => {
+                            expect(response.status).toEqual(200)
+                            let result = response.data
+                            let i = 0,
+                              maxI = bids.length
+                            // calculate average price
+                            while (i < maxI) {
+                              if (Number(result.volume) != Number(b_executed_volume)) {
+                                if ((result.volume - b_executed_volume) <= bids[i][1]) {
+                                  b_funds += Number(result.volume - b_executed_volume) * Number(bids[i][0])
+                                  b_executed_volume += Number((result.volume - b_executed_volume))
+                                  i = 0
+                                } else {
+                                  b_funds += Number(bids[i][1]) * Number(bids[i][0])
+                                  b_executed_volume += Number(bids[i][1])
+                                }
+                              }
+                              i++
+                            }
+                            let avg_price = 0
+                            if (b_executed_volume > 0) {
+                              let avg_price = Math.round(b_funds/b_executed_volume * 100) / 100
+                            }
+                            // check average price
+                            if (result.avg_price) {
+                              expect(Number(result.avg_price)).toEqual(avg_price)
+                            } else {
+                              expect(0).toEqual(avg_price)
+                            }
+                            done()
+                          }).catch(err=>{
+                            done.fail(new Error("GET sell Order result Error"))
+                          })
+                        }).catch(err=>{console.log("ERR", err);done.fail(new Error('Get order buy result Error'))})
+                      }).catch(err=>{done.fail(new Error('Get profile data 1 Error'))})
+                    }, 2000)
+                  }).catch(err=>{done.fail(new Error('Single buy post Error'))})
+                }).catch(err=>{done.fail(new Error('Single sell post Error'))})
+              }).catch(err=>{done.fail(new Error('get depth Error'))})
+            }).catch(err=>{done.fail(new Error('get profile data Error'))})
+          }, 2500)
+        } else {
+          done()
+        }
+      }).catch(err=>{
+          done.fail(new Error("multi orders send Error"))
+      })
+    }, 4500)
+  })
 })

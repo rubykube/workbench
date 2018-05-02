@@ -2,35 +2,35 @@
   orders:
     - id:     1
       side:   sell
-      volume: 0.02
+      volume: 2
       price:  2.0
     - id:     2
       side:   sell
-      volume: 0.01
+      volume: 1
       price:  2.05
     - id:     3
       side:   sell
-      volume: 0.01
+      volume: 1
       price:  1.9
     - id:     4
       side:   buy
-      volume: 0.01
+      volume: 1
       price:  1.83
     - id:     5
       side:   buy
-      volume: 0.01
+      volume: 1
       price:  1.84
     - id:     6
       side:   buy
-      volume: 0.01
+      volume: 1
       price:  1.835
 - id:     buy
   order: 
     side:   buy
-    volume: 0.02
+    volume: 2
     price:  2.05
 - id:     sell
   order:
     side:   sell
-    volume: 0.02
+    volume: 2
     price:  1.83
