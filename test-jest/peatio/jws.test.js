@@ -9,6 +9,7 @@ jest.setTimeout(20000)
 
 describe('deposit tests', () => {
     beforeAll(() => {
+        // get test data from yml
         this.deposits = yaml.safeLoad(fs.readFileSync(config.TEST_DATA_DIR + 'deposits.yml', 'utf8'));
         this.withdraws = yaml.safeLoad(fs.readFileSync(config.TEST_DATA_DIR + 'withdraws.yml', 'utf8'));
     })
@@ -29,6 +30,7 @@ describe('deposit tests', () => {
         management_api.post('/deposits',requestData).then(response => {
             expect(response.status).toEqual(200)
             let startCount = response.data.length
+            // create new deposits from test-data
             this.deposits.map((deposit)=> {
                 let signedDoc = jwsSign(deposit, 'firstSign')
                 // send request to api
@@ -54,11 +56,12 @@ describe('deposit tests', () => {
                     }
                     done()
                 }).catch(error=> {
-                    console.log("ERROR with get deposits", error.error)
+                    done.fail(new Error("ERROR with get deposits"))
                 })
             }, 2000)
         }).catch(error=> {
-            console.log("ERROR", error)
+            console.log(error)
+            done.fail(new Error("ERROR with get deposits"))
         })
     })
 
@@ -70,7 +73,7 @@ describe('deposit tests', () => {
         management_api.post('/withdraws',requestData).then(response => {
             let startCount = response.data.length
             expect(response.status).toEqual(200)
-            // create new withdraw submitted request and sign it
+            // create new withdraws
             this.withdraws.map((withdraw)=>{
                 let signDoc = jwsSign(withdraw, 'firstSign')
                 // send request to api
@@ -78,10 +81,11 @@ describe('deposit tests', () => {
                     expect(response.status).toEqual(201)
                     expect(response.data.state).toEqual(withdraw.state)
                 }).catch((err)=>{
-                    console.log("POST ERROR", withdraw)
+                    done.fail(new Error("ERROR post withdraw"))
                 })
             })
             setTimeout(()=>{
+                // check appearing new withdraws in withdraws list
                 management_api.post('/withdraws',requestData).then(response => {
                     if (startCount <= (100 - this.withdraws.length)) {
                         expect(response.data.length).toEqual(startCount + this.withdraws.length)
@@ -90,11 +94,11 @@ describe('deposit tests', () => {
                     }
                     done()
                 }).catch(error=> {
-                    console.log("ERROR", error)
+                    done.fail(new Error("ERROR with get withdraws"))
                 })
             }, 2000)
         }).catch(error=> {
-            console.log("ERROR", error)
+            done.fail(new Error("ERROR with get withdraws"))
         })
     })
 })

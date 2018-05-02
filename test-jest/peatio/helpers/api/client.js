@@ -6,11 +6,17 @@ const apiClient = axios.create({
 })
 
 module.exports = {
-  get: (endpoint, jwt) => apiClient.get(endpoint, {
-    headers: {
-      Authorization: `Bearer ${jwt}`
-    }
-  }),
+  get: (endpoint, jwt) => {
+    if (jwt) {
+      return apiClient.get(endpoint, {
+        headers: {
+          Authorization: `Bearer ${jwt}`
+        }
+      })
+    }  
+    return apiClient.get(endpoint)
+      
+},
 
   post: (endpoint, params, jwt) => apiClient.post(endpoint, params, {
     headers: {
