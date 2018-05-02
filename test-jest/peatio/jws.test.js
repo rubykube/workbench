@@ -44,13 +44,9 @@ describe('MANAGEMENT API tests', () => {
             setTimeout(()=>{
                 // check appearing new deposit in deposits list
                 management_api.post('/deposits',requestData).then(response => {
-                    let rightDeposit = 0
-                    this.deposits.map((deposit)=>{
-                        if (deposit.currency==='usd') rightDeposit += 1
-                        return (deposit.currency==='usd')
-                    })
-                    if (startCount <= (100 - rightDeposit)) {
-                        expect(response.data.length).toEqual(startCount + rightDeposit)
+                    expect(response.status).toEqual(200)
+                    if (startCount <= (100 - this.deposits.length)) {
+                        expect(response.data.length).toEqual(startCount + this.deposits.length)
                     } else {
                         expect(response.data.length).toEqual(100)
                     }
