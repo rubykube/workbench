@@ -19,11 +19,11 @@
     - id:     5
       side:   buy
       volume: 0.01
-      price:  1.84
+      price:  1.85
     - id:     6
       side:   buy
       volume: 0.01
-      price:  1.835
+      price:  1.84
 - id:     buy
   order: 
     side:   buy

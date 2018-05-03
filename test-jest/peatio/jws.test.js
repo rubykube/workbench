@@ -37,9 +37,7 @@ describe('MANAGEMENT API tests', () => {
                 management_api.post('/deposits/new',signedDoc).then(response => {
                     expect(response.status).toEqual(201)
                     expect(response.data.state).toEqual(deposit.state)
-                }).catch((err)=>{
-                    if (deposit.currency !== 'usd') expect(err.response.data.error).toEqual('currency does not have a valid value')
-                })
+                }).catch(err=>{done.fail(err)})
             })
             setTimeout(()=>{
                 // check appearing new deposit in deposits list
@@ -51,14 +49,9 @@ describe('MANAGEMENT API tests', () => {
                         expect(response.data.length).toEqual(100)
                     }
                     done()
-                }).catch(error=> {
-                    done.fail(new Error("ERROR with get deposits"))
-                })
+                }).catch(err=>{done.fail(err)})
             }, 2000)
-        }).catch(error=> {
-            console.log(error)
-            done.fail(new Error("ERROR with get deposits"))
-        })
+        }).catch(err=>{done.fail(err)})
     })
 
     test("Withdraws test", done => {
@@ -89,12 +82,8 @@ describe('MANAGEMENT API tests', () => {
                         expect(response.data.length).toEqual(100)
                     }
                     done()
-                }).catch(error=> {
-                    done.fail(new Error("ERROR with get withdraws"))
-                })
+                }).catch(err=>{done.fail(err)})
             }, 2000)
-        }).catch(error=> {
-            done.fail(new Error("ERROR with get withdraws"))
-        })
+        }).catch(err=>{done.fail(err)})
     })
 })

@@ -24,9 +24,7 @@ describe('Generating JWT', () => {
   test('Get profile with jwt (HTTP status must be equal 200)', async () => {
     api.get('/members/me', jwtGenerator(config.JWT_TEST_USER)).then(response => {
       expect(response.status).toEqual(200)
-    }).catch(err=>{
-      done.fail(new Error("GET PROFILE DATA Error"))
-    })
+    }).catch(err=>{done.fail(err)})
     //expect(response.data.accounts).toHaveLength(7)
   })
 })
