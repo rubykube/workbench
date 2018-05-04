@@ -174,3 +174,12 @@
     # Block explorer configuration.
     wallet_url_template:      https://etherscan.io/address/#{address}
     transaction_url_template: https://etherscan.io/tx/#{txid}
+
+- id:                   8
+  code:                 eur
+  symbol:               '#'
+  type:                 fiat
+  precision:            2
+  base_factor:          1
+  visible:              true
+  quick_withdraw_limit: 1000

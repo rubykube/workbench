@@ -19,8 +19,14 @@
 #       value:     LS0tLS1CRUdJTiBQVUJMSUMgS0VZLS0tLS0KTUlJQ0lqQU5CZ2txaGtpRzl3MEJBUUVGQUFPQ0FnOEFNSUlDQ2dLQ0FnRUEzL2VIUUd1V2NFUHhwY2pxaVN5SQpLYmFlTFhnNHhrTFcwMU12eHlPVENMeHNrbVk5T0ViVTBQa2ptaFk1bWhiOXpmVjJqMVBmbXdXQmp5bXJ2alJJCmlWMDdxczA1OUx3UGhyL0JZc0lnYk13bWVEZUp5VHlxTmFvckNkVklhamxMVHhGSklNOGtXTUg1TUcrR2U0b2wKc1VWblEwRDNZdURvNCtPSzJiSDBOY3M5ZEFTWGx4T0lsenpZTlFkUTNCSUxZbFE3MW9CRDNmTWRyaXQwSktVYwphb25jTXJ0RlB2WlRuZjZROUhVM2VpR3NxTHhWczVZRTBGUlVsd0Z4TjZzbnZNQW9rNEpRT3A5cUExUi96WHMwCnRWdUVpeEJ1Sm5jSjZSYlp5UVp5YWg3YzAxd1NLcks1UTRudVh3VlhXUkhvd0gxOTZHMU9TODhoYmVZNHNneTkKdForZ3NsdlZIYWJmK1JqK0JtZmNOYmx2T1lQWlI4K3dVQ2pOWW43L1BWRjQ0NDRzUCtTZkEyejdvaU1OVStrVwpGVHM5dVdRNGxzQ0RIQnd6ZXNFMDc0dmZLMHF4c0NNN0hWeHhVc2gvNGx3aGppZTgrTFNqdzliWTlrcjJxWWFmClRMRnpoVWl2clJMaEpWdnZkQmRRYlBIUFVybnJ2TnFqblRYOWtFcWR4bktrbWluWmhtbU1pakpKa1dGREgwbmgKNmR4ZlZwZ2puYXUzWmoyZkNSNFV6aXNXK25MaExUc1Fadzd0b0NaVUo2aWV6N0psOEpJYWdBVWJ5OW8ycUN4ZgpWcTBwK3pwRlZKUFZzelVQNkZMTzh3Tjd5aThVT3l4T3VmdmEvOHgySmRJTzJ4emlPc2ZLVnhIZTFZRkZtWVdtCnZKaWZ1ZGUrdCtBbS9EM1FMSjlpK2JNQ0F3RUFBUT09Ci0tLS0tRU5EIFBVQkxJQyBLRVktLS0tLQo=
 #
 #
-keychain: {}
 
+keychain:
+  firstSign:
+    algorithm: RS256
+    value: LS0tLS1CRUdJTiBQVUJMSUMgS0VZLS0tLS0NCk1JSUJJakFOQmdrcWhraUc5dzBCQVFFRkFBT0NBUThBTUlJQkNnS0NBUUVBdXVDY1VocENNblkxTVdQUnZrYjUNCkw1RlFTMzRnd3F0cUVyMXFDNm5UM29hVWUxQ3pzOWZQOGhBZzJyYk4ydmVpOUN5VThHOTBDcTJ6TW84Ny9uZ0INCklKYVU5TElsT2h1RS9RUWJ4RHpZdmlpdzZuSHZ2eUI3M0JNVE1Vc3kvMDJOSEgxVlBneGd5bW5aL3Y4YWxDdm8NClFWMUlYWG1nRm81Tmw3VGFSblIrNmRrVHdyaVp0Yis0cmRhWWFkTGxRdmlKRjdMdlhaNWRDOFhzZ2VESjV6R3oNCndrVVN5Wjd6ejFuYTVvb1QrbWgxZGZMbmEvYTZsbStlSnc5VnppWGROSURzYmNMUi9ERWp1a0o4WnVzRzJRMHgNCmhzc3grOEJ3OU9zUFdHdElWYk5XRnFGdWtZd2w0RnVxaG8wK0loOHlTd0lETTJaNXErTWxWK0lLU2lLMEt5TkUNCmNRSURBUUFCDQotLS0tLUVORCBQVUJMSUMgS0VZLS0tLS0NCg==
+
+
+# keychain: {}
 #
 # Keeps all the JWT verification options.
 # The documentation is available at https://github.com/jwt/ruby-jwt#support-for-reserved-claim-names.
@@ -57,4 +63,19 @@ jwt: {}
 #   – write_withdraws
 #   – tools
 #
-scopes: {}
+
+scopes:
+  read_deposits:
+    permitted_signers: ['firstSign']
+    mandatory_signers: ['firstSign']
+  write_deposits:
+    permitted_signers: ['firstSign']
+    mandatory_signers: ['firstSign']
+  read_withdraws:
+    permitted_signers: ['firstSign']
+    mandatory_signers: ['firstSign']
+  write_withdraws:
+    permitted_signers: ['firstSign']
+    mandatory_signers: ['firstSign']
+
+# scopes: {}

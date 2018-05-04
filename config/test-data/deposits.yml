@@ -1,0 +1,10 @@
+- id: 1
+  uid: ID53B3505544
+  currency: usd
+  amount:   10
+  state:    accepted
+- id: 2
+  uid: ID53B3505544
+  currency: eur
+  amount:   10
+  state:    accepted

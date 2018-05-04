@@ -1,6 +1,17 @@
 version: '3'
 
 services:
+  jest:
+    build:
+      context: ../test-jest
+    depends_on:
+      - peatio
+      - barong
+    env_file:
+      - ../.env
+      - ../config/jest.env
+    volumes:
+      - ../config/test-data:/opt/test-data:ro
 
   selenium:
     image: selenium/standalone-chrome

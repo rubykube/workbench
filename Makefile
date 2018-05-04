@@ -18,6 +18,9 @@ setup-apps: build
 run: prepare setup-apps
 	$(COMPOSE) up peatio barong proxy
 
+jest: 
+	$(COMPOSE) -f compose/tests.yaml up --build jest
+
 test: prepare
 	@$(COMPOSE) run --rm peatio_specs
 
