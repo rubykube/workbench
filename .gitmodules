@@ -6,3 +6,7 @@
 	path = app/barong
 	url = https://github.com/rubykube/barong.git
 	branch = master
+[submodule "peatio-trading-ui"]
+	path = app/peatio-trading-ui
+	url = https://github.com/rubykube/peatio-trading-ui.git
+	branch = master
