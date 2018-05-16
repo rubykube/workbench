@@ -3,13 +3,13 @@
   sort_order: 1
 
 - id: 400
-  currency: btc
+  currency: dash
   sort_order: 2
   min_confirm: 1
   max_confirm: 3
 
 - id: 600
-  currency: bch
+  currency: eth
   sort_order: 3
   min_confirm: 1
   max_confirm: 3

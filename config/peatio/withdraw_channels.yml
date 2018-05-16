@@ -9,13 +9,13 @@
   inuse: true
 
 - id: 400
-  currency: btc
+  currency: dash
   fixed: 8
   fee: 0.0005
   inuse: true
 
 - id: 600
-  currency: bch
+  currency: eth
   fixed: 8
   fee: 0.0005
   inuse: true
