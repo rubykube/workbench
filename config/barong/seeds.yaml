@@ -1,0 +1,42 @@
+# List of Barong administrators.
+#
+# Other parameters that you can set here can be found in Account,
+# Profile and Phone models (e.g. app/models/account.rb...); all the
+# model properties are listed at the very bottom of this models files.
+#
+# Note: email is the only required field here.
+accounts:
+  - account:
+      email:    admin@etorox.io
+      password: changeme
+      role:     admin
+      state:    active
+
+# List of applications that will use Barong OAuth.
+# You can set any Doorkeeper::Application property here.
+#
+# Note: in production env, `redirect_uri` can only be a 'https' url.
+applications:
+  - name: Peatio
+    redirect_uri: http://peatio:8000/auth/barong/callback
+    uid: changeme
+    secret: changeme
+    skipauth: true
+    # uid: setid
+    # scopes:
+    #   - peatio
+    #   - barong
+
+levels:
+  - key: email
+    value: verified
+    description: "User clicked on the confirmation link"
+  - key: phone
+    value: verified
+    description: "User entered a valid code from sms"
+  - key: identity
+    value: verified
+    description: "User identity is not in sanction list"
+  - key: document
+    value: verified
+    description: "User personal documents have been verified"
