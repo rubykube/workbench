@@ -1,0 +1,13 @@
+# For other configuration options, see https://github.com/rubykube/toolbox/blob/master/bin/stress_trading
+
+root-url: http://peatio:8000
+
+currencies: usd,eur
+markets: eurusd
+
+orders:  1000
+traders: 10
+threads: 5
+
+api-v2-jwt-key: <%= Base64.urlsafe_encode64(File.read('config/default.rsa')) %>
+management-api-v1-jwt-key: <%= Base64.urlsafe_encode64(File.read('config/default.rsa')) %>

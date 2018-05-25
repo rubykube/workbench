@@ -6,3 +6,6 @@
 	path = app/barong
 	url = https://github.com/rubykube/barong.git
 	branch = master
+[submodule "toolbox"]
+	path = toolbox
+	url = git@github.com:rubykube/toolbox.git
