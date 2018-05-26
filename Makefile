@@ -5,7 +5,7 @@ COMPOSE = docker-compose -f compose/app.yaml -f compose/backend.yaml  -f compose
 default: run
 
 build:
-	$(COMPOSE) build peatio barong
+	$(COMPOSE) build peatio barong peatio-trading-ui
 
 prepare:
 	$(COMPOSE) up -d vault db redis rabbitmq smtp_relay coinhub peatio_daemons
@@ -14,15 +14,16 @@ prepare:
 setup-apps: build
 	$(COMPOSE) run --rm peatio "./bin/setup"
 	$(COMPOSE) run --rm barong "./bin/setup"
+	$(COMPOSE) run --rm peatio-trading-ui "./bin/setup"
 
 run: prepare setup-apps
-	$(COMPOSE) up peatio barong proxy
+	$(COMPOSE) up peatio barong proxy peatio-trading-ui
 
 test: prepare
 	@$(COMPOSE) run --rm peatio_specs
 
 start: prepare setup-apps
-	$(COMPOSE) up -d peatio barong
+	$(COMPOSE) up -d peatio barong peatio-trading-ui
 
 update:
 	git submodule update --init --remote
