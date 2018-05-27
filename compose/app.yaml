@@ -8,9 +8,11 @@ services:
     depends_on:
       - peatio
     ports:
-      - "8002:8002" 
-    env_file:
-      - ../config/peatio-trading-ui.env   
+      - "3000:3000" 
+    environment:
+      PORT: 3000
+      RAILS_ENV: development
+
   peatio:
     build:
       context: ../app/peatio
