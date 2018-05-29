@@ -1,6 +1,6 @@
 .PHONY: build prepare run test seed down setup-apps
 
-COMPOSE = docker-compose -f compose/app.yaml -f compose/backend.yaml  -f compose/proxy.yaml
+COMPOSE = docker-compose
 
 default: run
 
