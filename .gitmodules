@@ -9,3 +9,6 @@
 [submodule "app/peatio-trading-ui"]
 	path = app/peatio-trading-ui
 	url = https://github.com/rubykube/peatio-trading-ui
+[submodule "toolbox"]
+	path = toolbox
+	url = git@github.com:rubykube/toolbox.git
