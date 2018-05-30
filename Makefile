@@ -1,6 +1,6 @@
 .PHONY: build prepare run test seed down setup-apps
 
-COMPOSE = docker-compose
+COMPOSE = docker-compose -f compose/app.yaml -f compose/backend.yaml  -f compose/proxy.yaml
 
 default: run
 
@@ -17,13 +17,13 @@ setup-apps: build
 	$(COMPOSE) run --rm peatio-trading-ui "./bin/setup"
 
 run: prepare setup-apps
-	$(COMPOSE) up peatio barong proxy peatio-trading-ui
+	$(COMPOSE) up peatio peatio-trading-ui barong proxy
 
 test: prepare
 	@$(COMPOSE) run --rm peatio_specs
 
 start: prepare setup-apps
-	$(COMPOSE) up -d peatio barong peatio-trading-ui
+	$(COMPOSE) up -d peatio peatio-trading-ui barong proxy
 
 update:
 	git submodule update --init --remote

@@ -9,9 +9,11 @@ services:
       - peatio
     ports:
       - "3000:3000" 
-    environment:
-      PORT: 3000
-      RAILS_ENV: development
+    env_file:
+      - ../config/peatio-trading-ui.env
+    volumes:
+      - ../config/peatio-trading-ui:/opt/peatio-trading-ui/config:ro
+
 
   peatio:
     build:
