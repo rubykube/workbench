@@ -22,11 +22,15 @@ run: prepare setup-apps
 test: prepare
 	@$(COMPOSE) run --rm peatio_specs
 
-start: prepare setup-apps
+start: prepare  setup-apps
 	$(COMPOSE) up -d peatio peatio-trading-ui barong proxy
+
+restart: prepare
+	$(COMPOSE) up  peatio peatio-trading-ui barong proxy
 
 update:
 	git submodule update --init --remote
 
 down:
 	@$(COMPOSE) down
+

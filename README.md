@@ -17,10 +17,10 @@ vagrant up
 
 ### Prepare the workbench
 
-1. Recursive clone : git clone --recursive https://github.com/rubykube/workbench.git
+1. Recursive clone : `git clone --recursive https://github.com/rubykube/workbench.git`
 2. Build the images: `make build`
 3. run the application: `make run`
-4. Add peatio and barong into your /etc/hosts
+4. Add peatio and barong into your `/etc/hosts`
 
 To have barong login working with peatio you will need to add this to your `/etc/hosts`:
 
