@@ -22,7 +22,7 @@ test: prepare
 	@$(COMPOSE) run --rm peatio_specs
 
 start: prepare setup-apps
-	$(COMPOSE) up -d peatio barong
+	$(COMPOSE) up -d peatio barong proxy
 
 update:
 	git submodule update --init --remote
