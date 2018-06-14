@@ -31,5 +31,14 @@ services:
       VAULT_DEV_ROOT_TOKEN_ID: changeme
       VAULT_ADDR: http://vault:8200
 
+  slanger:
+    image: rubykube/slanger:0.2.3
+    depends_on:
+      - redis
+    environment:
+      REDIS_URL: redis://redis:6379
+      APP_KEY: f9jxQLQ631LehgeAjjJZpg2iMiCeHAMW
+      APP_SECRET: bMoWeyjId0iSabGF6EY3coVhTpjW3Hpt
+
 volumes:
   db_data:
