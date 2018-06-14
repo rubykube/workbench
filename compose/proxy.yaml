@@ -2,8 +2,15 @@ version: '3'
 
 services:
   proxy:
-    image: nginx
+    image: traefik:1.6
     ports:
       - "80:80"
+      - "8080:8080"
     volumes:
-      - ../config/proxy.conf:/etc/nginx/conf.d/proxy.conf:ro
+      - ../config/traefik.toml:/etc/traefik/traefik.toml:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      default:
+        aliases:
+          - api.wb.local
+          - auth.wb.local

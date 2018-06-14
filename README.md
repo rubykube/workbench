@@ -25,8 +25,8 @@ vagrant up
 To have barong login working with peatio you will need to add this to your `/etc/hosts`:
 
 ```
-0.0.0.0 peatio
-0.0.0.0 barong
+0.0.0.0 api.wb.local
+0.0.0.0 auth.wb.local
 ```
 
 ### Run Barong and Peatio
@@ -36,9 +36,9 @@ To have barong login working with peatio you will need to add this to your `/etc
 1. Start barong: `docker-compose up -d barong`
 2. Create admin user for barong: `docker-compose run --rm barong bin/rake db:seed`
    It will output password for **admin@barong.io**
-3. Sign in at [barong:8001](http://barong:8001), then go to [/admin](http://barong:8001/admin)
-   and navigate to [Applications](http://barong:8001/oauth/applications)
-4. Create new application with the following callback url `http://peatio:8000/auth/barong/callback`
+3. Sign in at [auth.wb.local](http://auth.wb.local), then go to [/admin](http://auth.wb.local/admin)
+   and navigate to [Applications](http://auth.wb.local/oauth/applications)
+4. Create new application with the following callback url `http://api.wb.local/auth/barong/callback`
 
 #### Peatio
 
@@ -57,4 +57,6 @@ Simply start your local server. Now you're able to log in with your local Barong
 
 ## Running Tests
 
->**TODO**
+```
+bundle exec rake toolbox:run
+```

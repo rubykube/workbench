@@ -5,18 +5,23 @@ services:
     build:
       context: ../app/peatio
     depends_on:
+      - proxy
       - db
       - redis
       - rabbitmq
       - smtp_relay
       - peatio_daemons
       - barong
-    ports:
-      - "8000:8000"
     env_file:
       - ../config/peatio.env
+    expose:
+      - "8000"
     volumes:
       - ../config/peatio:/opt/peatio/config:ro
+    labels:
+      traefik.enable: true
+      traefik.frontend.rule: 'Host: api.wb.local'
+      traefik.port: 8000
 
   peatio_daemons:
     build:
@@ -26,8 +31,6 @@ services:
       - redis
       - rabbitmq
       - coinhub
-    ports:
-      - "8080:8080"
     env_file:
       - ../config/peatio.env
     volumes:
@@ -38,9 +41,14 @@ services:
     build:
       context: ../app/barong
     depends_on:
+      - proxy
       - db
       - vault
-    ports:
-      - "8001:8001"
     env_file:
       - ../config/barong.env
+    expose:
+      - "8001"
+    labels:
+      traefik.enable: true
+      traefik.frontend.rule: 'Host: auth.wb.local'
+      traefik.port: 8001

@@ -24,7 +24,7 @@ services:
     image: rabbitmq:3.7.4-alpine
 
   vault:
-    image: vault:0.9.6
+    image: vault:0.10.2
     environment:
       SKIP_SETCAP: 1
       VAULT_TOKEN: changeme
