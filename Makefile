@@ -8,7 +8,7 @@ build:
 	$(COMPOSE) build peatio barong
 
 prepare:
-	$(COMPOSE) up -d vault db redis rabbitmq smtp_relay coinhub peatio_daemons
+	$(COMPOSE) up -d vault db redis rabbitmq smtp_relay coinhub peatio_daemons slanger
 	$(COMPOSE) run --rm vault secrets enable totp || true
 
 setup-apps: build
