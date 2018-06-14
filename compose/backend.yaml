@@ -35,13 +35,10 @@ services:
     image: rubykube/slanger:0.2.3
     depends_on:
       - redis
-    # ports:
-    #   - "4567:4567"
-    #   - "8080:8080"
     environment:
       REDIS_URL: redis://redis:6379
-      APP_KEY: "c57a2e96dafe6eb21cbe2fd2197a"
-      APP_SECRET: "28122f92ee4a8da9bbfff78e586d"
+      APP_KEY: f9jxQLQ631LehgeAjjJZpg2iMiCeHAMW
+      APP_SECRET: bMoWeyjId0iSabGF6EY3coVhTpjW3Hpt
 
 volumes:
   db_data:
