@@ -53,3 +53,18 @@ services:
       traefik.enable: true
       traefik.frontend.rule: 'Host: auth.wb.local'
       traefik.port: 8001
+
+  trading_ui:
+    build:
+      context: ../app/trading-ui
+    depends_on:
+      - proxy
+      - peatio
+    env_file:
+      - ../config/trading-ui.env
+    expose:
+      - "8002"
+    labels:
+      traefik.enable: true
+      traefik.frontend.rule: 'Host: api.wb.local; PathPrefix:/trading, /trading-ui-assets'
+      traefik.port: 8002

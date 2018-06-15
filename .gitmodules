@@ -1,12 +1,16 @@
 [submodule "peatio"]
 	path = app/peatio
 	url = https://github.com/rubykube/peatio.git
-	branch = master
+	branch = 1-8-stable
 [submodule "barong"]
 	path = app/barong
 	url = https://github.com/rubykube/barong.git
-	branch = master
+	branch = 1-8-stable
 [submodule "toolbox"]
 	path = toolbox
 	url = https://github.com/rubykube/toolbox.git
 
+[submodule "trading-ui"]
+	path = app/trading-ui
+	url = git@github.com:rubykube/peatio-trading-ui.git
+	branch = 1-8-stable
