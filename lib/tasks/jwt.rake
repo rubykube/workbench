@@ -6,9 +6,9 @@ end
 
 namespace :jwt do
     desc "Generate keypairs for Barong, Peatio and Jest"
-   
+
     task :generate do
         generateKeys
     end
-end 
-  
+end
+
