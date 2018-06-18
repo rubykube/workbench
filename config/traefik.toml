@@ -7,4 +7,3 @@ domain = "local"
 watch = true
 exposedByDefault = false
 usebindportip = true
-

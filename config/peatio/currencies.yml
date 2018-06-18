@@ -1,13 +1,11 @@
-- id:                   1
-  code:                 usd
+- id:                   usd
   symbol:               '$'
   type:                 fiat
   precision:            2
   base_factor:          1
   quick_withdraw_limit: 1000
 
-- id:                   2
-  code:                 eur
+- id:                   eur
   symbol:               '€'
   type:                 fiat
   precision:            2
