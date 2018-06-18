@@ -12,5 +12,5 @@
 
 [submodule "trading-ui"]
 	path = app/trading-ui
-	url = git@github.com:rubykube/peatio-trading-ui.git
+	url = https://github.com:rubykube/peatio-trading-ui.git
 	branch = 1-8-stable
