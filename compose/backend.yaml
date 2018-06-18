@@ -39,6 +39,12 @@ services:
       REDIS_URL: redis://redis:6379
       APP_KEY: f9jxQLQ631LehgeAjjJZpg2iMiCeHAMW
       APP_SECRET: bMoWeyjId0iSabGF6EY3coVhTpjW3Hpt
+    labels:
+      traefik.enable: true
+      traefik.ws.frontend.rule: 'Host: ws.slanger.wb.local'
+      traefik.ws.port: 8080
+      traefik.api.frontend.rule: 'Host: api.slanger.wb.local'
+      traefik.api.port: 4567
 
 volumes:
   db_data:
