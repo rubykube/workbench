@@ -6,10 +6,9 @@
 # All values must be presented in PEM format and be URL-safe Base64 encoded.
 #
 keychain:
-  applogic:
+  toolbox:
     algorithm: RS256
     value: LS0tLS1CRUdJTiBQVUJMSUMgS0VZLS0tLS0KTUlJQklqQU5CZ2txaGtpRzl3MEJBUUVGQUFPQ0FROEFNSUlCQ2dLQ0FRRUF3Ykg1c0JWVjRNaVZtN3Y0bFUzUAptZzlwWWFqQmhLQ21FV1BXN3VZM0JFYld3SkZyc3V3VnBteE9kWEdSeStsY3dtVE1XTHRLSmdRd014R25xKzdoCjRHMmFNY3ZhaVVtd2MyWGQvcVVzSWp1cVlpTnVYWWVoYncwOG9OU1FxRmdBU0dLVVlpTGh2R1ZTbjRsbXBzT2EKZTNRMHoyMi9kcGV3cEdvRGJzejdtQ29iN055czB6L1A1eFd5dU9NVU8wRFhTeG9jd2JjQnZGTDlaZUI2bnhnOQpsNk1xM2Q2b3c3L2FqTTJGN3htMG5JR0E1STBjOUtacVBVMk5kYlhOR0JyWjg0YzRZbXg3OXk5OWNZVW5hQU9QCldOUk1NeWU1R3hmdzFRRURlUm9WN1JyVHA1OVlRdnNtQitWNGFmM2dyMHA4akYrVlV3emZzeUp5RkNMMjRVR0sKeVFJREFRQUIKLS0tLS1FTkQgUFVCTElDIEtFWS0tLS0tCg==
-
 #
 # Keeps all the JWT verification options.
 # The documentation is available at https://github.com/jwt/ruby-jwt#support-for-reserved-claim-names.
@@ -31,8 +30,17 @@ jwt: {}
 #
 scopes:
   read_deposits:
-    permitted_signers: ['applogic']
-    mandatory_signers: ['applogic']
+    permitted_signers: ['toolbox']
+    mandatory_signers: ['toolbox']
   write_deposits:
-    permitted_signers: ['applogic']
-    mandatory_signers: ['applogic']
+    permitted_signers: ['toolbox']
+    mandatory_signers: ['toolbox']
+  read_withdraws:
+    permitted_signers: ['toolbox']
+    mandatory_signers: ['toolbox']
+  write_withdraws:
+    permitted_signers: ['toolbox']
+    mandatory_signers: ['toolbox']
+  read_accounts:
+    permitted_signers: ['toolbox']
+    mandatory_signers: ['toolbox']
