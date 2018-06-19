@@ -37,7 +37,7 @@ services:
       - ../config/peatio.env
     volumes:
       - ../config/peatio:/opt/peatio/config:ro
-    command: god -c lib/daemons/daemons.god -D start
+    command: bash -c "bin/link_config && god -c lib/daemons/daemons.god -D start"
 
   barong:
     build:
@@ -49,7 +49,7 @@ services:
     env_file:
       - ../config/barong.env
     volumes:
-    - ../config/barong:/opt/barong/config:ro
+      - ../config/barong:/opt/barong/config:ro
     expose:
       - "8001"
     labels:

@@ -12,7 +12,7 @@ prepare:
 	$(COMPOSE) run --rm vault secrets enable totp || true
 
 setup-apps: build
-	$(COMPOSE) run --rm peatio bash -c "./bin/link_config && ./bin/setup"
+	$(COMPOSE) run --rm peatio bash -c "./bin/setup"
 	$(COMPOSE) run --rm barong bash -c "./bin/link_config && ./bin/setup"
 
 run: prepare setup-apps
