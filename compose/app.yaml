@@ -23,6 +23,7 @@ services:
       traefik.enable: true
       traefik.frontend.rule: 'Host: api.wb.local'
       traefik.port: 8000
+    command: bash -c "bin/link_config && puma --config config/puma.rb"
 
   peatio_daemons:
     build:
@@ -36,7 +37,7 @@ services:
       - ../config/peatio.env
     volumes:
       - ../config/peatio:/opt/peatio/config:ro
-    command: god -c lib/daemons/daemons.god -D start
+    command: bash -c "bin/link_config && god -c lib/daemons/daemons.god -D start"
 
   barong:
     build:
@@ -47,6 +48,8 @@ services:
       - vault
     env_file:
       - ../config/barong.env
+    volumes:
+      - ../config/barong:/opt/barong/config:ro
     expose:
       - "8001"
     labels:

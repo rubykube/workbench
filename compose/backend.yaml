@@ -18,10 +18,16 @@ services:
       MYSQL_ROOT_PASSWORD: changeme
 
   redis:
-    image: redis:4.0.9-alpine
+    image: redis:4.0.10
+    volumes:
+      - redis_data:/data
 
   rabbitmq:
-    image: rabbitmq:3.7.4-alpine
+    image: rabbitmq:3.7.6-management
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+    ports:
+      - "15672:15672"
 
   vault:
     image: vault:0.10.2
@@ -39,6 +45,14 @@ services:
       REDIS_URL: redis://redis:6379
       APP_KEY: f9jxQLQ631LehgeAjjJZpg2iMiCeHAMW
       APP_SECRET: bMoWeyjId0iSabGF6EY3coVhTpjW3Hpt
+    labels:
+      traefik.enable: true
+      traefik.ws.frontend.rule: 'Host: ws.slanger.wb.local'
+      traefik.ws.port: 8080
+      traefik.api.frontend.rule: 'Host: api.slanger.wb.local'
+      traefik.api.port: 4567
 
 volumes:
   db_data:
+  rabbitmq_data:
+  redis_data:
