@@ -18,10 +18,16 @@ services:
       MYSQL_ROOT_PASSWORD: changeme
 
   redis:
-    image: redis:4.0.9-alpine
+    image: redis:4.0.10
+    volumes:
+      - redis_data:/data
 
   rabbitmq:
-    image: rabbitmq:3.7.4-alpine
+    image: rabbitmq:3.7.6-management
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+    ports:
+      - "15672:15672"
 
   vault:
     image: vault:0.10.2
@@ -48,3 +54,5 @@ services:
 
 volumes:
   db_data:
+  rabbitmq_data:
+  redis_data:
