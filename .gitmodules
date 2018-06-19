@@ -7,7 +7,7 @@
 	url = https://github.com/rubykube/barong.git
 	branch = "1-8-stable"
 [submodule "toolbox"]
-	path = toolbox
+	path = app/toolbox
 	url = https://github.com/rubykube/toolbox.git
 	branch = "master"
 [submodule "trading-ui"]
