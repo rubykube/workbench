@@ -4,7 +4,7 @@ services:
 
   toolbox:
     build:
-      context: ../toolbox
+      context: ../app/toolbox
     entrypoint: bin/stress_trading
 
   selenium:

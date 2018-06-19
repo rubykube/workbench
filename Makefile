@@ -5,7 +5,7 @@ COMPOSE = docker-compose
 default: run
 
 build:
-	$(COMPOSE) build peatio barong
+	$(COMPOSE) build peatio barong toolbox
 
 daemons:
 	$(COMPOSE) up -d deposit_coin deposit_coin_address slave_book market_ticker matching \
