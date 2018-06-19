@@ -6,3 +6,4 @@
   ask_precision: 8
   bid_precision: 8
   position:      1
+  enabled:       true

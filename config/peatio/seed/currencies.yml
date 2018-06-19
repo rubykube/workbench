@@ -3,11 +3,17 @@
   type:                 fiat
   precision:            2
   base_factor:          1
+  enabled:              true
   quick_withdraw_limit: 1000
+  deposit_fee:          0
+  withdraw_fee:         0
 
 - id:                   eur
   symbol:               '€'
   type:                 fiat
   precision:            2
   base_factor:          1
+  enabled:              true
   quick_withdraw_limit: 1000
+  deposit_fee:          0
+  withdraw_fee:         0
