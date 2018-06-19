@@ -10,7 +10,6 @@ services:
       - redis
       - rabbitmq
       - smtp_relay
-      - peatio_daemons
       - barong
       - slanger
     env_file:
@@ -23,20 +22,6 @@ services:
       traefik.enable: true
       traefik.frontend.rule: 'Host: api.wb.local'
       traefik.port: 8000
-
-  peatio_daemons:
-    build:
-      context: ../app/peatio
-    depends_on:
-      - db
-      - redis
-      - rabbitmq
-      - coinhub
-    env_file:
-      - ../config/peatio.env
-    volumes:
-      - ../config/peatio:/opt/peatio/config:ro
-    command: god -c lib/daemons/daemons.god -D start
 
   barong:
     build:

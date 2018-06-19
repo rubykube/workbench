@@ -1,0 +1,142 @@
+version: '3'
+
+services:
+  deposit_coin:
+    build:
+      context: ../app/peatio
+    depends_on:
+      - db
+      - redis
+      - rabbitmq
+      - coinhub
+    env_file:
+      - ../config/peatio.env
+    volumes:
+      - ../config/peatio:/opt/peatio/config:ro
+    command: bash -c "bin/link_config && ruby lib/daemons/amqp_daemon.rb deposit_coin"
+
+  deposit_coin_address:
+    build:
+      context: ../app/peatio
+    depends_on:
+      - db
+      - redis
+      - rabbitmq
+      - coinhub
+    env_file:
+      - ../config/peatio.env
+    volumes:
+      - ../config/peatio:/opt/peatio/config:ro
+    command: bash -c "bin/link_config && ruby lib/daemons/amqp_daemon.rb deposit_coin_address"
+
+  slave_book:
+    build:
+      context: ../app/peatio
+    depends_on:
+      - db
+      - redis
+      - rabbitmq
+      - coinhub
+    env_file:
+      - ../config/peatio.env
+    volumes:
+      - ../config/peatio:/opt/peatio/config:ro
+    command: bash -c "bin/link_config && ruby lib/daemons/amqp_daemon.rb slave_book"
+
+  market_ticker:
+    build:
+      context: ../app/peatio
+    depends_on:
+      - db
+      - redis
+      - rabbitmq
+      - coinhub
+    env_file:
+      - ../config/peatio.env
+    volumes:
+      - ../config/peatio:/opt/peatio/config:ro
+    command: bash -c "bin/link_config && ruby lib/daemons/amqp_daemon.rb market_ticker"
+
+  matching:
+    build:
+      context: ../app/peatio
+    depends_on:
+      - db
+      - redis
+      - rabbitmq
+      - coinhub
+    env_file:
+      - ../config/peatio.env
+    volumes:
+      - ../config/peatio:/opt/peatio/config:ro
+    command: bash -c "bin/link_config && ruby lib/daemons/amqp_daemon.rb matching"
+
+  order_processor:
+    build:
+      context: ../app/peatio
+    depends_on:
+      - db
+      - redis
+      - rabbitmq
+      - coinhub
+    env_file:
+      - ../config/peatio.env
+    volumes:
+      - ../config/peatio:/opt/peatio/config:ro
+    command: bash -c "bin/link_config && ruby lib/daemons/amqp_daemon.rb order_processor"
+
+  pusher_market:
+    build:
+      context: ../app/peatio
+    depends_on:
+      - db
+      - redis
+      - rabbitmq
+      - coinhub
+    env_file:
+      - ../config/peatio.env
+    volumes:
+      - ../config/peatio:/opt/peatio/config:ro
+    command: bash -c "bin/link_config && ruby lib/daemons/amqp_daemon.rb pusher_market"
+
+  pusher_member:
+    build:
+      context: ../app/peatio
+    depends_on:
+      - db
+      - redis
+      - rabbitmq
+      - coinhub
+    env_file:
+      - ../config/peatio.env
+    volumes:
+      - ../config/peatio:/opt/peatio/config:ro
+    command: bash -c "bin/link_config && ruby lib/daemons/amqp_daemon.rb pusher_member"
+
+  trade_executor:
+    build:
+      context: ../app/peatio
+    depends_on:
+      - db
+      - redis
+      - rabbitmq
+      - coinhub
+    env_file:
+      - ../config/peatio.env
+    volumes:
+      - ../config/peatio:/opt/peatio/config:ro
+    command: bash -c "bin/link_config && ruby lib/daemons/amqp_daemon.rb trade_executor"
+
+  withdraw_coin:
+    build:
+      context: ../app/peatio
+    depends_on:
+      - db
+      - redis
+      - rabbitmq
+      - coinhub
+    env_file:
+      - ../config/peatio.env
+    volumes:
+      - ../config/peatio:/opt/peatio/config:ro
+    command: bash -c "bin/link_config && ruby lib/daemons/amqp_daemon.rb withdraw_coin"
