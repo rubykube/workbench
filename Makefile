@@ -1,4 +1,4 @@
-.PHONY: build prepare run test seed down setup-apps
+.PHONY: build prepare run test stress seed down setup-apps
 
 COMPOSE = docker-compose
 
@@ -26,6 +26,9 @@ run: prepare setup-apps
 
 test: prepare
 	@$(COMPOSE) run --rm peatio_specs
+
+stress:
+	@bundle exec rake toolbox:run
 
 start: prepare setup-apps
 	$(COMPOSE) up -d peatio barong trading_ui proxy
