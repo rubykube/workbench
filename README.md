@@ -6,18 +6,17 @@ Peatio workbench is an easy way to start Peatio development environment.
 
 - Docker [installed](https://docs.docker.com/engine/installation/)
 - Docker Compose [installed](https://docs.docker.com/compose/install/)
+- Vagrant [installed](https://www.vagrantup.com/downloads.html)
+- VirtualBox [installed](https://www.virtualbox.org/)
 
 ## Usage
 
-### Run the workbench using Vagrant
-
-```
-vagrant up
-```
 
 ### Prepare the workbench
 
 1. Recursive clone : `git clone --recursive https://github.com/rubykube/workbench.git`
+2. `cd workbench`
+3. `vagrant up`
 2. Build the images: `make build`
 3. run the application: `make run`
 4. Add peatio and barong into your `/etc/hosts`
@@ -44,7 +43,7 @@ To have barong login working with peatio you will need to add this to your `/etc
 
 #### Peatio
 
-1. In `docker-compose.yaml`, set the newly created application credentials:
+1. In `peatio.env`, set the newly created application credentials:
 
 ```yaml
 - BARONG_CLIENT_ID=xxxxx
