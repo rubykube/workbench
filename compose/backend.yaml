@@ -13,6 +13,7 @@ services:
   db:
     image: mysql:5.7
     volumes:
+      - ../config/mysql/my.cnf:/etc/mysql/my.cnf
       - db_data:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: changeme
