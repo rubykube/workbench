@@ -22,6 +22,22 @@ services:
     volumes:
       - redis_data:/data
 
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    depends_on:
+      - db
+    environment:
+      PMA_HOST: db
+      PMA_USER: root
+      PMA_PASSWORD: changeme
+      PHP_UPLOAD_MAX_FILESIZE: 1G
+      PHP_MAX_INPUT_VARS: 1G
+    labels:
+      traefik.enable: true
+      traefik.frontend.rule: 'Host: phpmyadmin.wb.local'
+      traefik.port: 80
+
+
   rabbitmq:
     image: rabbitmq:3.7.6-management
     volumes:

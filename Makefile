@@ -12,7 +12,7 @@ daemons:
 		order_processor pusher_market pusher_member trade_executor withdraw_coin
 
 dependencies:
-	$(COMPOSE) up -d vault db redis rabbitmq smtp_relay coinhub slanger
+	$(COMPOSE) up -d vault db phpmyadmin redis rabbitmq smtp_relay coinhub slanger
 	$(COMPOSE) run --rm vault secrets enable totp || true
 
 prepare: dependencies daemons
