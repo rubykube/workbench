@@ -1,7 +1,7 @@
 - id:                   usd
   symbol:               '$'
   type:                 fiat
-  precision:            2
+  precision:            8
   base_factor:          1
   enabled:              true
   quick_withdraw_limit: 1000
@@ -11,7 +11,7 @@
 - id:                   eur
   symbol:               '€'
   type:                 fiat
-  precision:            2
+  precision:            8
   base_factor:          1
   enabled:              true
   quick_withdraw_limit: 1000
