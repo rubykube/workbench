@@ -28,6 +28,7 @@ To have barong login working with peatio you will need to add this to your `/etc
 0.0.0.0 auth.wb.local
 0.0.0.0 api.slanger.wb.local
 0.0.0.0 ws.slanger.wb.local
+0.0.0.0 pma.wb.local
 ```
 
 ### Run Barong and Peatio

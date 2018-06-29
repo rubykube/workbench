@@ -16,4 +16,4 @@ services:
           - auth.wb.local
           - ws.slanger.wb.local
           - api.slanger.wb.local
-          - phpmyadmin.wb.local
+          - pma.wb.local

@@ -34,9 +34,8 @@ services:
       PHP_MAX_INPUT_VARS: 1G
     labels:
       traefik.enable: true
-      traefik.frontend.rule: 'Host: phpmyadmin.wb.local'
+      traefik.frontend.rule: 'Host: pma.wb.local'
       traefik.port: 80
-
 
   rabbitmq:
     image: rabbitmq:3.7.6-management
