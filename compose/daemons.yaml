@@ -8,6 +8,7 @@ x-daemon: &peatio-daemon
     - redis
     - rabbitmq
     - coinhub
+    - geth
   env_file:
     - ../config/peatio.env
   volumes:

@@ -1,0 +1,16 @@
+version: '3.4'
+
+services:
+  geth:
+    image: ethereum/client-go:stable
+    command: |
+      --fast --rinkeby --rpc --rpcport="8485" --rpcapi="db,personal,eth,net,web3"
+      --rpcaddr="0.0.0.0" --rpccorsdomain="*" --rpcvhosts="geth" --port="30303"
+    volumes:
+      - eth-data:/root/.ethereum/
+    expose:
+      - "8545"
+      - "30303"
+
+volumes:
+  eth-data:
