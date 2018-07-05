@@ -17,3 +17,20 @@
   quick_withdraw_limit: 1000
   deposit_fee:          0
   withdraw_fee:         0
+
+- id:                   eth
+  symbol:               'Ξ'
+  type:                 coin
+  precision:            8
+  base_factor:          1_000_000_000_000_000_000
+  enabled:              true
+  quick_withdraw_limit: 1000
+  deposit_fee:          0
+  withdraw_fee:         0
+  options:
+    case_sensitive:              true
+    deposit_confirmations:       1
+    api_client:                  ETH
+    json_rpc_endpoint:           http://geth:8545
+    wallet_url_template:         https://rinkeby.etherscan.io/address/#{address}
+    transaction_url_template:    https://rinkeby.etherscan.io/tx/#{txid}
