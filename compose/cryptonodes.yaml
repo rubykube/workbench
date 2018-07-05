@@ -4,7 +4,7 @@ services:
   geth:
     image: ethereum/client-go:stable
     command: |
-      --fast --rinkeby --rpc --rpcport="8545" --rpcapi="db,personal,eth,net,web3"
+      --syncmode light --rinkeby --rpc --rpcport="8545" --rpcapi="db,personal,eth,net,web3"
       --rpcaddr="0.0.0.0" --rpccorsdomain="*" --rpcvhosts="geth" --port="30303"
     volumes:
       - eth-data:/root/.ethereum/
