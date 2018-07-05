@@ -7,15 +7,18 @@ default: run
 build:
 	$(COMPOSE) build peatio barong toolbox
 
+geth:
+	$(COMPOSE) up -d geth
+
 daemons:
 	$(COMPOSE) up -d deposit_coin deposit_coin_address slave_book market_ticker matching \
 		order_processor pusher_market pusher_member trade_executor withdraw_coin
 
 dependencies:
-	$(COMPOSE) up -d vault db phpmyadmin redis rabbitmq smtp_relay coinhub slanger
+	$(COMPOSE) up -d vault db phpmyadmin redis rabbitmq smtp_relay slanger
 	$(COMPOSE) run --rm vault secrets enable totp || true
 
-prepare: dependencies daemons
+prepare: dependencies daemons geth
 
 setup-apps: build
 	$(COMPOSE) run --rm peatio bash -c "./bin/setup"

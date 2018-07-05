@@ -3,11 +3,12 @@ version: '3.4'
 x-daemon: &peatio-daemon
   build:
     context: ../app/peatio
+  restart: always
   depends_on:
     - db
     - redis
     - rabbitmq
-    - coinhub
+    - geth
   env_file:
     - ../config/peatio.env
   volumes:
