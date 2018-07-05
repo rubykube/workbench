@@ -1,10 +1,6 @@
 version: '3.4'
 
 services:
-
-  coinhub:
-    image: rubykube/coinhub
-
   smtp_relay:
     image: kaigara/postfix:latest
     volumes:
