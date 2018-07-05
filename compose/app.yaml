@@ -25,20 +25,6 @@ services:
       traefik.port: 8000
     command: bash -c "bin/link_config && puma --config config/puma.rb"
 
-  peatio_daemons:
-    build:
-      context: ../app/peatio
-    depends_on:
-      - db
-      - redis
-      - rabbitmq
-      - coinhub
-    env_file:
-      - ../config/peatio.env
-    volumes:
-      - ../config/peatio:/opt/peatio/config:ro
-    command: bash -c "bin/link_config && god -c lib/daemons/daemons.god -D start"
-
   barong:
     build:
       context: ../app/barong
