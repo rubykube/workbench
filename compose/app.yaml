@@ -13,6 +13,8 @@ services:
       - barong
       - slanger
       - geth
+    environment:
+      - JWT_PUBLIC_KEY=${JWT_PUBLIC_KEY}
     env_file:
       - ../config/peatio.env
     expose:

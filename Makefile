@@ -1,6 +1,8 @@
 .PHONY: build prepare run test stress seed down setup-apps
 
-COMPOSE = docker-compose
+JWT_PUB_PATH   := config/default.rsa.pub
+JWT_PUBLIC_KEY ?= "$(shell base64 --wrap=0 $(JWT_PUB_PATH))"
+COMPOSE        := JWT_PUBLIC_KEY=$(JWT_PUBLIC_KEY) docker-compose
 
 default: run
 
