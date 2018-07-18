@@ -1,11 +1,10 @@
-version: '3.4'
+version: '3.6'
 
 services:
   proxy:
-    image: traefik:1.6
+    image: traefik
     ports:
       - "80:80"
-      - "8080:8080"
     volumes:
       - ../config/traefik.toml:/etc/traefik/traefik.toml:ro
       - /var/run/docker.sock:/var/run/docker.sock
@@ -17,3 +16,8 @@ services:
           - ws.slanger.wb.local
           - api.slanger.wb.local
           - pma.wb.local
+          - monitor.wb.local
+    labels:
+      traefik.enable: true
+      traefik.frontend.rule: 'Host: monitor.wb.local'
+      traefik.port: 8080
