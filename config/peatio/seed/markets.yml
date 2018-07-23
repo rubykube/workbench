@@ -1,19 +1,9 @@
-- id:            eurusd
-  ask_unit:      eur
-  bid_unit:      usd
+- id:            usdbtc
+  ask_unit:      usd
+  bid_unit:      btc
   ask_fee:       0.0015
   bid_fee:       0.0015
-  ask_precision: 8
-  bid_precision: 8
-  position:      1
-  enabled:       true
-
-- id:            ethusd
-  ask_unit:      eth
-  bid_unit:      usd
-  ask_fee:       0.0015
-  bid_fee:       0.0015
-  ask_precision: 8
-  bid_precision: 8
-  position:      1
+  ask_precision: 4
+  bid_precision: 4
+  position:      100
   enabled:       true
