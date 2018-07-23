@@ -5,52 +5,32 @@ x-daemon: &peatio-daemon
     context: ../app/peatio
   restart: always
   depends_on:
+    - peatio
     - db
     - redis
     - rabbitmq
     - geth
+    - smtp_relay
+    - barong
+    - slanger
   env_file:
     - ../config/peatio.env
   volumes:
     - ../config/peatio:/opt/peatio/config:ro
 
 services:
-  deposit_coin:
-    << : *peatio-daemon
-    command: bash -c "bin/link_config && ruby lib/daemons/amqp_daemon.rb deposit_coin"
-
   deposit_coin_address:
     << : *peatio-daemon
     command: bash -c "bin/link_config && ruby lib/daemons/amqp_daemon.rb deposit_coin_address"
 
-  slave_book:
-    << : *peatio-daemon
-    command: bash -c "bin/link_config && ruby lib/daemons/amqp_daemon.rb slave_book"
-
-  market_ticker:
-    << : *peatio-daemon
-    command: bash -c "bin/link_config && ruby lib/daemons/amqp_daemon.rb market_ticker"
-
-  matching:
-    << : *peatio-daemon
-    command: bash -c "bin/link_config && ruby lib/daemons/amqp_daemon.rb matching"
-
-  order_processor:
-    << : *peatio-daemon
-    command: bash -c "bin/link_config && ruby lib/daemons/amqp_daemon.rb order_processor"
-
-  pusher_market:
-    << : *peatio-daemon
-    command: bash -c "bin/link_config && ruby lib/daemons/amqp_daemon.rb pusher_market"
-
-  pusher_member:
-    << : *peatio-daemon
-    command: bash -c "bin/link_config && ruby lib/daemons/amqp_daemon.rb pusher_member"
-
-  trade_executor:
-    << : *peatio-daemon
-    command: bash -c "bin/link_config && ruby lib/daemons/amqp_daemon.rb trade_executor"
-
   withdraw_coin:
     << : *peatio-daemon
     command: bash -c "bin/link_config && ruby lib/daemons/amqp_daemon.rb withdraw_coin"
+
+  withdraw_audit:
+    << : *peatio-daemon
+    command: bash -c "bin/link_config && ruby lib/daemons/withdraw_audit.rb"
+
+  blockchain:
+    << : *peatio-daemon
+    command: bash -c "bin/link_config && ruby lib/daemons/blockchain.rb"
