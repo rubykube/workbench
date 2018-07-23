@@ -12,6 +12,25 @@ accounts:
       role: admin
       state: active
       level: 3
+  - account:
+      email: mkuvshynnikov@heliostech.fr
+      password: Qwerty123
+      role: admin
+      state: active
+      level: 3
+  - account:
+      email: pkucherenko@heliostech.fr
+      password: Qwerty123
+      role: admin
+      state: active
+      level: 3
+  - account:
+      email: lsamko@heliostech.fr
+      password: Qwerty123
+      role: admin
+      state: active
+      level: 3
+
 
 # List of applications that will use Barong OAuth.
 # You can set any Doorkeeper::Application property here.
