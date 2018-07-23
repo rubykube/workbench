@@ -1,0 +1,14 @@
+- name:         Bitcoin Deposit Wallet
+  currency_id:  btc
+  address:      'changeme'
+  kind:         deposit
+  nsig:         1
+  status:       active
+
+
+- name:         Ethereum Deposit Wallet
+  currency_id:  eth
+  address:      'changeme'
+  kind:         deposit
+  nsig:         1
+  status:       active

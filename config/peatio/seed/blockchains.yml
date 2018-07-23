@@ -1,0 +1,21 @@
+- key:               btc-testnet
+  name:              Bitcoin Testnet
+  client:            bitcoin
+  server:            http://admin:changeme@35.204.72.225:18332
+  height:            1355090
+  min_confirmations: 6
+  explorer:
+    address:         https://blockchain.info/address/#{address}
+    transaction:     https://blockchain.info/tx/#{txid}
+  status:            active
+
+- key:               eth-rinkeby
+  name:              Ethereum Rinkeby
+  client:            ethereum
+  server:            http://35.204.124.226:8545
+  height:            2685307
+  min_confirmations: 6
+  explorer:
+    address:         https://etherscan.io/address/#{address}
+    transaction:     https://etherscan.io/tx/#{txid}
+  status:            active
