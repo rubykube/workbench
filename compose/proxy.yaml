@@ -16,6 +16,7 @@ services:
           - ws.slanger.wb.local
           - api.slanger.wb.local
           - pma.wb.local
+          - eth.wb.local
           - monitor.wb.local
     labels:
       traefik.enable: true

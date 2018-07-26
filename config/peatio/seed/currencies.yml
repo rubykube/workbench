@@ -46,7 +46,7 @@
     supports_hd_protocol:             false
     allow_multiple_deposit_addresses: false
     api_client: ETH
-    json_rpc_endpoint: http://35.204.124.226:8545
+    json_rpc_endpoint: http://geth:8545
     wallet_url_template:      https://etherscan.io/address/#{address}
     transaction_url_template: https://etherscan.io/tx/#{txid}
 
@@ -65,7 +65,7 @@
     supports_hd_protocol:             false
     allow_multiple_deposit_addresses: false
     api_client: ERC20
-    json_rpc_endpoint: http://35.204.124.226:8545
+    json_rpc_endpoint: http://geth:8545
     erc20_contract_address: '0x87099adD3bCC0821B5b151307c147215F839a110'
     wallet_url_template:      https://etherscan.io/address/#{address}
     transaction_url_template: https://etherscan.io/tx/#{txid}

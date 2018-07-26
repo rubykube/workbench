@@ -1,14 +1,81 @@
-- name:         Bitcoin Deposit Wallet
-  currency_id:  btc
-  address:      'changeme'
-  kind:         deposit
-  nsig:         1
-  status:       active
+- name:             Ethereum Deposit Wallet
+  blockchain_key:   eth-rinkeby
+  currency_id:      eth
+  address:          '0x2b9fBC10EbAeEc28a8Fc10069C0BC29E45eBEB9C'
+  kind:             deposit
+  nsig:             1
+  max_balance:      0.0
+  status:           active
+  gateway:
+    client:         geth
+    options:
+      uri:          http://geth:8545
+      secret:       'changeme'
 
+- name:             Ethereum Hot Wallet
+  blockchain_key:   eth-rinkeby
+  currency_id:      eth
+  address:          '0x0f493226a8a98363e9a85e6b8eca468a18cc6fbb'
+  kind:             hot
+  nsig:             1
+  max_balance:      100.0
+  status:           active
+  gateway:
+    client:         geth
+    options:
+      uri:          http://geth:8545
+      secret:       'test'
 
-- name:         Ethereum Deposit Wallet
-  currency_id:  eth
-  address:      'changeme'
-  kind:         deposit
-  nsig:         1
-  status:       active
+- name:             Trust Deposit Wallet
+  blockchain_key:   eth-rinkeby
+  currency_id:      trst
+  address:          '0x2b9fBC10EbAeEc28a8Fc10069C0BC29E45eBEB9C'
+  kind:             deposit
+  nsig:             1
+  max_balance:      0.0
+  status:           active
+  gateway:
+    client:         geth
+    options:
+      uri:          http://geth:8545
+      secret:       'changeme'
+
+- name:             Trust Hot Wallet
+  blockchain_key:   eth-rinkeby
+  currency_id:      trst
+  address:          '0x0f493226a8a98363e9a85e6b8eca468a18cc6fbb'
+  kind:             hot
+  nsig:             1
+  max_balance:      100.0
+  status:           active
+  gateway:
+    client:         geth
+    options:
+      uri:          http://geth:8545
+      secret:       'test'
+
+- name:             Bitcoin Deposit Wallet
+  blockchain_key:   btc-testnet
+  currency_id:      btc
+  address:          '2N4qYjye5yENLEkz4UkLFxzPaxJatF3kRwf'
+  kind:             deposit
+  nsig:             1
+  max_balance:      0.0
+  status:           active
+  gateway:
+    client:         bitcoind
+    options:
+      uri:          http://admin:changeme@35.204.72.225:18332
+
+- name:             Bitcoin Hot Wallet
+  blockchain_key:   btc-testnet
+  currency_id:      btc
+  address:          '2MsfF7MbJ8cD63k77RXUftzr1xMUbUgbDB4'
+  kind:             hot
+  nsig:             1
+  max_balance:      0.0
+  status:           active
+  gateway:
+    client:         bitcoind
+    options:
+      uri:          http://admin:changeme@35.204.72.225:18332
