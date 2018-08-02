@@ -13,6 +13,8 @@ x-daemon: &peatio-daemon
     - ../config/peatio.env
   volumes:
     - ../config/peatio:/opt/peatio/config:ro
+    - ../app/peatio/app:/home/app/app
+    - ../app/peatio/lib:/home/app/lib
 
 services:
   deposit_coin:
