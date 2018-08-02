@@ -33,7 +33,7 @@ services:
   barong:
     build:
       context: ../app/barong
-      dockerfile: ./docker/Dockerfile.barong
+      dockerfile: ../../compose/docker/Dockerfile.barong
       args:
         RAILS_ENV: development
     depends_on:
