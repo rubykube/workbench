@@ -3,6 +3,9 @@ version: '3.6'
 x-daemon: &peatio-daemon
   build:
     context: ../app/peatio
+    dockerfile: ../../compose/docker/Dockerfile.peatio
+    args:
+      RAILS_ENV: development
   restart: always
   depends_on:
     - db

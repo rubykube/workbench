@@ -4,6 +4,9 @@ services:
   peatio:
     build:
       context: ../app/peatio
+      dockerfile: ../../compose/docker/Dockerfile.peatio
+      args:
+        RAILS_ENV: development
     depends_on:
       - proxy
       - db
@@ -30,6 +33,9 @@ services:
   barong:
     build:
       context: ../app/barong
+      dockerfile: ./docker/Dockerfile.barong
+      args:
+        RAILS_ENV: development
     depends_on:
       - proxy
       - db
