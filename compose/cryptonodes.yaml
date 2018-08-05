@@ -25,24 +25,16 @@ services:
 
   bitcoind:
     image: kylemanna/bitcoind
-    command: |
-      -testnet
-      -printtoconsole
-      -server
-      -port=8332
-      -rpcport=8333
-      -rpcallowip=0.0.0.0/0
-      -rpcuser=admin
-      -rpcpassword=changeme
     volumes:
+      - ../config/bitcoin.conf:/bitcoin/.bitcoin/bitcoin.conf
       - btc-data:/bitcoin
     expose:
-      - "8332"
-      - "8333"
+      - "18332"
+      - "18333"
     labels:
       traefik.enable: true
       traefik.frontend.rule: 'Host: btc.wb.local'
-      traefik.port: 8332
+      traefik.port: 18332
 
 volumes:
   eth-data:
