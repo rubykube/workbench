@@ -12,7 +12,7 @@
 - key:               btc-testnet
   name:              Bitcoin Testnet
   client:            bitcoin
-  server:            http://admin:changeme@35.204.72.225:18332
+  server:            http://admin:changeme@bitcoind:18332
   height:            1379702
   min_confirmations: 2
   explorer:

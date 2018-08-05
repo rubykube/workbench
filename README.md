@@ -31,6 +31,7 @@ You should add those hosts to your `/etc/hosts` file:
 0.0.0.0 pma.wb.local
 0.0.0.0 monitor.wb.local
 
+0.0.0.0 btc.wb.local
 0.0.0.0 eth.wb.local
 ```
 
