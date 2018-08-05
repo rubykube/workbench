@@ -6,8 +6,6 @@ Workbench is an easy way to start Peatio development environment.
 
 - Docker [installed](https://docs.docker.com/engine/installation/)
 - Docker Compose [installed](https://docs.docker.com/compose/install/)
-- Vagrant [installed](https://www.vagrantup.com/downloads.html)
-- VirtualBox [installed](https://www.virtualbox.org/)
 
 ## Usage
 
@@ -21,8 +19,7 @@ Workbench is an easy way to start Peatio development environment.
 
 3. Run the application: `make run`
 
-
-To have barong login working with peatio you will need to add this to your `/etc/hosts`:
+You should add those hosts to your `/etc/hosts` file:
 
 ```
 0.0.0.0 api.wb.local
@@ -33,19 +30,31 @@ To have barong login working with peatio you will need to add this to your `/etc
 
 0.0.0.0 pma.wb.local
 0.0.0.0 monitor.wb.local
+
+0.0.0.0 eth.wb.local
 ```
 
 Now you have peatio up and running.
 
 #### Barong
 
-Start barong: `docker-compose run --rm barong bash -c "./bin/link_config && ./bin/setup"`
+Start barong server
+
+```sh
+$> docker-compose run --rm barong bash -c "./bin/link_config && ./bin/setup"
+$> docker-compose up -d barong
+```
 
 This will output password for **admin@barong.io**. Default password is `Qwerty123`
 
 #### Peatio
 
-Start peatio server: `docker-compose up -d peatio`
+Start peatio server
+
+```sh
+$> docker-compose run --rm peatio bash -c "./bin/link_config && rake db:create db:migrate db:seed"
+$> docker-compose up -d peatio
+```
 
 #### Frontend
 
@@ -58,4 +67,3 @@ Run toolbox stress tests
 ```sh
 $> make stress
 ```
-
