@@ -1,11 +1,6 @@
 version: '3.6'
 
 services:
-  smtp_relay:
-    image: kaigara/postfix:latest
-    volumes:
-      - ../config/smtp-relay.yaml:/etc/kaigara/metadata/relay.yml
-
   db:
     image: mysql:5.7
     volumes:
@@ -71,6 +66,13 @@ services:
       traefik.ws.port: 8080
       traefik.api.frontend.rule: 'Host: api.slanger.wb.local'
       traefik.api.port: 4567
+
+  mailcatcher:
+    image: schickling/mailcatcher
+    labels:
+      traefik.enable: true
+      traefik.frontend.rule: 'Host: mail.wb.local'
+      traefik.port: 1080
 
 volumes:
   db_data:

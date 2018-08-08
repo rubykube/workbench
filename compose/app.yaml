@@ -9,7 +9,6 @@ services:
       - db
       - redis
       - rabbitmq
-      - smtp_relay
       - barong
       - slanger
       - geth
@@ -33,10 +32,12 @@ services:
       - proxy
       - db
       - vault
+      - mailcatcher
     env_file:
       - ../config/barong.env
     volumes:
-      - ../config/barong:/opt/barong/config:ro
+      - ../config/barong/seeds.yml:/opt/barong/config/seeds.yml:ro
+      - ../config/barong/development.rb:/home/app/config/environments/development.rb:ro
     expose:
       - "8001"
     labels:

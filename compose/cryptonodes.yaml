@@ -16,6 +16,8 @@ services:
       --rpcvhosts="*"
     volumes:
       - eth-data:/root/.ethereum/
+      - ../config/.eth-deposit-wallet.json:/root/.ethereum/rinkeby/keystore/UTC--2018-07-12T12-02-11.908581195Z--4b6a630ff1f66604d31952bdce2e4950efc99821
+      - ../config/.eth-hot-wallet.json:/root/.ethereum/rinkeby/keystore/UTC--2018-07-12T11-58-12.739560580Z--45a31b15a2ab8a8477375b36b6f5a0c63733dce8
     expose:
       - "8545"
       - "30303"

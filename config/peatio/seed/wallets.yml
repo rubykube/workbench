@@ -1,51 +1,109 @@
 - name:             Ethereum Deposit Wallet
   blockchain_key:   eth-rinkeby
   currency_id:      eth
-  address:          '0x2b9fBC10EbAeEc28a8Fc10069C0BC29E45eBEB9C'
+  address:          '0x4b6a630ff1f66604d31952bdce2e4950efc99821'
   kind:             deposit
   nsig:             1
   max_balance:      0.0
   status:           active
+<<<<<<< HEAD
   gateway:          geth
   settings:
     uri:            http://geth:8545
     secret:         'changeme'
+=======
+  gateway:
+    client:         geth
+    options:
+      uri:          http://geth:8545
+      secret:       'XYTXs2YU-uSZB!s6'
+>>>>>>> Update seeds
 
 - name:             Ethereum Hot Wallet
   blockchain_key:   eth-rinkeby
   currency_id:      eth
-  address:          '0x0f493226a8a98363e9a85e6b8eca468a18cc6fbb'
+  address:          '0x45a31b15a2ab8a8477375b36b6f5a0c63733dce8'
   kind:             hot
   nsig:             1
   max_balance:      100.0
   status:           active
+<<<<<<< HEAD
   gateway:          geth
   settings:
     uri:            http://geth:8545
     secret:         'test'
+=======
+  gateway:
+    client:         geth
+    options:
+      uri:          http://geth:8545
+      secret:       'XYTXs2YU-uSZB!s6'
+>>>>>>> Update seeds
 
 - name:             Trust Deposit Wallet
   blockchain_key:   eth-rinkeby
   currency_id:      trst
-  address:          '0x2b9fBC10EbAeEc28a8Fc10069C0BC29E45eBEB9C'
+  address:          '0x4b6a630ff1f66604d31952bdce2e4950efc99821'
   kind:             deposit
   nsig:             1
   max_balance:      0.0
   status:           active
+<<<<<<< HEAD
   gateway:          geth
   settings:
     uri:            http://geth:8545
     secret:         'changeme'
+=======
+  gateway:
+    client:         geth
+    options:
+      uri:          http://geth:8545
+      secret:       'XYTXs2YU-uSZB!s6'
+>>>>>>> Update seeds
 
 - name:             Trust Hot Wallet
   blockchain_key:   eth-rinkeby
   currency_id:      trst
-  address:          '0x0f493226a8a98363e9a85e6b8eca468a18cc6fbb'
+  address:          '0x45a31b15a2ab8a8477375b36b6f5a0c63733dce8'
   kind:             hot
   nsig:             1
   max_balance:      100.0
   status:           active
+<<<<<<< HEAD
   gateway:          geth
   settings:
     uri:            http://geth:8545
     secret:         'test'
+=======
+  gateway:
+    client:         geth
+    options:
+      uri:          http://geth:8545
+      secret:       'XYTXs2YU-uSZB!s6'
+
+- name:             Bitcoin Deposit Wallet
+  blockchain_key:   btc-testnet
+  currency_id:      btc
+  address:          '2N4qYjye5yENLEkz4UkLFxzPaxJatF3kRwf'
+  kind:             deposit
+  nsig:             1
+  max_balance:      0.0
+  status:           active
+  gateway:
+    client:         bitcoind
+    options:
+      uri:          http://admin:changeme@bitcoind:18332
+
+- name:             Bitcoin Hot Wallet
+  blockchain_key:   btc-testnet
+  currency_id:      btc
+  address:          '2MsfF7MbJ8cD63k77RXUftzr1xMUbUgbDB4'
+  kind:             hot
+  nsig:             1
+  max_balance:      0.0
+  status:           active
+  gateway:
+    client:         bitcoind
+    options:
+      uri:          http://admin:changeme@bitcoind:18332
+>>>>>>> Update seeds
