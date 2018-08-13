@@ -11,7 +11,7 @@ services:
       - rabbitmq
       - smtp_relay
       - barong
-      - slanger
+      - ranger
       - geth
     env_file:
       - ../config/peatio.env
