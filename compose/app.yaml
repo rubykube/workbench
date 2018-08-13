@@ -10,7 +10,7 @@ services:
       - redis
       - rabbitmq
       - barong
-      - slanger
+      - ranger
       - geth
       - coinhub
     env_file:

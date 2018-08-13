@@ -53,8 +53,7 @@ You should add those hosts to your `/etc/hosts` file:
 0.0.0.0 api.wb.local
 0.0.0.0 auth.wb.local
 
-0.0.0.0 api.slanger.wb.local
-0.0.0.0 ws.slanger.wb.local
+0.0.0.0 ws.ranger.wb.local
 
 0.0.0.0 pma.wb.local
 0.0.0.0 monitor.wb.local

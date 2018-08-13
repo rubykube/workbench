@@ -13,8 +13,8 @@ services:
         aliases:
           - api.wb.local
           - auth.wb.local
-          - ws.slanger.wb.local
-          - api.slanger.wb.local
+          - ws.ranger.wb.local
+          - api.ranger.wb.local
           - pma.wb.local
           - eth.wb.local
           - monitor.wb.local
