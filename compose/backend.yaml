@@ -51,21 +51,18 @@ services:
       VAULT_DEV_ROOT_TOKEN_ID: changeme
       VAULT_ADDR: http://vault:8200
 
-  slanger:
-    image: rubykube/slanger:0.2.3
-    restart: always
+  ranger:
+    build:
+      context: ../app/peatio
     depends_on:
-      - redis
-    environment:
-      REDIS_URL: redis://redis:6379
-      APP_KEY: f9jxQLQ631LehgeAjjJZpg2iMiCeHAMW
-      APP_SECRET: bMoWeyjId0iSabGF6EY3coVhTpjW3Hpt
+      - rabbitmq
+    env_file:
+      - ../config/peatio.env
     labels:
       traefik.enable: true
-      traefik.ws.frontend.rule: 'Host: ws.slanger.wb.local'
-      traefik.ws.port: 8080
-      traefik.api.frontend.rule: 'Host: api.slanger.wb.local'
-      traefik.api.port: 4567
+      traefik.frontend.rule: 'Host: ws.ranger.wb.local'
+      traefik.port: 8081
+    command: bash -c "bundle exec peatio service start ranger"
 
   mailcatcher:
     image: schickling/mailcatcher
