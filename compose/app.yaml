@@ -23,7 +23,7 @@ services:
       traefik.enable: true
       traefik.frontend.rule: 'Host: api.wb.local'
       traefik.port: 8000
-    command: bash -c "bin/link_config && puma --config config/puma.rb"
+    command: bash -c "bin/link_config && bundle exec puma --config config/puma.rb"
 
   barong:
     build:
