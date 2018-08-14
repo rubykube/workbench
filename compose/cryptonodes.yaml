@@ -3,6 +3,7 @@ version: '3.6'
 services:
   geth:
     image: ethereum/client-go:stable
+    restart: always
     command: |
       --syncmode=full
       --rinkeby
@@ -25,6 +26,7 @@ services:
 
   bitcoind:
     image: kylemanna/bitcoind
+    restart: always
     volumes:
       - ../config/bitcoin.conf:/bitcoin/.bitcoin/bitcoin.conf
       - btc-data:/bitcoin
