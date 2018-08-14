@@ -21,52 +21,52 @@ x-daemon: &peatio-daemon
 services:
   withdraw_audit:
     << : *peatio-daemon
-    command: bash -c "bin/link_config && ruby lib/daemons/withdraw_audit.rb"
+    command: bash -c "bin/link_config && bundle exec ruby lib/daemons/withdraw_audit.rb"
 
   blockchain:
     << : *peatio-daemon
-    command: bash -c "bin/link_config && ruby lib/daemons/blockchain.rb"
+    command: bash -c "bin/link_config && bundle exec ruby lib/daemons/blockchain.rb"
 
   deposit_collection:
     << : *peatio-daemon
-    command: bash -c "bin/link_config && ruby lib/daemons/amqp_daemon.rb deposit_collection"
+    command: bash -c "bin/link_config && bundle exec ruby lib/daemons/amqp_daemon.rb deposit_collection"
 
   deposit_collection_fees:
     << : *peatio-daemon
-    command: bash -c "bin/link_config && ruby lib/daemons/amqp_daemon.rb deposit_collection_fees"
+    command: bash -c "bin/link_config && bundle exec ruby lib/daemons/amqp_daemon.rb deposit_collection_fees"
 
   deposit_coin_address:
     << : *peatio-daemon
-    command: bash -c "bin/link_config && ruby lib/daemons/amqp_daemon.rb deposit_coin_address"
+    command: bash -c "bin/link_config && bundle exec ruby lib/daemons/amqp_daemon.rb deposit_coin_address"
 
   slave_book:
     << : *peatio-daemon
-    command: bash -c "bin/link_config && ruby lib/daemons/amqp_daemon.rb slave_book"
+    command: bash -c "bin/link_config && bundle exec ruby lib/daemons/amqp_daemon.rb slave_book"
 
   market_ticker:
     << : *peatio-daemon
-    command: bash -c "bin/link_config && ruby lib/daemons/amqp_daemon.rb market_ticker"
+    command: bash -c "bin/link_config && bundle exec ruby lib/daemons/amqp_daemon.rb market_ticker"
 
   matching:
     << : *peatio-daemon
-    command: bash -c "bin/link_config && ruby lib/daemons/amqp_daemon.rb matching"
+    command: bash -c "bin/link_config && bundle exec ruby lib/daemons/amqp_daemon.rb matching"
 
   order_processor:
     << : *peatio-daemon
-    command: bash -c "bin/link_config && ruby lib/daemons/amqp_daemon.rb order_processor"
+    command: bash -c "bin/link_config && bundle exec ruby lib/daemons/amqp_daemon.rb order_processor"
 
   pusher_market:
     << : *peatio-daemon
-    command: bash -c "bin/link_config && ruby lib/daemons/amqp_daemon.rb pusher_market"
+    command: bash -c "bin/link_config && bundle exec ruby lib/daemons/amqp_daemon.rb pusher_market"
 
   pusher_member:
     << : *peatio-daemon
-    command: bash -c "bin/link_config && ruby lib/daemons/amqp_daemon.rb pusher_member"
+    command: bash -c "bin/link_config && bundle exec ruby lib/daemons/amqp_daemon.rb pusher_member"
 
   trade_executor:
     << : *peatio-daemon
-    command: bash -c "bin/link_config && ruby lib/daemons/amqp_daemon.rb trade_executor"
+    command: bash -c "bin/link_config && bundle exec ruby lib/daemons/amqp_daemon.rb trade_executor"
 
   withdraw_coin:
     << : *peatio-daemon
-    command: bash -c "bin/link_config && ruby lib/daemons/amqp_daemon.rb withdraw_coin"
+    command: bash -c "bin/link_config && bundle exec ruby lib/daemons/amqp_daemon.rb withdraw_coin"

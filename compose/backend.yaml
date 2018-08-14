@@ -16,11 +16,13 @@ services:
 
   redis:
     image: redis:4.0.10
+    restart: always
     volumes:
       - redis_data:/data
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
+    restart: always
     depends_on:
       - db
     environment:
@@ -36,6 +38,7 @@ services:
 
   rabbitmq:
     image: rabbitmq:3.7.6-management
+    restart: always
     volumes:
       - rabbitmq_data:/var/lib/rabbitmq
     ports:
@@ -43,6 +46,7 @@ services:
 
   vault:
     image: vault:0.10.2
+    restart: always
     environment:
       SKIP_SETCAP: 1
       VAULT_TOKEN: changeme
@@ -51,6 +55,7 @@ services:
 
   slanger:
     image: rubykube/slanger:0.2.3
+    restart: always
     depends_on:
       - redis
     environment:

@@ -16,7 +16,18 @@ bitcoind:
 cryptonodes: geth bitcoind
 
 daemons:
-	$(COMPOSE) up --build -d withdraw_audit blockchain deposit_collection deposit_collection_fees deposit_coin_address slave_book market_ticker matching order_processor pusher_market pusher_member trade_executor withdraw_coin
+	$(COMPOSE) up --build -d withdraw_audit           \
+                             blockchain               \
+                             deposit_collection       \
+                             deposit_collection_fees  \
+                             deposit_coin_address     \
+                             slave_book market_ticker \
+                             matching                 \
+                             order_processor          \
+                             pusher_market            \
+                             pusher_member            \
+                             trade_executor           \
+                             withdraw_coin            \
 
 dependencies:
 	$(COMPOSE) up -d vault db phpmyadmin redis rabbitmq smtp_relay slanger
@@ -25,7 +36,7 @@ dependencies:
 prepare: dependencies daemons cryptonodes
 
 setup-apps: build
-	$(COMPOSE) run --rm peatio bash -c "./bin/link_config && rake db:create db:migrate db:seed"
+	$(COMPOSE) run --rm peatio bash -c "./bin/link_config && bundle exec rake db:create db:migrate db:seed"
 	$(COMPOSE) run --rm barong bash -c "./bin/link_config && ./bin/setup"
 
 run: prepare setup-apps
