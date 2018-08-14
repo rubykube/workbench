@@ -25,7 +25,7 @@ dependencies:
 prepare: dependencies daemons cryptonodes
 
 setup-apps: build
-	$(COMPOSE) run --rm peatio bash -c "./bin/link_config && rake db:create db:migrate db:seed"
+	$(COMPOSE) run --rm peatio bash -c "./bin/link_config && bundle exec rake db:create db:migrate db:seed"
 	$(COMPOSE) run --rm barong bash -c "./bin/link_config && ./bin/setup"
 
 run: prepare setup-apps
