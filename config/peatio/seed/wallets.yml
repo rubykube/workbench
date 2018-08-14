@@ -6,11 +6,10 @@
   nsig:             1
   max_balance:      0.0
   status:           active
-  gateway:
-    client:         geth
-    options:
-      uri:          http://geth:8545
-      secret:       'changeme'
+  gateway:          geth
+  settings:
+    uri:          http://geth:8545
+    secret:       'changeme'
 
 - name:             Ethereum Hot Wallet
   blockchain_key:   eth-rinkeby
@@ -20,11 +19,10 @@
   nsig:             1
   max_balance:      100.0
   status:           active
-  gateway:
-    client:         geth
-    options:
-      uri:          http://geth:8545
-      secret:       'test'
+  gateway:          geth
+  settings:
+    uri:            http://geth:8545
+    secret:         'test'
 
 - name:             Trust Deposit Wallet
   blockchain_key:   eth-rinkeby
@@ -34,11 +32,10 @@
   nsig:             1
   max_balance:      0.0
   status:           active
-  gateway:
-    client:         geth
-    options:
-      uri:          http://geth:8545
-      secret:       'changeme'
+  gateway:          geth
+  settings:
+    uri:            http://geth:8545
+    secret:         'changeme'
 
 - name:             Trust Hot Wallet
   blockchain_key:   eth-rinkeby
@@ -48,11 +45,10 @@
   nsig:             1
   max_balance:      100.0
   status:           active
-  gateway:
-    client:         geth
-    options:
-      uri:          http://geth:8545
-      secret:       'test'
+  gateway:          geth
+  settings:
+    uri:            http://geth:8545
+    secret:         'test'
 
 - name:             Bitcoin Deposit Wallet
   blockchain_key:   btc-testnet
@@ -62,10 +58,9 @@
   nsig:             1
   max_balance:      0.0
   status:           active
-  gateway:
-    client:         bitcoind
-    options:
-      uri:          http://admin:changeme@bitcoind:18332
+  gateway:          bitcoind
+  settings:
+    uri:            http://admin:changeme@bitcoind:18332
 
 - name:             Bitcoin Hot Wallet
   blockchain_key:   btc-testnet
@@ -75,7 +70,6 @@
   nsig:             1
   max_balance:      0.0
   status:           active
-  gateway:
-    client:         bitcoind
-    options:
-      uri:          http://admin:changeme@bitcoind:18332
+  gateway:          bitcoind
+  settings:
+    uri:            http://admin:changeme@bitcoind:18332

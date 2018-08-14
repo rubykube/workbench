@@ -11,13 +11,29 @@ Workbench is an easy way to start Peatio development environment.
 
 ### Prepare the workbench
 
-1. Recursive clone : `git clone --recursive https://github.com/rubykube/workbench.git`
+1. Recursive clone
 
-2. Move to workbench `cd workbench`
+```sh
+git clone --recursive https://github.com/rubykube/workbench.git
+```
 
-2. Build the images: `make build`
+2. Move to workbench
 
-3. Run the application: `make run`
+```sh
+cd workbench
+```
+
+3. Build the images
+
+```sh
+make build
+```
+
+4. Run the application
+
+```sh
+make run
+```
 
 You should add those hosts to your `/etc/hosts` file:
 
@@ -36,6 +52,17 @@ You should add those hosts to your `/etc/hosts` file:
 ```
 
 Now you have peatio up and running.
+
+#### Post installation steps
+
+After deployment, height of blockchains should be updated to start receiving deposits.
+
+Go to **Blockchains** Tab in Peatio Admin Panel and update height
+
+Best way to find current blockchains height:
+
+1. [Ethereum Rinkeby Blockchain Explorer](https://rinkeby.etherscan.io)
+2. [Bitcoin Testnet Blockchain Explorer](https://testnet.blockchain.info)
 
 #### Barong
 

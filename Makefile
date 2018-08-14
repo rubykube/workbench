@@ -16,7 +16,18 @@ bitcoind:
 cryptonodes: geth bitcoind
 
 daemons:
-	$(COMPOSE) up --build -d withdraw_audit blockchain deposit_collection deposit_collection_fees deposit_coin_address slave_book market_ticker matching order_processor pusher_market pusher_member trade_executor withdraw_coin
+	$(COMPOSE) up --build -d withdraw_audit           \
+                             blockchain               \
+                             deposit_collection       \
+                             deposit_collection_fees  \
+                             deposit_coin_address     \
+                             slave_book market_ticker \
+                             matching                 \
+                             order_processor          \
+                             pusher_market            \
+                             pusher_member            \
+                             trade_executor           \
+                             withdraw_coin            \
 
 dependencies:
 	$(COMPOSE) up -d vault db phpmyadmin redis rabbitmq smtp_relay slanger
