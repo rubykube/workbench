@@ -13,6 +13,7 @@ x-daemon: &peatio-daemon
     - smtp_relay
     - barong
     - slanger
+    - coinhub
   env_file:
     - ../config/peatio.env
   volumes:
