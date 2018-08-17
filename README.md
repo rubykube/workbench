@@ -29,7 +29,15 @@ cd workbench
 make build
 ```
 
-4. Run the application
+4. **Optional:** Enable bitcoin
+
+```sh
+make bitcoin
+```
+
+This will create new seeds and start `bitcoind` docker container.
+
+5. Run the application
 
 ```sh
 make run
