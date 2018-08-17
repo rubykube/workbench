@@ -8,15 +8,18 @@ build:
 	$(COMPOSE) build peatio barong toolbox
 
 geth:
-	$(COMPOSE) up -d geth
+	@$(COMPOSE) up -d geth
 
-bitcoind:
-	$(COMPOSE) up -d bitcoind
+bitcoin:
+	@echo "Updating peatio configuration..."
+	@cp config/peatio/seed/bitcoin/*.yml config/peatio/seed/
+	@echo "Starting bitcoind container..."
+	@$(COMPOSE) up -d bitcoind
 
-cryptonodes: geth bitcoind
+cryptonodes: geth
 
 daemons:
-	$(COMPOSE) up --build -d withdraw_audit           \
+	$(COMPOSE) up --build -d withdraw_audit             \
                              blockchain               \
                              deposit_collection       \
                              deposit_collection_fees  \
@@ -27,7 +30,7 @@ daemons:
                              pusher_market            \
                              pusher_member            \
                              trade_executor           \
-                             withdraw_coin            \
+                             withdraw_coin
 
 dependencies:
 	$(COMPOSE) up -d vault db phpmyadmin redis rabbitmq smtp_relay slanger
