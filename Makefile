@@ -12,14 +12,14 @@ geth:
 
 bitcoin:
 	@echo "Updating peatio configuration..."
-	@cp config/peatio/seed/bitcoin/*.yml config/peatio/seed/
+	@cp config/peatio-seed-btc/*.yml config/peatio/seed/
 	@echo "Starting bitcoind container..."
 	@$(COMPOSE) up -d bitcoind
 
 cryptonodes: geth
 
 daemons:
-	$(COMPOSE) up --build -d withdraw_audit             \
+	$(COMPOSE) up --build -d withdraw_audit           \
                              blockchain               \
                              deposit_collection       \
                              deposit_collection_fees  \
