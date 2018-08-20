@@ -8,8 +8,8 @@
   status:           active
   gateway:          geth
   settings:
-    uri:          http://geth:8545
-    secret:       'changeme'
+    uri:            http://geth:8545
+    secret:         'changeme'
 
 - name:             Ethereum Hot Wallet
   blockchain_key:   eth-rinkeby
