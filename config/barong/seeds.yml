@@ -15,46 +15,67 @@ accounts:
       level: 3
   - account:
       email: PhillipaRuais@gmail.com
-      password: "x796f7b98ufkjx2w"
+      password: "x796f7b98ufkjx2W"
       role: admin
       state: active
       level: 3
+    phone:
+      country: "FR"
+      number: "33755882002"
   - account:
       email: AntoinePelletier@gmail.com
-      password: "x796f7b98ufkjx2w"
+      password: "x796f7b98ufkjx2W"
       role: member
       state: active
       level: 0
+    phone:
+      country: "FR"
+      number: "33755882189"
   - account:
       email: CecileVaillancourt@gmail.com
-      password: "x796f7b98ufkjx2w"
+      password: "x796f7b98ufkjx2W"
       role: member
       state: active
       level: 1
+    phone:
+      country: "FR"
+      number: "40729371571"
   - account:
       email: CharmaineOuellet@gmail.com
-      password: "x796f7b98ufkjx2w"
+      password: "x796f7b98ufkjx2W"
       role: member
       state: active
       level: 2
+    phone:
+      country: "FR"
+      number: "447383453439"
   - account:
       email: RamonLMcCourt@gmail.com
-      password: "x796f7b98ufkjx2w"
+      password: "x796f7b98ufkjx2W"
       role: member
       state: active
       level: 3
+    phone:
+      country: "US"
+      number: "17542058966"
   - account:
       email: AmyJBriggs@gmail.com
-      password: "x796f7b98ufkjx2w"
+      password: "x796f7b98ufkjx2W"
       role: member
       state: active
       level: 3
+    phone:
+      country: "US"
+      number: "17722002528"
   - account:
       email: DavidTMoore@gmail.com
-      password: "x796f7b98ufkjx2w"
+      password: "x796f7b98ufkjx2W"
       role: member
       state: active
       level: 3
+    phone:
+      country: "US"
+      number: "19706823057"
 
 # List of applications that will use Barong OAuth.
 # You can set any Doorkeeper::Application property here.
