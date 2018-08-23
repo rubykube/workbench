@@ -20,8 +20,7 @@ jobs:
           command: |
             echo 0.0.0.0 api.wb.local | sudo tee -a /etc/hosts && \
             echo 0.0.0.0 auth.wb.local | sudo tee -a /etc/hosts && \
-            echo 0.0.0.0 api.slanger.wb.local | sudo tee -a /etc/hosts && \
-            echo 0.0.0.0 ws.slanger.wb.local | sudo tee -a /etc/hosts
+            echo 0.0.0.0 ws.ranger.wb.local | sudo tee -a /etc/hosts
       - run:
           name: Download apps
           command: "make update"

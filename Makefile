@@ -14,7 +14,7 @@ build:
 	                 redis       \
 	                 rabbitmq    \
 	                 mailcatcher \
-	                 slanger     \
+	                 ranger      \
 	                 coinhub     \
 	                 integration
 
@@ -38,7 +38,6 @@ daemons:
 	                         slave_book market_ticker \
 	                         matching                 \
 	                         order_processor          \
-	                         pusher_market            \
 	                         pusher_member            \
 	                         trade_executor           \
 	                         withdraw_coin

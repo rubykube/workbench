@@ -39,8 +39,10 @@ services:
     restart: always
     volumes:
       - rabbitmq_data:/var/lib/rabbitmq
-    ports:
-      - "15672:15672"
+    labels:
+      traefik.enable: true
+      traefik.frontend.rule: 'Host: rabbitmq.wb.local'
+      traefik.port: 15672
 
   vault:
     image: vault:0.10.2
