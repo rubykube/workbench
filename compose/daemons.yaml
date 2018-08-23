@@ -11,7 +11,7 @@ x-daemon: &peatio-daemon
     - rabbitmq
     - geth
     - barong
-    - slanger
+    - ranger
     - coinhub
   env_file:
     - ../config/peatio.env
@@ -54,14 +54,6 @@ services:
   order_processor:
     << : *peatio-daemon
     command: bash -c "bin/link_config && bundle exec ruby lib/daemons/amqp_daemon.rb order_processor"
-
-  pusher_market:
-    << : *peatio-daemon
-    command: bash -c "bin/link_config && bundle exec ruby lib/daemons/amqp_daemon.rb pusher_market"
-
-  pusher_member:
-    << : *peatio-daemon
-    command: bash -c "bin/link_config && bundle exec ruby lib/daemons/amqp_daemon.rb pusher_member"
 
   trade_executor:
     << : *peatio-daemon
