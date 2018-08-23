@@ -55,14 +55,6 @@ services:
     << : *peatio-daemon
     command: bash -c "bin/link_config && bundle exec ruby lib/daemons/amqp_daemon.rb order_processor"
 
-  #pusher_market:
-    #<< : *peatio-daemon
-    #command: bash -c "bin/link_config && bundle exec ruby lib/daemons/amqp_daemon.rb pusher_market"
-
-  #pusher_member:
-    #<< : *peatio-daemon
-    #command: bash -c "bin/link_config && bundle exec ruby lib/daemons/amqp_daemon.rb pusher_member"
-
   trade_executor:
     << : *peatio-daemon
     command: bash -c "bin/link_config && bundle exec ruby lib/daemons/amqp_daemon.rb trade_executor"
