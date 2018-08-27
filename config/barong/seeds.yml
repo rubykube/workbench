@@ -22,6 +22,13 @@ accounts:
     phone:
       country: "FR"
       number: "33755882002"
+    profile:
+      first_name: "Phillipa"
+      last_name: "Ruais"
+      address: "62 boulevard d'Alsace"
+      postcode: "78140"
+      city: "VÉLIZY-VILLACOUBLAY"
+      country: "FR"
   - account:
       email: AntoinePelletier@gmail.com
       password: "x796f7b98ufkjx2W"
@@ -31,6 +38,13 @@ accounts:
     phone:
       country: "FR"
       number: "33755882189"
+    profile:
+      first_name: "Antoine"
+      last_name: "Pelletier"
+      address: "94 rue Charles Corbeau"
+      postcode: "76400"
+      city: "FÉCAMP"
+      country: "FR"
   - account:
       email: CecileVaillancourt@gmail.com
       password: "x796f7b98ufkjx2W"
@@ -40,6 +54,13 @@ accounts:
     phone:
       country: "FR"
       number: "40729371571"
+    profile:
+      first_name: "Cécile"
+      last_name: "Vaillancourt"
+      address: "45 rue Saint Germain"
+      postcode: "92230"
+      city: "GENNEVILLIERS"
+      country: "FR"
   - account:
       email: CharmaineOuellet@gmail.com
       password: "x796f7b98ufkjx2W"
@@ -49,6 +70,13 @@ accounts:
     phone:
       country: "FR"
       number: "447383453439"
+    profile:
+      first_name: "Charmaine"
+      last_name: "Ouellet"
+      address: "22 rue du Président Roosevelt"
+      postcode: "49400"
+      city: "SAUMUR"
+      country: "FR"
   - account:
       email: RamonLMcCourt@gmail.com
       password: "x796f7b98ufkjx2W"
@@ -58,6 +86,13 @@ accounts:
     phone:
       country: "US"
       number: "17542058966"
+    profile:
+      first_name: "Ramon"
+      last_name: "McCourt"
+      address: "224 Spirit Drive"
+      postcode: "32008"
+      city: "Branford"
+      country: "US"
   - account:
       email: AmyJBriggs@gmail.com
       password: "x796f7b98ufkjx2W"
@@ -67,6 +102,13 @@ accounts:
     phone:
       country: "US"
       number: "17722002528"
+    profile:
+      first_name: "Amy"
+      last_name: "Briggs"
+      address: "3848 Mount Tabor"
+      postcode: "10601"
+      city: "White Plains"
+      country: "US"
   - account:
       email: DavidTMoore@gmail.com
       password: "x796f7b98ufkjx2W"
@@ -76,6 +118,13 @@ accounts:
     phone:
       country: "US"
       number: "19706823057"
+    profile:
+      first_name: "David"
+      last_name: "Moore"
+      address: "41 Aviation Way"
+      postcode: "90071"
+      city: "Los Angeles"
+      country: "US"
 
 # List of applications that will use Barong OAuth.
 # You can set any Doorkeeper::Application property here.
