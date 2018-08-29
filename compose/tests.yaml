@@ -1,6 +1,11 @@
 version: '3.6'
 
 services:
+  integration:
+    build:
+      context: ../app/integration
+    volumes:
+      - ../config/integration/fixtures:/usr/src/app/fixtures/
 
   toolbox:
     build:
