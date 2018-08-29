@@ -11,10 +11,10 @@
 	url = https://github.com/rubykube/peatio-trading-ui.git
 	branch = "master"
 [submodule "toolbox"]
-	path = app/toolbox
+	path = test/toolbox
 	url = https://github.com/rubykube/toolbox.git
 	branch = "master"
 [submodule "integration"]
-	path = app/integration
+	path = test/integration
 	url = https://github.com/rubykube/integration.git
 	branch = "master"
