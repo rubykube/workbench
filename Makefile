@@ -45,8 +45,8 @@ setup-apps: build
 run: prepare setup-apps
 	$(COMPOSE) up --build -d peatio barong trading_ui proxy
 
-test: prepare
-	@$(COMPOSE) run --rm peatio_specs
+test:
+	@$(COMPOSE) run --rm integration
 
 stress:
 	@bundle exec rake toolbox:run
