@@ -14,3 +14,7 @@
 	path = app/toolbox
 	url = https://github.com/rubykube/toolbox.git
 	branch = "master"
+[submodule "integration"]
+	path = app/integration
+	url = https://github.com/rubykube/integration.git
+	branch = "master"
