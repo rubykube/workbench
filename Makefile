@@ -38,7 +38,6 @@ daemons:
 	                         slave_book market_ticker \
 	                         matching                 \
 	                         order_processor          \
-	                         pusher_member            \
 	                         trade_executor           \
 	                         withdraw_coin
 
