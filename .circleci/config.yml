@@ -1,0 +1,36 @@
+# Ruby CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-ruby/ for more details
+#
+version: 2
+jobs:
+  build:
+    machine: true
+    working_directory: ~/workbench
+    steps:
+      - checkout
+      - run:
+          name: Install Docker Compose
+          command: |
+            curl -L https://github.com/docker/compose/releases/download/1.22.0/docker-compose-`uname -s`-`uname -m` > ~/docker-compose
+            chmod +x ~/docker-compose
+            sudo mv ~/docker-compose /usr/local/bin/docker-compose
+      - run:
+          name: Add hosts
+          command: |
+            echo 0.0.0.0 api.wb.local | sudo tee -a /etc/hosts && \
+            echo 0.0.0.0 auth.wb.local | sudo tee -a /etc/hosts && \
+            echo 0.0.0.0 api.slanger.wb.local | sudo tee -a /etc/hosts && \
+            echo 0.0.0.0 ws.slanger.wb.local | sudo tee -a /etc/hosts
+      - run:
+          name: Download apps
+          command: "make update"
+      - run:
+          name: Build docker images
+          command: "make build"
+      - run:
+          name: Run workbench
+          command: "make start"
+      - run:
+          name: Run integration tests
+          command: "make test"
