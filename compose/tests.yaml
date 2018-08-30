@@ -3,13 +3,13 @@ version: '3.6'
 services:
   integration:
     build:
-      context: ../app/integration
+      context: ../test/integration
     volumes:
       - ../config/integration/fixtures:/usr/src/app/fixtures/
 
   toolbox:
     build:
-      context: ../app/toolbox
+      context: ../test/toolbox
     entrypoint: bin/stress_trading
 
   selenium:
