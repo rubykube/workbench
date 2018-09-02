@@ -17,3 +17,4 @@
 [submodule "test/toolbox"]
 	path = test/toolbox
 	url = https://github.com/rubykube/toolbox.git
+	branch = "master"
