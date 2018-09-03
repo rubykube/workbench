@@ -5,7 +5,8 @@
 version: 2
 jobs:
   build:
-    machine: true
+    machine:
+      docker_layer_caching: true
     working_directory: ~/workbench
     steps:
       - checkout
@@ -18,9 +19,9 @@ jobs:
       - run:
           name: Add hosts
           command: |
-            echo 0.0.0.0 api.wb.local | sudo tee -a /etc/hosts && \
-            echo 0.0.0.0 auth.wb.local | sudo tee -a /etc/hosts && \
-            echo 0.0.0.0 api.slanger.wb.local | sudo tee -a /etc/hosts && \
+            echo 0.0.0.0 api.wb.local | sudo tee -a /etc/hosts
+            echo 0.0.0.0 auth.wb.local | sudo tee -a /etc/hosts
+            echo 0.0.0.0 api.slanger.wb.local | sudo tee -a /etc/hosts
             echo 0.0.0.0 ws.slanger.wb.local | sudo tee -a /etc/hosts
       - run:
           name: Download apps
