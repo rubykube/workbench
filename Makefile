@@ -35,10 +35,13 @@ cryptonodes: geth
 daemons:
 	$(COMPOSE) up --build -d withdraw_audit           \
 	                         blockchain               \
+	                         global_state             \
 	                         deposit_collection       \
 	                         deposit_collection_fees  \
 	                         deposit_coin_address     \
 	                         slave_book market_ticker \
+	                         pusher_market            \
+	                         pusher_member            \
 	                         matching                 \
 	                         order_processor          \
 	                         trade_executor           \
