@@ -9,7 +9,6 @@ services:
       - db
       - redis
       - rabbitmq
-      - smtp_relay
       - barong
       - slanger
       - geth
@@ -33,6 +32,7 @@ services:
       - proxy
       - db
       - vault
+      - mailcatcher
     env_file:
       - ../config/barong.env
     volumes:
