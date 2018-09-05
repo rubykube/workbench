@@ -10,7 +10,6 @@ x-daemon: &peatio-daemon
     - redis
     - rabbitmq
     - geth
-    - smtp_relay
     - barong
     - slanger
     - coinhub
