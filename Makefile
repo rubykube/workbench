@@ -1,6 +1,7 @@
 .PHONY: build prepare run test stress seed down setup-apps
 
 COMPOSE = docker-compose
+TRUE    = true
 
 default: run
 
@@ -38,8 +39,6 @@ daemons:
 	                         slave_book market_ticker \
 	                         matching                 \
 	                         order_processor          \
-	                         pusher_market            \
-	                         pusher_member            \
 	                         trade_executor           \
 	                         withdraw_coin
 
@@ -57,7 +56,11 @@ run: prepare setup-apps
 	$(COMPOSE) up --build -d peatio barong trading_ui proxy
 
 test:
+ifeq ($(CIRCLECI),$(TRUE))
+	@$(COMPOSE) run --rm integration bash -c "yarn cypress run --record --key $(CYPRESS_RECORD_KEY)"
+else
 	@$(COMPOSE) run --rm integration
+endif
 
 stress:
 	@bundle exec rake toolbox:run
