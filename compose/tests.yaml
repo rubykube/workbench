@@ -12,8 +12,3 @@ services:
       context: ../test/toolbox
     entrypoint: bin/stress_trading
 
-  selenium:
-    image: selenium/standalone-chrome
-    environment:
-      SCREEN_WIDTH: 800
-      SCREEN_HEIGHT: 600
