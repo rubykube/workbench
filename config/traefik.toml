@@ -1,9 +1,25 @@
 logLevel = "INFO"
+defaultEntryPoints = ["https","http"]
 
-[api]
+[entryPoints]
+  [entryPoints.http]
+  address = ":80"
+  [entryPoints.https]
+  address = ":443"
+  [entryPoints.https.tls]
+
+[retry]
 
 [docker]
-domain = "local"
+endpoint = "unix:///var/run/docker.sock"
+domain = "wb.local"
 watch = true
-exposedByDefault = false
-usebindportip = true
+exposedbydefault = false
+
+[acme]
+email = "support@heliostech.fr"
+storage = "acme.json"
+entryPoint = "https"
+OnHostRule = true
+[acme.httpChallenge]
+entryPoint = "http"
