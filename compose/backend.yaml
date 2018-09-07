@@ -3,6 +3,7 @@ version: '3.6'
 services:
   db:
     image: mysql:5.7
+    restart: always
     volumes:
       - ../config/mysql/my.cnf:/etc/mysql/my.cnf
       - db_data:/var/lib/mysql
@@ -56,6 +57,7 @@ services:
   ranger:
     build:
       context: ../app/peatio
+    restart: always
     depends_on:
       - rabbitmq
     env_file:
@@ -68,6 +70,7 @@ services:
 
   mailcatcher:
     image: schickling/mailcatcher
+    restart: always
     labels:
       traefik.enable: true
       traefik.frontend.rule: 'Host: mail.wb.local'

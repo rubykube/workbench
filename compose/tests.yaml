@@ -11,4 +11,3 @@ services:
     build:
       context: ../test/toolbox
     entrypoint: bin/stress_trading
-
