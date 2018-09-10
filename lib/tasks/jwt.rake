@@ -11,4 +11,3 @@ namespace :jwt do
         generateKeys
     end
 end
-
