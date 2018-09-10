@@ -5,7 +5,7 @@ services:
     build:
       context: ../test/integration
     volumes:
-      - ../config/integration/fixtures:/usr/src/app/fixtures/
+      - ../config/integration/fixtures:/usr/src/app/src/fixtures/
 
   toolbox:
     build:

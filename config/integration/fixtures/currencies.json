@@ -1,0 +1,34 @@
+{
+  "Fiats": [
+    "USD",
+    "EUR"
+  ],
+  "Ethereums": [
+    "ETH",
+    "TRST"
+  ],
+  "ETH": {
+    "client": "ethereum",
+    "explorerAddress": "/address/#{address}",
+    "explorerTransaction": "/tx/#{txid}",
+    "baseFactor": "1000000000000000000",
+    "gateway": "geth",
+    "blockchainKeyPrefix": "eth"
+  },
+  "TRST": {
+    "client": "",
+    "explorerAddress": "",
+    "explorerTransaction": "",
+    "baseFactor": "1000000",
+    "gateway": "geth",
+    "blockchainKeyPrefix": "eth"
+  },
+  "FIAT": {
+    "client": "",
+    "explorerAddress": "",
+    "explorerTransaction": "",
+    "baseFactor": "1",
+    "server": "",
+    "gateway": ""
+  }
+}
