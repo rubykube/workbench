@@ -10,10 +10,10 @@ services:
       MYSQL_ROOT_PASSWORD: changeme
 
   coinhub:
-    image: rubykube/coinhub
+    image: rubykube/coinhub:0.2.4
 
   redis:
-    image: redis:4.0.10
+    image: redis:4.0
     restart: always
     volumes:
       - redis_data:/data
@@ -35,7 +35,7 @@ services:
       traefik.port: 80
 
   rabbitmq:
-    image: rabbitmq:3.7.6-management
+    image: rabbitmq:3.7
     restart: always
     volumes:
       - rabbitmq_data:/var/lib/rabbitmq
@@ -45,7 +45,7 @@ services:
       traefik.port: 15672
 
   vault:
-    image: vault:0.10.2
+    image: vault:0.11.1
     restart: always
     environment:
       SKIP_SETCAP: 1
