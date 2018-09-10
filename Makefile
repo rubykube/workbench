@@ -51,7 +51,10 @@ dependencies:
 	$(COMPOSE) up -d vault db phpmyadmin redis rabbitmq mailcatcher ranger coinhub
 	$(COMPOSE) run --rm vault secrets enable totp || true
 
-prepare: dependencies daemons cryptonodes
+proxy:
+	@touch config/acme.json && chmod 0600 config/acme.json
+
+prepare: proxy dependencies daemons cryptonodes
 
 setup-apps: build
 	$(COMPOSE) run --rm peatio bash -c "./bin/link_config && bundle exec rake db:create db:migrate db:seed"
