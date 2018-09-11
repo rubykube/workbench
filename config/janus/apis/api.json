@@ -1,0 +1,23 @@
+[
+    {
+        "name": "peatio",
+        "active": true,
+        "hosts": [
+            "*.wb.local",
+            "wb.local"
+        ],
+        "proxy": {
+            "listen_path": "/api/*",
+            "preserve_host": false,
+            "strip_path": true,
+            "upstreams": {
+                "balancing": "roundrobin",
+                "targets": [
+                    {
+                        "target": "http://peatio:8000/"
+                    }
+                ]
+            }
+        }
+    }
+]

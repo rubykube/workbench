@@ -1,0 +1,20 @@
+version: '3.6'
+
+services:
+  janus:
+    image: quay.io/hellofresh/janus
+    depends_on:
+      - peatio
+      - barong
+      - trading_ui
+      - proxy
+    volumes:
+      - ../config/janus/janus.toml:/etc/janus/janus.toml
+      - ../config/janus/apis:/etc/janus/apis
+      - ../config/janus/auth:/etc/janus/auth
+    labels:
+      traefik.enable: true
+      traefik.frontend.rule: 'Host: wb.local; PathPrefix: /api'
+      traefik.port: 8080
+      traefik.frontend.rule: 'Host: janus.wb.local'
+      traefik.port: 8081
