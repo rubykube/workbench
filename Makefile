@@ -62,7 +62,7 @@ setup-apps: build
 	$(COMPOSE) run --rm barong bash -c "./bin/link_config && ./bin/setup"
 
 run: prepare setup-apps
-	$(COMPOSE) up --build -d peatio barong trading_ui proxy
+	$(COMPOSE) up --build -d peatio barong trading_ui proxy ambassador
 
 test:
 	@$(COMPOSE) run --rm integration
