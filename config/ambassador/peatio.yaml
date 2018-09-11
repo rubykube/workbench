@@ -1,0 +1,7 @@
+---
+apiVersion: ambassador/v0
+kind: Mapping
+name: peatio
+prefix: /api/peatio
+rewrite: /api
+service: peatio:8000
