@@ -60,3 +60,20 @@ services:
       traefik.enable: true
       traefik.frontend.rule: 'Host: api.wb.local; PathPrefix:/trading, /trading-ui-assets'
       traefik.port: 8002
+
+  applogic:
+    build:
+      context: ../app/applogic
+    depends_on:
+      - proxy
+      - db
+      - barong
+      - peatio
+    env_file:
+      - ../config/applogic.env
+    expose:
+      - "8003"
+    labels:
+      traefik.enable: true
+      traefik.frontend.rule: 'Host: applogic.wb.local'
+      traefik.port: 8003

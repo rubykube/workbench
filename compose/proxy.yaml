@@ -15,6 +15,7 @@ services:
         aliases:
           - api.wb.local
           - auth.wb.local
+          - applogic.wb.local
           - ws.ranger.wb.local
           - pma.wb.local
           - eth.wb.local

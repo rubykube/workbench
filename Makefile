@@ -63,6 +63,9 @@ setup-apps: build
 run: prepare setup-apps
 	$(COMPOSE) up --build -d peatio barong trading_ui proxy
 
+applogic:
+	$(COMPOSE) up -d applogic
+
 test:
 	@$(COMPOSE) run --rm integration
 
