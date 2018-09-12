@@ -1,4 +1,4 @@
-.PHONY: build prepare run test stress seed down setup-apps
+.PHONY: build prepare run test stress seed down setup-apps config
 
 COMPOSE = docker-compose
 
@@ -14,8 +14,11 @@ pull:
 	                coinhub     \
 	                geth
 
+config:
+	@echo "Rendering configuration..."
+	@bundle exec rake config:render
 
-build: pull
+build: config pull
 	$(COMPOSE) build peatio     \
 	                 barong     \
 	                 trading_ui \
@@ -70,7 +73,7 @@ test:
 stress:
 	@bundle exec rake toolbox:run
 
-start: prepare setup-apps
+start: config prepare setup-apps
 	$(COMPOSE) up -d peatio barong trading_ui proxy
 
 update:

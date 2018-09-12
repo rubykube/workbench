@@ -16,6 +16,9 @@ jobs:
             chmod +x ~/docker-compose
             sudo mv ~/docker-compose /usr/local/bin/docker-compose
       - run:
+          name: Install ruby dependencies
+          command: "bundle install"
+      - run:
           name: Add hosts
           command: |
             echo 0.0.0.0 api.wb.local | sudo tee -a /etc/hosts && \
