@@ -18,7 +18,9 @@ services:
     expose:
       - "8000"
     volumes:
-      - ../config/peatio:/opt/peatio/config:ro
+      - ../config/peatio/seed:/opt/peatio/config/seed
+      - ../config/peatio/management_api_v1.yml:/opt/peatio/config/management_api_v1.yml
+      - ../config/peatio/plugins.yml:/opt/peatio/config/plugins.yml
       - ../app/peatio/app:/home/app/app
       - ../app/peatio/lib:/home/app/lib
     labels:
