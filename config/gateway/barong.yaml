@@ -1,4 +1,3 @@
----
 apiVersion: ambassador/v0
 kind: Mapping
 name: barong
