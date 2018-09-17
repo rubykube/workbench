@@ -27,13 +27,19 @@ git clone --recursive https://github.com/rubykube/workbench.git
 cd workbench
 ```
 
-3. Build the images
+3. Update submodules to latest versions
+
+```sh
+make update
+```
+
+4. Build the images
 
 ```sh
 make build
 ```
 
-4. **Optional:** Enable bitcoin
+5. **Optional:** Enable bitcoin
 
 ```sh
 make bitcoin
@@ -41,7 +47,7 @@ make bitcoin
 
 This will create new seeds and start `bitcoind` docker container.
 
-5. Run the application
+6. Run the application
 
 ```sh
 make run
