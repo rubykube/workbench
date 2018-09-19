@@ -18,13 +18,10 @@ services:
     expose:
       - "8000"
     volumes:
+      - peatio-assets:/home/app/public
       - ../config/peatio:/opt/peatio/config:ro
       - ../app/peatio/app:/home/app/app
       - ../app/peatio/lib:/home/app/lib
-    # labels:
-    #   traefik.enable: true
-    #   traefik.frontend.rule: 'Host: www.wb.local; PathPrefix: /peatio'
-    #   traefik.port: 8000
     command: bash -c "bin/link_config && bundle exec puma --config config/puma.rb"
 
   barong:
@@ -38,14 +35,14 @@ services:
     env_file:
       - ../config/barong.env
     volumes:
+      - barong-assets:/home/app/public
       - ../config/barong:/opt/barong/config:ro
+      - ../app/barong/app:/home/app/app
+      - ../app/barong/lib:/home/app/lib
     expose:
       - "8001"
-    # labels:
-    #   traefik.enable: true
-    #   traefik.frontend.rule: 'Host: www.wb.local; PathPrefix: /barong'
-    #   traefik.port: 8001
 
+  # @shal TODO: Check if problems exist. If yes - fix assets.
   trading_ui:
     build:
       context: ../app/trading-ui
@@ -56,7 +53,25 @@ services:
       - ../config/trading-ui.env
     expose:
       - "8002"
-    # labels:
-    #   traefik.enable: true
-    #   traefik.frontend.rule: 'Host: www.wb.local; PathPrefix:/peatio/trading, /peatio/trading-ui-assets'
-    #   traefik.port: 8002
+    labels:
+      traefik.enable: true
+      traefik.frontend.rule: 'Host: www.wb.local; PathPrefix:/peatio/trading, /peatio/trading-ui-assets'
+      traefik.port: 8002
+
+  assets:
+    image: nginx
+    depends_on:
+      - peatio
+      - barong
+      - proxy
+    volumes:
+     - peatio-assets:/usr/share/nginx/html/peatio:ro
+     - barong-assets:/usr/share/nginx/html/barong:ro
+    labels:
+      traefik.enable: true
+      traefik.frontend.rule: 'Host: www.wb.local; PathPrefix:/peatio/assets, PathPrefix:/barong/assets'
+      traefik.port: 80
+
+volumes:
+  peatio-assets:
+  barong-assets:

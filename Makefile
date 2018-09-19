@@ -49,7 +49,7 @@ daemons:
 	                         k
 
 dependencies:
-	$(COMPOSE) up -d vault db phpmyadmin redis rabbitmq mailcatcher ranger coinhub
+	$(COMPOSE) up -d vault db phpmyadmin redis rabbitmq mailcatcher ranger coinhub assets
 	$(COMPOSE) run --rm vault secrets enable totp || true
 
 proxy:
