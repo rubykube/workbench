@@ -74,3 +74,8 @@ services:
   pusher_member:
     << : *peatio-daemon
     command: bash -c "bin/link_config && bundle exec ruby lib/daemons/amqp_daemon.rb pusher_member"
+
+  k:
+    << : *peatio-daemon
+    command: bash -c "bin/link_config && bundle exec ruby lib/daemons/k.rb"
+

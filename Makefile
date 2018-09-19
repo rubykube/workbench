@@ -45,7 +45,8 @@ daemons:
 	                         matching                 \
 	                         order_processor          \
 	                         trade_executor           \
-	                         withdraw_coin
+	                         withdraw_coin	          \
+	                         k
 
 dependencies:
 	$(COMPOSE) up -d vault db phpmyadmin redis rabbitmq mailcatcher ranger coinhub
