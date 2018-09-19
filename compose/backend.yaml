@@ -60,6 +60,9 @@ services:
       - rabbitmq
     env_file:
       - ../config/peatio.env
+    environment:
+      RANGER_HOST: 0.0.0.0
+      RANGER_PORT: 8081
     labels:
       traefik.enable: true
       traefik.frontend.rule: 'Host: ws.ranger.wb.local'
