@@ -3,9 +3,15 @@ version: '3.6'
 services:
   gateway:
     image: quay.io/datawire/ambassador:0.39.0
+    restart: always
+    depends_on:
+      - proxy
+      - peatio
+      - barong
+      - ranger
     volumes:
       - ../config/gateway:/ambassador/ambassador-config:ro
     labels:
       traefik.enable: true
-      traefik.frontend.rule: 'Host: wb.local'
+      traefik.frontend.rule: 'Host: www.wb.local'
       traefik.port: 80

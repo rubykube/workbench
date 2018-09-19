@@ -138,7 +138,7 @@ accounts:
 # Note: in production env, `redirect_uri` can only be a 'https' url.
 applications:
   - name: "Peatio"
-    redirect_uri: "http://api.wb.local/auth/barong/callback"
+    redirect_uri: "http://wb.local/barong/auth/barong/callback"
     skipauth: true
     uid: "a68be319fca51caca60eed5711226e568bd1c1d13ff452b945515f1a6ffbaca4"
     secret: "ab80e2c843861c4d23e63f5472cd1c9ee6f55e388863e21f22b03a9093977f29"

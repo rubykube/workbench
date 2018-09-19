@@ -13,8 +13,7 @@ services:
     networks:
       default:
         aliases:
-          - api.wb.local
-          - auth.wb.local
+          - wb.local
           - ws.ranger.wb.local
           - pma.wb.local
           - eth.wb.local
