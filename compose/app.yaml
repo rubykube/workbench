@@ -65,11 +65,11 @@ services:
       - barong
       - proxy
     volumes:
-     - peatio-assets:/usr/share/nginx/html/peatio:ro
-     - barong-assets:/usr/share/nginx/html/barong:ro
+     - peatio-assets:/usr/share/nginx/html/assets/peatio:ro
+     - barong-assets:/usr/share/nginx/html/assets/barong:ro
     labels:
       traefik.enable: true
-      traefik.frontend.rule: 'Host: www.wb.local; PathPrefix:/peatio/assets, PathPrefix:/barong/assets'
+      traefik.frontend.rule: 'Host: www.wb.local; PathPrefix: /assets'
       traefik.port: 80
 
 volumes:
