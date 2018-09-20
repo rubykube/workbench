@@ -1,0 +1,6 @@
+apiVersion: ambassador/v0
+kind: Mapping
+name: barong
+prefix: /barong
+rewrite: /barong
+service: barong:8001

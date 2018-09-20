@@ -49,7 +49,7 @@ daemons:
 	                         k
 
 dependencies:
-	$(COMPOSE) up -d vault db phpmyadmin redis rabbitmq mailcatcher ranger coinhub
+	$(COMPOSE) up -d vault db phpmyadmin redis rabbitmq mailcatcher ranger coinhub peatio_assets barong_assets
 	$(COMPOSE) run --rm vault secrets enable totp || true
 
 proxy:
@@ -62,7 +62,7 @@ setup-apps: build
 	$(COMPOSE) run --rm barong bash -c "./bin/link_config && ./bin/setup"
 
 run: prepare setup-apps
-	$(COMPOSE) up --build -d peatio barong trading_ui proxy
+	$(COMPOSE) up --build -d peatio barong trading_ui proxy gateway
 
 test:
 	@$(COMPOSE) run --rm integration
@@ -71,7 +71,7 @@ stress:
 	@bundle exec rake toolbox:run
 
 start: prepare setup-apps
-	$(COMPOSE) up -d peatio barong trading_ui proxy
+	$(COMPOSE) up -d peatio barong trading_ui proxy gateway
 
 update:
 	git submodule update --init --remote
