@@ -13,7 +13,7 @@ services:
     networks:
       default:
         aliases:
-          - wb.local
+          - www.wb.local
           - ws.ranger.wb.local
           - pma.wb.local
           - eth.wb.local
