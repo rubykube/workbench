@@ -42,22 +42,6 @@ services:
     expose:
       - "8001"
 
-  # @shal TODO: Check if problems exist. If yes - fix assets.
-  trading_ui:
-    build:
-      context: ../app/trading-ui
-    depends_on:
-      - proxy
-      - peatio
-    env_file:
-      - ../config/trading-ui.env
-    expose:
-      - "8002"
-    labels:
-      traefik.enable: true
-      traefik.frontend.rule: 'Host: www.wb.local; PathPrefix:/peatio/trading, /peatio/trading-ui-assets'
-      traefik.port: 8002
-
   assets:
     image: nginx
     depends_on:

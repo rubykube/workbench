@@ -18,7 +18,6 @@ pull:
 build: pull
 	$(COMPOSE) build peatio     \
 	                 barong     \
-	                 trading_ui \
 	                 integration
 
 geth:
@@ -62,7 +61,7 @@ setup-apps: build
 	$(COMPOSE) run --rm barong bash -c "./bin/link_config && ./bin/setup"
 
 run: prepare setup-apps
-	$(COMPOSE) up --build -d peatio barong trading_ui proxy gateway
+	$(COMPOSE) up --build -d peatio barong proxy gateway
 
 test:
 	@$(COMPOSE) run --rm integration
@@ -71,7 +70,7 @@ stress:
 	@bundle exec rake toolbox:run
 
 start: prepare setup-apps
-	$(COMPOSE) up -d peatio barong trading_ui proxy gateway
+	$(COMPOSE) up -d peatio barong proxy gateway
 
 update:
 	git submodule update --init --remote
