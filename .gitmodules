@@ -6,6 +6,10 @@
 	path = app/barong
 	url = https://github.com/rubykube/barong.git
 	branch = "feature/apigate"
+[submodule "rangda"]
+	path = app/rangda
+	url = https://github.com/openware/rangda
+	branch = master
 [submodule "integration"]
 	path = test/integration
 	url = https://github.com/rubykube/integration.git

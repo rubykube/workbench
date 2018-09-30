@@ -1,7 +1,7 @@
 apiVersion: ambassador/v0
 kind: AuthService
 name: authentication
-auth_service: barong:8001
-path_prefix: /barong/authz
+auth_service: rangda:8010
+path_prefix: /api/v1/auth
 allowed_headers:
   - "Authorization"

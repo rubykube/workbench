@@ -24,6 +24,13 @@ services:
       - ../app/peatio/lib:/home/app/lib
     command: bash -c "bin/link_config && bundle exec puma --config config/puma.rb"
 
+  rangda:
+    build:
+      dockerfile: Dockerfile.dev
+      context: ../app/rangda
+    ports:
+      - 8010:8080
+
   barong:
     build:
       context: ../app/barong
