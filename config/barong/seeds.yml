@@ -13,8 +13,8 @@ accounts:
       state: active
       level: 3
   - account:
-      email: PhillipaRuais@gmail.com
-      password: "x796f7b98ufkjx2W"
+      email: philliparuais@gmail.com
+      password: "aikohMai7oh"
       role: admin
       state: active
       level: 3
@@ -30,8 +30,8 @@ accounts:
       city: "Velizy-Villacoublay"
       country: "FR"
   - account:
-      email: AntoinePelletier@gmail.com
-      password: "x796f7b98ufkjx2W"
+      email: antoinepelletier@gmail.com
+      password: "dous8Roh8aang"
       role: member
       state: active
       level: 0
@@ -47,8 +47,8 @@ accounts:
       city: "Fecamp"
       country: "FR"
   - account:
-      email: CecileVaillancourt@gmail.com
-      password: "x796f7b98ufkjx2W"
+      email: cecilevaillancourt@gmail.com
+      password: "mooC6yaebie"
       role: member
       state: active
       level: 1
@@ -64,8 +64,8 @@ accounts:
       city: "Gennevilliers"
       country: "FR"
   - account:
-      email: CharmaineOuellet@gmail.com
-      password: "x796f7b98ufkjx2W"
+      email: charmaineouellet@gmail.com
+      password: "aeR2yahquei"
       role: member
       state: active
       level: 2
@@ -81,8 +81,8 @@ accounts:
       city: "Saumur"
       country: "FR"
   - account:
-      email: RamonLMcCourt@gmail.com
-      password: "x796f7b98ufkjx2W"
+      email: ramonlmccourt@gmail.com
+      password: "Ucie8chiepah"
       role: member
       state: active
       level: 3
@@ -98,8 +98,8 @@ accounts:
       city: "Branford"
       country: "US"
   - account:
-      email: AmyJBriggs@gmail.com
-      password: "x796f7b98ufkjx2W"
+      email: amyjbriggs@gmail.com
+      password: "Ahniexa9"
       role: member
       state: active
       level: 3
@@ -115,8 +115,8 @@ accounts:
       city: "White Plains"
       country: "US"
   - account:
-      email: DavidTMoore@gmail.com
-      password: "x796f7b98ufkjx2W"
+      email: davidtmoore@gmail.com
+      password: "Ozeiphib5"
       role: member
       state: active
       level: 3
