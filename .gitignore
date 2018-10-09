@@ -3,3 +3,5 @@ config/peatio/management_api_v1.yml
 config/toolbox.yaml
 config/barong.env
 config/peatio.env
+config/keys/*
+!config/keys/.gitkeep
