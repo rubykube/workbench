@@ -8,6 +8,7 @@ namespace :config do
     files = [
       'config/peatio.env',
       'config/barong.env',
+      'config/ranger.env',
       'config/toolbox.yaml',
       'config/peatio/management_api_v1.yml'
     ]
