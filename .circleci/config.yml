@@ -36,15 +36,19 @@ jobs:
       - run:
           name: Run integration tests
           command: "make test"
+
 workflows:
   version: 2
-  daily:
+  commit-workflow:
+    jobs:
+      - build
+  scheduled-workflow:
     triggers:
-      - schedule: 
+      - schedule:
           cron: "0 10 * * *"
           filters:
             branches:
-              only:
-                - master
+              only: master
+
     jobs:
-      - build 
+      - build
