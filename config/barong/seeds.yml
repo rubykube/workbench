@@ -8,7 +8,7 @@
 accounts:
   - account:
       email: admin@barong.io
-      password: "Qwerty123"
+      password: "Chah5YohWm"
       role: admin
       state: active
       level: 3
