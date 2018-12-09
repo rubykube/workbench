@@ -4,7 +4,6 @@
   precision:            8
   base_factor:          1
   enabled:              true
-  quick_withdraw_limit: 1000
   deposit_fee:          0
   withdraw_fee:         0
   min_deposit_amount:   0
