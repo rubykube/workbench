@@ -79,6 +79,16 @@ These are just slightly modified from the original usage in [README.md](README.m
    ```
 
 Now you have peatio up and running.
+To stop it, run
+```
+make down
+```
+
+This preserves all your application states (docker volumes).
+To wipe everything for a clean relaunch, run
+```
+docker-compose down -v
+```
 
 ### Access web UI
 - [Admin Panel](http://api.wb.local/admin)
