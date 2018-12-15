@@ -9,7 +9,7 @@ x-daemon: &peatio-daemon
     - db
     - redis
     - rabbitmq
-    - geth
+    #- geth
     - barong
     - ranger
     - coinhub

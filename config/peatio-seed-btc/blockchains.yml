@@ -1,7 +1,7 @@
 - key:               eth-rinkeby
   name:              Ethereum Rinkeby
   client:            ethereum
-  server:            http://geth:8545
+  server:            http://10.8.0.1:8545
   height:            2756436
   min_confirmations: 6
   explorer:
@@ -12,7 +12,7 @@
 - key:               btc-testnet
   name:              Bitcoin Testnet
   client:            bitcoin
-  server:            http://admin:changeme@bitcoind:18332
+  server:            http://admin:changeme@10.8.0.1:18332
   height:            1379702
   min_confirmations: 2
   explorer:

@@ -11,7 +11,7 @@ services:
       - rabbitmq
       - barong
       - ranger
-      - geth
+      #- geth
       - coinhub
     env_file:
       - ../config/peatio.env

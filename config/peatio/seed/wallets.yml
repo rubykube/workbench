@@ -1,51 +1,51 @@
 - name:             Ethereum Deposit Wallet
   blockchain_key:   eth-rinkeby
   currency_id:      eth
-  address:          '0x2b9fBC10EbAeEc28a8Fc10069C0BC29E45eBEB9C'
+  address:          '0xc3f1a871ad14dcf255e27767241b869e7a878dd3'
   kind:             deposit
   nsig:             1
   max_balance:      0.0
   status:           active
   gateway:          geth
   settings:
-    uri:            http://geth:8545
-    secret:         'changeme'
+    uri:            http://10.8.0.1:8545
+    secret:         'top_secret'
 
 - name:             Ethereum Hot Wallet
   blockchain_key:   eth-rinkeby
   currency_id:      eth
-  address:          '0x0f493226a8a98363e9a85e6b8eca468a18cc6fbb'
+  address:          '0xf2ed429fc058073e2b45af535c2c6fd7c5f14c4d'
   kind:             hot
   nsig:             1
   max_balance:      100.0
   status:           active
   gateway:          geth
   settings:
-    uri:            http://geth:8545
-    secret:         'test'
+    uri:            http://10.8.0.1:8545
+    secret:         'top_secret'
 
 - name:             Trust Deposit Wallet
   blockchain_key:   eth-rinkeby
   currency_id:      trst
-  address:          '0x2b9fBC10EbAeEc28a8Fc10069C0BC29E45eBEB9C'
+  address:          '0xc3f1a871ad14dcf255e27767241b869e7a878dd3'
   kind:             deposit
   nsig:             1
   max_balance:      0.0
   status:           active
   gateway:          geth
   settings:
-    uri:            http://geth:8545
-    secret:         'changeme'
+    uri:            http://10.8.0.1:8545
+    secret:         'top_secret'
 
 - name:             Trust Hot Wallet
   blockchain_key:   eth-rinkeby
   currency_id:      trst
-  address:          '0x0f493226a8a98363e9a85e6b8eca468a18cc6fbb'
+  address:          '0xf2ed429fc058073e2b45af535c2c6fd7c5f14c4d'
   kind:             hot
   nsig:             1
   max_balance:      100.0
   status:           active
   gateway:          geth
   settings:
-    uri:            http://geth:8545
-    secret:         'test'
+    uri:            http://10.8.0.1:8545
+    secret:         'top_secret'
