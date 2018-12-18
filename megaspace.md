@@ -39,6 +39,13 @@ These are just slightly modified from the original usage in [README.md](README.m
    cd workbench
    ```
 
+1. Install `bundler` and dependencies
+
+   ```sh
+   gem install bundler
+   bundle install
+   ```
+
 1. Build the images
 
    ```sh
