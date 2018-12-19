@@ -24,6 +24,20 @@
     uri:            http://geth:8545
     secret:         'test'
 
+- name:             Ethereum Wallet for paying ERC20 fees
+  blockchain_key:   eth-rinkeby
+  currency_id:      eth
+  address:          '0x0f493226a8a98363e9a85e6b8eca468a18cc6fbb'
+  kind:             fee
+  nsig:             1
+  max_balance:      100.0
+  status:           active
+  gateway:          geth
+  settings:
+    uri:            http://geth:8545
+    secret:         'test'
+
+
 - name:             Trust Deposit Wallet
   blockchain_key:   eth-rinkeby
   currency_id:      trst
