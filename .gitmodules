@@ -1,14 +1,14 @@
 [submodule "peatio"]
 	path = app/peatio
-	url = https://github.com/megaspacelab/peatio.git
+	url = git@github.com:megaspacelab/peatio.git
 	branch = "master"
 [submodule "barong"]
 	path = app/barong
-	url = https://github.com/megaspacelab/barong.git
+	url = git@github.com:megaspacelab/barong.git
 	branch = "master"
 [submodule "trading-ui"]
 	path = app/trading-ui
-	url = https://github.com/megaspacelab/peatio-trading-ui.git
+	url = git@github.com:megaspacelab/peatio-trading-ui.git
 	branch = "1-9-stable"
 [submodule "integration"]
 	path = test/integration
