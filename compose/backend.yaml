@@ -8,6 +8,8 @@ services:
       - db_data:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: changeme
+    ports:
+      - "3306:3306"
 
   coinhub:
     image: rubykube/coinhub
