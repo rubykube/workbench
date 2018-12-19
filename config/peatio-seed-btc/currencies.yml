@@ -1,13 +1,15 @@
-- id:                   usd
-  symbol:               '$'
-  type:                 fiat
-  precision:            8
-  base_factor:          1
-  enabled:              true
-  quick_withdraw_limit: 1000
-  deposit_fee:          0
-  withdraw_fee:         0
-  min_deposit_amount:   0
+- id:                     usd
+  symbol:                 '$'
+  type:                   fiat
+  precision:              2
+  base_factor:            1
+  enabled:                true
+  min_deposit_amount:     0
+  min_collection_amount:  0
+  withdraw_limit_24h:     100
+  withdraw_limit_72h:     200
+  deposit_fee:            0
+  withdraw_fee:           0
 
 - id:                    eth
   blockchain_key:        eth-rinkeby
