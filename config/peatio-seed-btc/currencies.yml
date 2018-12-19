@@ -1,25 +1,29 @@
-- id:                   usd
-  symbol:               '$'
-  type:                 fiat
-  precision:            8
-  base_factor:          1
-  enabled:              true
-  quick_withdraw_limit: 1000
-  deposit_fee:          0
-  withdraw_fee:         0
-  min_deposit_amount:   0
+- id:                     usd
+  symbol:                 '$'
+  type:                   fiat
+  precision:              2
+  base_factor:            1
+  enabled:                true
+  min_deposit_amount:     0
+  min_collection_amount:  0
+  withdraw_limit_24h:     100
+  withdraw_limit_72h:     200
+  deposit_fee:            0
+  withdraw_fee:           0
 
-- id:                   eth
-  symbol:               'Ξ'
-  type:                 coin
-  precision:            8
-  base_factor:          1_000_000_000_000_000_000
-  enabled:              true
-  quick_withdraw_limit: 2
-  deposit_fee:          0
-  withdraw_fee:         0
-  min_deposit_amount:   0.00021
-  blockchain_key:       eth-rinkeby
+- id:                    eth
+  blockchain_key:        eth-rinkeby
+  symbol:                'Ξ'
+  type:                  coin
+  precision:             8
+  base_factor:           1_000_000_000_000_000_000
+  enabled:               true
+  min_deposit_amount:    0.00021
+  min_collection_amount: 0.00021
+  withdraw_limit_24h:    0.2
+  withdraw_limit_72h:    0.5
+  deposit_fee:           0
+  withdraw_fee:          0
   options:
     case_sensitive:                   false
     min_confirmations:                1
@@ -31,15 +35,19 @@
     wallet_url_template:      https://rinkeby.etherscan.io/address/#{address}
     transaction_url_template: https://rinkeby.etherscan.io/tx/#{txid}
 
-- id:                   trst
-  symbol:               'Ξ'
-  type:                 coin
-  precision:            8
-  base_factor:          1_000_000
-  enabled:              true
-  quick_withdraw_limit: 3000
-  min_deposit_amount:   1.7
-  blockchain_key:       eth-rinkeby
+- id:                    trst
+  blockchain_key:        eth-rinkeby
+  symbol:                'Ξ'
+  type:                  coin
+  precision:             8
+  base_factor:           1_000_000
+  enabled:               true
+  min_deposit_amount:    0.00021
+  min_collection_amount: 0.00021
+  withdraw_limit_24h:    300
+  withdraw_limit_72h:    600
+  deposit_fee:           0
+  withdraw_fee:          0
   options:
     case_sensitive:                   false
     min_confirmations:                1
@@ -52,17 +60,19 @@
     wallet_url_template:      https://rinkeby.etherscan.io/address/#{address}
     transaction_url_template: https://rinkeby.etherscan.io/tx/#{txid}
 
-- id:                   btc
-  symbol:               '฿'
-  type:                 coin
-  precision:            8
-  base_factor:          100_000_000
-  enabled:              true
-  quick_withdraw_limit: 0.1
-  deposit_fee:          0
-  withdraw_fee:         0
-  min_deposit_amount:   0.0000356
-  blockchain_key:       btc-testnet
+- id:                     btc
+  blockchain_key:         btc-testnet
+  symbol:                 '฿'
+  type:                   coin
+  precision:              8
+  base_factor:            100_000_000
+  enabled:                true
+  min_deposit_amount:     0.0000356
+  min_collection_amount:  0.0000356
+  withdraw_limit_24h:     0.1
+  withdraw_limit_72h:     0.2
+  deposit_fee:            0
+  withdraw_fee:           0
   options:
     case_sensitive:                   true
     min_confirmations:                1

@@ -1,11 +1,11 @@
 [submodule "peatio"]
 	path = app/peatio
 	url = git@github.com:megaspacelab/peatio.git
-	branch = "master"
+	branch = "1-9-stable"
 [submodule "barong"]
 	path = app/barong
 	url = git@github.com:megaspacelab/barong.git
-	branch = "master"
+	branch = "1-9-stable"
 [submodule "trading-ui"]
 	path = app/trading-ui
 	url = git@github.com:megaspacelab/peatio-trading-ui.git
