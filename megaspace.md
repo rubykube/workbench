@@ -13,8 +13,10 @@ These are just slightly modified from the original usage in [README.md](README.m
 
 ## Prerequisites
 
-- Docker [installed](https://docs.docker.com/engine/installation/)
-- Docker Compose [installed](https://docs.docker.com/compose/install/)
+- Docker [installed](https://docs.docker.com/engine/installation/).
+  If you use Docker for Mac, please adjust it to at least 4 CPUs and 8 GB of RAM, for better experience.
+- Docker Compose [installed](https://docs.docker.com/compose/install/).
+  Already included in Docker for Mac.
 - Ruby 2.5.1 ([rvm](https://rvm.io/) recommended)
   ```
   $ gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
