@@ -24,7 +24,7 @@
   position:       100
   enabled:        true
 
-  - id:           btceth
+- id:           btceth
   ask_unit:       btc
   bid_unit:       eth
   ask_fee:        0.0015
