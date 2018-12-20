@@ -2,11 +2,8 @@
 - Disable builtin `geth` and `bitcoind` services.
   Point to pre-established nodes on `10.8.0.1` instead.
 - Replace all seed addresses with ones controlled by us.
-
-## TODO
 - Change git submodules to point to forked repos.
-- Update `workbench` to work with latest master of submodules.
-  Currently there are some [issues](https://github.com/rubykube/workbenchissues/245).
+- Expose mysql port 3306 for easier debugging.
 
 # Fork usage
 These are just slightly modified from the original usage in [README.md](README.md#Usage). 
@@ -32,7 +29,7 @@ These are just slightly modified from the original usage in [README.md](README.m
 1. Recursive clone
 
    ```sh
-   git clone --recursive https://github.com/megaspacelab/workbench.git
+   git clone --recursive git@github.com:megaspacelab/workbench.git
    ```
 
 1. Move to workbench
