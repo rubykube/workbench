@@ -16,6 +16,6 @@
   height:            1379702
   min_confirmations: 2
   explorer:
-    address:         https://testnet.blockchain.info/address/#{address}
-    transaction:     https://testnet.blockchain.info/tx/#{txid}
+    address:         https://live.blockcypher.com/btc-testnet/address/#{address}
+    transaction:     https://live.blockcypher.com/btc-testnet/tx/#{txid}
   status:            active
