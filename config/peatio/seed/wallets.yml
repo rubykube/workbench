@@ -62,3 +62,30 @@
   settings:
     uri:            http://10.8.0.1:8545
     secret:         'top_secret'
+
+- name:             USDC Deposit Wallet
+  blockchain_key:   eth-rinkeby
+  currency_id:      usdc
+  address:          '0xc3f1a871ad14dcf255e27767241b869e7a878dd3'
+  kind:             deposit
+  nsig:             1
+  max_balance:      0.0
+  status:           active
+  gateway:          geth
+  settings:
+    uri:            http://10.8.0.1:8545
+    secret:         'top_secret'
+
+- name:             USDC Hot Wallet
+  blockchain_key:   eth-rinkeby
+  currency_id:      usdc
+  address:          '0xf2ed429fc058073e2b45af535c2c6fd7c5f14c4d'
+  kind:             hot
+  nsig:             1
+  max_balance:      20.0
+  status:           active
+  gateway:          geth
+  settings:
+    uri:            http://10.8.0.1:8545
+    secret:         'top_secret'
+    
