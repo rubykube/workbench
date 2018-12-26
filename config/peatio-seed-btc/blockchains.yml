@@ -9,6 +9,17 @@
     transaction:     https://rinkeby.etherscan.io/tx/#{txid}
   status:            active
 
+- key:               grin-floonet
+  name:              Grin Floonet
+  client:            grin
+  server:            http://10.8.0.1:25003
+  height:            8500
+  min_confirmations: 10
+  explorer:
+    address:         https://grinexplorer.net
+    transaction:     https://grinexplorer.net
+  status:            active
+
 - key:               btc-testnet
   name:              Bitcoin Testnet
   client:            bitcoin

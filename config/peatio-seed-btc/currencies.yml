@@ -108,3 +108,27 @@
     json_rpc_endpoint:        http://admin:changeme@10.8.0.1:18332
     wallet_url_template:      https://testnet.blockchain.info/address/#{address}
     transaction_url_template: https://testnet.blockchain.info/tx/#{txid}
+
+- id:                    grin
+  blockchain_key:        grin-floonet
+  symbol:                'Ü'
+  type:                  coin
+  precision:             8
+  base_factor:           1_000_000_000
+  enabled:               true
+  min_deposit_amount:    0.00001
+  min_collection_amount: 0.00001
+  withdraw_limit_24h:    500
+  withdraw_limit_72h:    1000
+  deposit_fee:           0
+  withdraw_fee:          0
+  options:
+    case_sensitive:                   false
+    min_confirmations:                10
+    supports_cash_addr_format:        false
+    supports_hd_protocol:             false
+    allow_multiple_deposit_addresses: false
+    api_client: GRIN
+    json_rpc_endpoint:        http://10.8.0.1:25003
+    wallet_url_template:      https://grinexplorer.net
+    transaction_url_template: https://grinexplorer.net

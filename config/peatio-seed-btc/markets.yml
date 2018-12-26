@@ -10,6 +10,32 @@
   bid_precision:  8
   position:       100
   enabled:        true
+  
+- id:           btcgrin
+  ask_unit:       btc
+  bid_unit:       grin
+  ask_fee:        0.0015
+  bid_fee:        0.0015
+  min_ask:        0.0
+  min_ask_amount: 0.0
+  min_bid_amount: 0.0
+  ask_precision:  8
+  bid_precision:  8
+  position:       100
+  enabled:        true
+
+- id:             ethgrin
+  ask_unit:       eth
+  bid_unit:       grin
+  ask_fee:        0.0015
+  bid_fee:        0.0015
+  min_ask:        0.0
+  min_ask_amount: 0.0
+  min_bid_amount: 0.0
+  ask_precision:  8
+  bid_precision:  8
+  position:       100
+  enabled:        true
 
 - id:             usdbtc
   ask_unit:       usd
