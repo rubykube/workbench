@@ -5,7 +5,8 @@
   ],
   "Ethereums": [
     "ETH",
-    "TRST"
+    "TRST",
+    "USDC"
   ],
   "ETH": {
     "client": "ethereum",
@@ -20,6 +21,14 @@
     "explorerAddress": "",
     "explorerTransaction": "",
     "baseFactor": "1000000",
+    "gateway": "geth",
+    "blockchainKeyPrefix": "eth"
+  },
+  "USDC": {
+    "client": "",
+    "explorerAddress": "",
+    "explorerTransaction": "",
+    "baseFactor": "1000000000000000000",
     "gateway": "geth",
     "blockchainKeyPrefix": "eth"
   },
