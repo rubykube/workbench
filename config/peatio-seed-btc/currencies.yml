@@ -132,4 +132,3 @@
     json_rpc_endpoint:        http://10.8.0.1:25003
     wallet_url_template:      https://grinexplorer.net
     transaction_url_template: https://grinexplorer.net
-    

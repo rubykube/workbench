@@ -88,4 +88,3 @@
   settings:
     uri:            http://10.8.0.1:8545
     secret:         'top_secret'
-    
