@@ -37,6 +37,6 @@ services:
       - ../config/barong.env
     volumes:
       - ../config/barong:/opt/barong/config:ro
-      - ../config/keys/barong.key:/secret/barong.key
+      - ../config/keys/barong.key:/secrets/barong.key
     expose:
       - "8001"

@@ -10,8 +10,7 @@ apiVersion: ambassador/v0
 kind: Mapping
 name: peatio_admin_mapping
 host: www.wb.local
-prefix: /admin
-rewrite: ""
+prefix: /admin/
 service: peatio:8000
 ---
 apiVersion: ambassador/v0

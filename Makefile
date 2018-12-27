@@ -20,8 +20,7 @@ config:
 
 build: config pull
 	$(COMPOSE) build peatio     \
-	                 barong     \
-	                 integration
+	                 barong
 
 geth:
 	@$(COMPOSE) up -d geth

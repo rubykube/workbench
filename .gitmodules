@@ -10,10 +10,6 @@
 	path = app/tower
 	url = https://github.com/openware/tower.git
 	branch = "master"
-[submodule "integration"]
-	path = test/integration
-	url = https://github.com/rubykube/integration.git
-	branch = "master"
 [submodule "toolbox"]
 	path = test/toolbox
 	url = https://github.com/rubykube/toolbox.git
