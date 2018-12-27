@@ -66,9 +66,6 @@ setup-apps: build
 run: prepare setup-apps
 	$(COMPOSE) up --build -d peatio barong proxy mikroapp tower gateway
 
-test:
-	@$(COMPOSE) run --rm integration
-
 stress:
 	@bundle exec rake toolbox:run
 
