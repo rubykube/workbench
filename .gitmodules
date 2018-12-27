@@ -1,11 +1,11 @@
 [submodule "peatio"]
 	path = app/peatio
 	url = https://github.com/rubykube/peatio.git
-	branch = "1-9-stable"
+	branch = "master"
 [submodule "barong"]
 	path = app/barong
 	url = https://github.com/rubykube/barong.git
-	branch = "1-9-stable"
+	branch = "master"
 [submodule "integration"]
 	path = test/integration
 	url = https://github.com/rubykube/integration.git
