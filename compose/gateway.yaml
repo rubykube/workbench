@@ -10,5 +10,5 @@ services:
       - '8877:8877'
     labels:
       traefik.enable: true
-      traefik.frontend.rule: "Host: www.wb.local, peatio.wb.local; PathPrefix: /api/, /admin, /assets/"
+      traefik.frontend.rule: "Host: www.wb.local; PathPrefix: /api/, /admin, /assets/"
       traefik.port: 80

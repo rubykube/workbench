@@ -56,8 +56,7 @@ make run
 You should add those hosts to your `/etc/hosts` file:
 
 ```
-0.0.0.0 api.wb.local
-0.0.0.0 auth.wb.local
+0.0.0.0 www.wb.local
 
 0.0.0.0 ws.ranger.wb.local
 
