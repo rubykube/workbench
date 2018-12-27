@@ -23,10 +23,6 @@ services:
       - ../config/peatio/plugins.yml:/opt/peatio/config/plugins.yml
       - ../app/peatio/app:/home/app/app
       - ../app/peatio/lib:/home/app/lib
-    labels:
-      traefik.enable: true
-      traefik.frontend.rule: 'Host: api.wb.local'
-      traefik.port: 8000
     command: bash -c "bin/link_config && bundle exec puma --config config/puma.rb"
 
   barong:
@@ -41,9 +37,6 @@ services:
       - ../config/barong.env
     volumes:
       - ../config/barong:/opt/barong/config:ro
+      - ../config/keys/barong.key:/secret/barong.key
     expose:
       - "8001"
-    labels:
-      traefik.enable: true
-      traefik.frontend.rule: 'Host: auth.wb.local'
-      traefik.port: 8001

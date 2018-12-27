@@ -1,0 +1,7 @@
+apiVersion: ambassador/v0
+kind: AuthService
+name: authorization
+auth_service: barong:8001
+path_prefix: /api/v2/identity/sessions/authorize
+allowed_headers:
+  - "Authorization"

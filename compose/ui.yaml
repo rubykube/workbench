@@ -1,0 +1,21 @@
+version: '3.6'
+
+services:
+  mikroapp:
+    image: rubykube/mikroapp
+    labels:
+      traefik.enable: true
+      traefik.frontend.rule: "Host:www.wb.local; PathPrefix: /"
+      traefik.port: 3000
+
+  tower:
+    build:
+      context: ../app/tower
+      dockerfile: Dockerfile.dev
+    volumes:
+      - ../app/tower:/home/node
+    labels:
+      traefik.enable: true
+      traefik.frontend.rule: "Host:www.wb.local; PathPrefix: /tower"
+      traefik.port: 3000
+

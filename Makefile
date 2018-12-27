@@ -64,7 +64,7 @@ setup-apps: build
 	$(COMPOSE) run --rm barong bash -c "./bin/link_config && ./bin/setup"
 
 run: prepare setup-apps
-	$(COMPOSE) up --build -d peatio barong proxy
+	$(COMPOSE) up --build -d peatio barong proxy mikroapp tower gateway
 
 test:
 	@$(COMPOSE) run --rm integration
@@ -73,7 +73,7 @@ stress:
 	@bundle exec rake toolbox:run
 
 start: config prepare setup-apps
-	$(COMPOSE) up -d peatio barong proxy
+	$(COMPOSE) up -d peatio barong proxy mikroapp tower gateway
 
 update:
 	git submodule update --init --remote

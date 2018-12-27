@@ -6,6 +6,10 @@
 	path = app/barong
 	url = https://github.com/rubykube/barong.git
 	branch = "master"
+[submodule "tower"]
+	path = app/tower
+	url = https://github.com/openware/tower.git
+	branch = "master"
 [submodule "integration"]
 	path = test/integration
 	url = https://github.com/rubykube/integration.git
