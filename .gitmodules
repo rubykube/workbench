@@ -6,10 +6,6 @@
 	path = app/barong
 	url = https://github.com/rubykube/barong.git
 	branch = "1-9-stable"
-[submodule "trading-ui"]
-	path = app/trading-ui
-	url = https://github.com/rubykube/peatio-trading-ui.git
-	branch = "1-9-stable"
 [submodule "integration"]
 	path = test/integration
 	url = https://github.com/rubykube/integration.git
