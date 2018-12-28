@@ -45,7 +45,11 @@ make build
 make bitcoin
 ```
 
-This will create new seeds and start `bitcoind` docker container.
+6. **Optional:** Start ethereum blockchain node
+
+```sh
+make geth
+```
 
 6. Run the application
 
