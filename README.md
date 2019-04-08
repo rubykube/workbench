@@ -114,3 +114,12 @@ Run toolbox stress tests
 ```sh
 $> make stress
 ```
+
+Please help keep the project!
+Make a donation
+
+Here is the wallet code
+
+Here the address
+
+Multiple coins can be used for donation?
