@@ -21,8 +21,9 @@ jobs:
       - run:
           name: Add hosts
           command: |
-            echo 0.0.0.0 api.wb.local | sudo tee -a /etc/hosts && \
-            echo 0.0.0.0 auth.wb.local | sudo tee -a /etc/hosts && \
+            echo 0.0.0.0 www.wb.local | sudo tee -a /etc/hosts && \
+            echo 0.0.0.0 peatio.wb.local | sudo tee -a /etc/hosts && \
+            echo 0.0.0.0 barong.wb.local | sudo tee -a /etc/hosts && \
             echo 0.0.0.0 ws.ranger.wb.local | sudo tee -a /etc/hosts
       - run:
           name: Download apps
@@ -33,9 +34,6 @@ jobs:
       - run:
           name: Run workbench
           command: "make start"
-      - run:
-          name: Run integration tests
-          command: "make test"
 
 workflows:
   version: 2

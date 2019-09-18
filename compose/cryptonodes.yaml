@@ -1,8 +1,8 @@
-version: '3.6'
+version: '3.7'
 
 services:
   geth:
-    image: ethereum/client-go:stable
+    image: ethereum/client-go:alpine
     restart: always
     command: |
       --syncmode=full

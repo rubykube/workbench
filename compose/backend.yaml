@@ -1,10 +1,9 @@
-version: '3.6'
+version: '3.7'
 
 services:
   db:
     image: mysql:5.7
     volumes:
-      - ../config/mysql/my.cnf:/etc/mysql/my.cnf
       - db_data:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: changeme
@@ -13,29 +12,13 @@ services:
     image: rubykube/coinhub
 
   redis:
-    image: redis:4.0.10
+    image: redis:4-alpine
     restart: always
     volumes:
       - redis_data:/data
 
-  phpmyadmin:
-    image: phpmyadmin/phpmyadmin
-    restart: always
-    depends_on:
-      - db
-    environment:
-      PMA_HOST: db
-      PMA_USER: root
-      PMA_PASSWORD: changeme
-      PHP_UPLOAD_MAX_FILESIZE: 1G
-      PHP_MAX_INPUT_VARS: 1G
-    labels:
-      traefik.enable: true
-      traefik.frontend.rule: 'Host: pma.wb.local'
-      traefik.port: 80
-
   rabbitmq:
-    image: rabbitmq:3.7.6-management
+    image: rabbitmq:3.7-alpine
     restart: always
     volumes:
       - rabbitmq_data:/var/lib/rabbitmq
@@ -45,7 +28,7 @@ services:
       traefik.port: 15672
 
   vault:
-    image: vault:0.10.2
+    image: vault:1.0.1
     restart: always
     environment:
       SKIP_SETCAP: 1

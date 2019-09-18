@@ -47,7 +47,11 @@ make build
 make bitcoin
 ```
 
-This will create new seeds and start `bitcoind` docker container.
+6. **Optional:** Start ethereum blockchain node
+
+```sh
+make geth
+```
 
 6. Run the application
 
@@ -58,8 +62,7 @@ make run
 You should add those hosts to your `/etc/hosts` file:
 
 ```
-0.0.0.0 api.wb.local
-0.0.0.0 auth.wb.local
+0.0.0.0 www.wb.local
 
 0.0.0.0 ws.ranger.wb.local
 

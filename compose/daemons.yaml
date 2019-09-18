@@ -1,4 +1,4 @@
-version: '3.6'
+version: '3.7'
 
 x-daemon: &peatio-daemon
   build:
@@ -9,7 +9,6 @@ x-daemon: &peatio-daemon
     - db
     - redis
     - rabbitmq
-    - geth
     - barong
     - ranger
     - coinhub
