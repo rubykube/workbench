@@ -4,6 +4,8 @@
 
 [![CircleCI](https://circleci.com/gh/rubykube/workbench.svg?style=svg)][circleci]
 
+**Please note, that this project is deprecated and moved to https://github.com/openware/opendax**
+
 Workbench is an easy way to start Peatio development environment.
 
 ## Prerequisites
