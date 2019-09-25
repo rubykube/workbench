@@ -94,7 +94,7 @@ $> docker-compose run --rm barong bash -c "./bin/link_config && ./bin/setup"
 $> docker-compose up -d barong
 ```
 
-This will output password for **admin@barong.io**. Default password is `Qwerty123`
+This will output password for **admin@barong.io**. Default password is `Chah5YohWm`
 
 #### Peatio
 
